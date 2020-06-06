@@ -1,25 +1,21 @@
 import Combine
 import SwiftUI
+import Relay
 import RelaySwiftUI
 
 private let query = graphql("""
 query GameSearchScreenQuery($query: String!) {
   viewer {
-    games(filter: { name: $query }) {
-      edges {
-        node {
-          id
-          name
-        }
-      }
-    }
+    ...GameSearchResults_games @arguments(query: $query)
   }
 }
 """)
 
 struct GameSearchScreen: View {
+    @RelayEnvironment var environment: Relay.Environment
     @Query(GameSearchScreenQuery.self) var query
     @State private var searchText = ""
+    @State private var isInspectorPresented = false
 
     private let queryDelayer = PassthroughSubject<String, Never>()
 
@@ -46,25 +42,29 @@ struct GameSearchScreen: View {
                         Text("Loading…")
                     } else if query.error != nil {
                         Text("Error: \(query.error!.localizedDescription)")
-                    } else if games.isEmpty {
-                        Text("No games found")
-                    } else {
-                        List(games, id: \.id) { game in
-                            Text(game.name ?? "Name unknown")
-                        }
+                    } else if query.data?.viewer != nil {
+                        GameSearchResults(games: query.data!.viewer!)
                     }
                 }
             }.frame(maxHeight: .infinity)
         }
             .navigationBarTitle("Games")
+            .navigationBarItems(trailing: Group {
+                #if DEBUG
+                Button(
+                    action: { self.isInspectorPresented = true},
+                    label: { Image(systemName: "briefcase") }
+                ).sheet(isPresented: $isInspectorPresented) {
+                    NavigationView {
+                        RelaySwiftUI.Inspector()
+                    }.relayEnvironment(self.environment)
+                }
+                #else
+                EmptyView()
+                #endif
+            })
             .onReceive(queryDelayer.debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)) { text in
                 self.$query.query = text
             }
-    }
-
-    typealias Game = GameSearchScreenQuery.Data.Viewer_viewer.GameConnection_games.GameEdge_edges.Game_node
-
-    private var games: [Game] {
-        query.data?.viewer?.games.edges.map { $0.node } ?? []
     }
 }

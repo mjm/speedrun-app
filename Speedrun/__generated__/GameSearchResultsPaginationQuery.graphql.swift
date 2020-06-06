@@ -2,7 +2,7 @@
 
 import Relay
 
-struct GameSearchScreenQuery {
+struct GameSearchResultsPaginationQuery {
     var variables: Variables
 
     init(variables: Variables) {
@@ -12,7 +12,7 @@ struct GameSearchScreenQuery {
     static var node: ConcreteRequest {
         ConcreteRequest(
             fragment: ReaderFragment(
-                name: "GameSearchScreenQuery",
+                name: "GameSearchResultsPaginationQuery",
                 selections: [
                     .field(ReaderLinkedField(
                         name: "viewer",
@@ -22,6 +22,8 @@ struct GameSearchScreenQuery {
                             .fragmentSpread(ReaderFragmentSpread(
                                 name: "GameSearchResults_games",
                                 args: [
+                                    VariableArgument(name: "count", variableName: "count"),
+                                    VariableArgument(name: "cursor", variableName: "cursor"),
                                     VariableArgument(name: "query", variableName: "query")
                                 ]
                             ))
@@ -29,7 +31,7 @@ struct GameSearchScreenQuery {
                     ))
                 ]),
             operation: NormalizationOperation(
-                name: "GameSearchScreenQuery",
+                name: "GameSearchResultsPaginationQuery",
                 selections: [
                     .field(NormalizationLinkedField(
                         name: "viewer",
@@ -39,10 +41,11 @@ struct GameSearchScreenQuery {
                             .field(NormalizationLinkedField(
                                 name: "games",
                                 args: [
+                                    VariableArgument(name: "after", variableName: "cursor"),
                                     ObjectValueArgument(name: "filter", fields: [
                                         VariableArgument(name: "name", variableName: "query")
                                     ]),
-                                    LiteralArgument(name: "first", value: 10)
+                                    VariableArgument(name: "first", variableName: "count")
                                 ],
                                 concreteType: "GameConnection",
                                 plural: false,
@@ -92,10 +95,11 @@ struct GameSearchScreenQuery {
                                 kind: .linked,
                                 name: "games",
                                 args: [
+                                    VariableArgument(name: "after", variableName: "cursor"),
                                     ObjectValueArgument(name: "filter", fields: [
                                         VariableArgument(name: "name", variableName: "query")
                                     ]),
-                                    LiteralArgument(name: "first", value: 10)
+                                    VariableArgument(name: "first", variableName: "count")
                                 ],
                                 handle: "connection",
                                 key: "GameSearchResults_games",
@@ -105,19 +109,21 @@ struct GameSearchScreenQuery {
                     ))
                 ]),
             params: RequestParameters(
-                name: "GameSearchScreenQuery",
+                name: "GameSearchResultsPaginationQuery",
                 operationKind: .query,
                 text: """
-query GameSearchScreenQuery(
+query GameSearchResultsPaginationQuery(
   $query: String!
+  $count: Int = 10
+  $cursor: Cursor
 ) {
   viewer {
-    ...GameSearchResults_games_1Qr5xf
+    ...GameSearchResults_games_1jWD3d
   }
 }
 
-fragment GameSearchResults_games_1Qr5xf on Viewer {
-  games(filter: {name: $query}, first: 10) {
+fragment GameSearchResults_games_1jWD3d on Viewer {
+  games(filter: {name: $query}, first: $count, after: $cursor) {
     edges {
       node {
         id
@@ -137,19 +143,23 @@ fragment GameSearchResults_games_1Qr5xf on Viewer {
 }
 
 
-extension GameSearchScreenQuery {
+extension GameSearchResultsPaginationQuery {
     struct Variables: VariableDataConvertible {
         var query: String
+        var count: Int?
+        var cursor: String?
 
         var variableData: VariableData {
             [
                 "query": query,
+                "count": count,
+                "cursor": cursor,
             ]
         }
     }
 }
 
-extension GameSearchScreenQuery {
+extension GameSearchResultsPaginationQuery {
     struct Data: Readable {
         var viewer: Viewer_viewer?
 
@@ -167,4 +177,4 @@ extension GameSearchScreenQuery {
     }
 }
 
-extension GameSearchScreenQuery: Relay.Operation {}
+extension GameSearchResultsPaginationQuery: Relay.Operation {}

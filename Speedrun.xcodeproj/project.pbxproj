@@ -19,6 +19,9 @@
 		C952D2EA248C1E5500858761 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D2E9248C1E5500858761 /* Environment.swift */; };
 		C952D2EF248C219200858761 /* GameSearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D2EE248C219200858761 /* GameSearchScreen.swift */; };
 		C952D2F4248C220C00858761 /* GameSearchScreenQuery.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D2F3248C220C00858761 /* GameSearchScreenQuery.graphql.swift */; };
+		C952D2F6248C27B200858761 /* GameSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D2F5248C27B200858761 /* GameSearchResults.swift */; };
+		C952D2F9248C293500858761 /* GameSearchResults_games.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D2F7248C293500858761 /* GameSearchResults_games.graphql.swift */; };
+		C952D2FA248C293500858761 /* GameSearchResultsPaginationQuery.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D2F8248C293500858761 /* GameSearchResultsPaginationQuery.graphql.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,10 @@
 		C952D2EC248C20E200858761 /* schema.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = schema.graphql; sourceTree = "<group>"; };
 		C952D2EE248C219200858761 /* GameSearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSearchScreen.swift; sourceTree = "<group>"; };
 		C952D2F3248C220C00858761 /* GameSearchScreenQuery.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSearchScreenQuery.graphql.swift; sourceTree = "<group>"; };
+		C952D2F5248C27B200858761 /* GameSearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSearchResults.swift; sourceTree = "<group>"; };
+		C952D2F7248C293500858761 /* GameSearchResults_games.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSearchResults_games.graphql.swift; sourceTree = "<group>"; };
+		C952D2F8248C293500858761 /* GameSearchResultsPaginationQuery.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSearchResultsPaginationQuery.graphql.swift; sourceTree = "<group>"; };
+		C952D2FB248C2B4500858761 /* Relay.swift */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Relay.swift; path = ../Relay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +80,7 @@
 		C952D2B5248C1D5600858761 = {
 			isa = PBXGroup;
 			children = (
+				C952D2FB248C2B4500858761 /* Relay.swift */,
 				C952D2C0248C1D5600858761 /* Speedrun */,
 				C952D2D7248C1D5600858761 /* SpeedrunTests */,
 				C952D2BF248C1D5600858761 /* Products */,
@@ -136,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				C952D2EE248C219200858761 /* GameSearchScreen.swift */,
+				C952D2F5248C27B200858761 /* GameSearchResults.swift */,
 			);
 			path = "Game Search";
 			sourceTree = "<group>";
@@ -143,6 +152,8 @@
 		C952D2F2248C220C00858761 /* __generated__ */ = {
 			isa = PBXGroup;
 			children = (
+				C952D2F7248C293500858761 /* GameSearchResults_games.graphql.swift */,
+				C952D2F8248C293500858761 /* GameSearchResultsPaginationQuery.graphql.swift */,
 				C952D2F3248C220C00858761 /* GameSearchScreenQuery.graphql.swift */,
 			);
 			path = __generated__;
@@ -257,9 +268,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C952D2C2248C1D5600858761 /* AppDelegate.swift in Sources */,
+				C952D2FA248C293500858761 /* GameSearchResultsPaginationQuery.graphql.swift in Sources */,
 				C952D2F4248C220C00858761 /* GameSearchScreenQuery.graphql.swift in Sources */,
 				C952D2EA248C1E5500858761 /* Environment.swift in Sources */,
+				C952D2F9248C293500858761 /* GameSearchResults_games.graphql.swift in Sources */,
 				C952D2EF248C219200858761 /* GameSearchScreen.swift in Sources */,
+				C952D2F6248C27B200858761 /* GameSearchResults.swift in Sources */,
 				C952D2C4248C1D5600858761 /* SceneDelegate.swift in Sources */,
 				C952D2C6248C1D5600858761 /* ContentView.swift in Sources */,
 			);
