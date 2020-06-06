@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Relay.swift",
+        "repositoryURL": "https://github.com/mjm/Relay.swift.git",
+        "state": {
+          "branch": "master",
+          "revision": "b2fd6989503d1b3263bb6758641f110017cb0228",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

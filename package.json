@@ -1,0 +1,18 @@
+{
+  "name": "Speedrun",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "graphql": "^15.0.0",
+    "relay-compiler": "^9.1.0",
+    "relay-compiler-language-swift": "^0.2.0",
+    "relay-config": "^9.1.0"
+  }
+}

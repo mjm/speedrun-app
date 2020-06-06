@@ -1,0 +1,569 @@
+scalar Cursor
+scalar Time
+
+interface Node {
+  id: ID!
+}
+
+type Query {
+  viewer: Viewer
+
+  node(id: ID!): Node
+}
+
+type Viewer {
+  games(
+    filter: GameFilter
+    order: GameOrder
+    first: Int
+    after: Cursor
+  ): GameConnection!
+
+  genres(
+    order: GenreOrder
+    first: Int
+    after: Cursor
+  ): GenreConnection!
+
+  platforms(
+    order: PlatformOrder
+    first: Int
+    after: Cursor
+  ): PlatformConnection!
+
+  runs(
+    filter: RunFilter
+    order: RunOrder
+    first: Int
+    after: Cursor
+  ): RunConnection!
+
+  users(
+    filter: UserFilter
+    order: UserOrder
+    first: Int
+    after: Cursor
+  ): UserConnection
+
+  leaderboard(
+    game: ID!
+    category: ID!
+    level: ID
+    variables: [VariableFilter!]
+  ): Leaderboard
+}
+
+type PageInfo {
+  startCursor: Cursor
+  endCursor: Cursor
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+}
+
+enum OrderDirection {
+  ASC
+  DESC
+}
+
+type Link {
+  rel: String
+  uri: String!
+}
+
+type Category implements Node {
+  id: ID!
+  rawID: String!
+  name: String!
+  game: Game
+  weblink: String!
+  type: CategoryType!
+  rules: String!
+  players: CategoryPlayers!
+  miscellaneous: Boolean!
+  variables: [Variable!]!
+
+  runs(
+    filter: RunFilter
+    order: RunOrder
+    first: Int
+    after: Cursor
+  ): RunConnection!
+}
+
+enum CategoryType {
+  PER_GAME
+  PER_LEVEL
+}
+
+type CategoryPlayers {
+  type: CategoryPlayersType!
+  value: Int!
+}
+
+enum CategoryPlayersType {
+  EXACTLY
+  UP_TO
+}
+
+type Engine implements Node {
+  id: ID!
+  rawID: String!
+  name: String!
+}
+
+input GameFilter {
+  name: String
+  abbreviation: String
+  released: Int
+  gameType: ID
+  platform: ID
+  region: ID
+  genre: ID
+  engine: ID
+  developer: ID
+  publisher: ID
+  moderator: ID
+}
+
+input GameOrder {
+  field: GameOrderField
+  direction: OrderDirection
+}
+
+enum GameOrderField {
+  NAME_INT
+  NAME_JAP
+  ABBREVIATION
+  RELEASED
+  CREATED
+  SIMILARITY
+}
+
+type GameConnection {
+  edges: [GameEdge!]!
+  nodes: [Game!]!
+  pageInfo: PageInfo!
+}
+
+type GameEdge {
+  node: Game!
+  cursor: Cursor
+}
+
+type Game implements Node {
+  id: ID!
+  rawID: String!
+  name(variant: GameNameVariant = INTERNATIONAL): String
+  abbreviation: String
+  weblink: String!
+  releaseDate: String!
+  ruleset: GameRuleset!
+
+  platforms: [Platform!]!
+  regions: [Region!]!
+  genres: [Genre!]!
+  engines: [Engine!]!
+  moderators: [GameModerator!]!
+
+  assets: [GameAsset!]!
+  asset(kind: GameAssetKind!): GameAsset
+
+  categories: [Category!]!
+  levels: [Level!]!
+  variables: [Variable!]!
+
+  runs(
+    filter: RunFilter
+    order: RunOrder
+    first: Int
+    after: Cursor
+  ): RunConnection!
+}
+
+enum GameNameVariant {
+  INTERNATIONAL
+  JAPANESE
+  TWITCH
+}
+
+type GameRuleset {
+  showMilliseconds: Boolean!
+  requireVerification: Boolean!
+  requireVideo: Boolean!
+  runTimes: [GameRunTime!]!
+  defaultRunTime: GameRunTime!
+  emulatorsAllowed: Boolean!
+}
+
+enum GameRunTime {
+  REALTIME
+  REALTIME_NOLOADS
+  INGAME
+}
+
+type GameModerator {
+  user: User!
+  role: GameModeratorRole!
+}
+
+enum GameModeratorRole {
+  MODERATOR
+  SUPER_MODERATOR
+}
+
+type GameAsset {
+  kind: GameAssetKind!
+  uri: String!
+  width: Int!
+  height: Int!
+}
+
+enum GameAssetKind {
+  LOGO
+  COVER_TINY
+  COVER_SMALL
+  COVER_MEDIUM
+  COVER_LARGE
+  ICON
+  TROPHY_1ST
+  TROPHY_2ND
+  TROPHY_3RD
+  TROPHY_4TH
+  BACKGROUND
+  FOREGROUND
+}
+
+input GenreOrder {
+  field: GenreOrderField
+  direction: OrderDirection
+}
+
+enum GenreOrderField {
+  NAME
+}
+
+type GenreConnection {
+  edges: [GenreEdge!]!
+  nodes: [Genre!]!
+  pageInfo: PageInfo!
+}
+
+type GenreEdge {
+  node: Genre!
+  cursor: Cursor
+}
+
+type Genre implements Node {
+  id: ID!
+  rawID: String!
+  name: String!
+
+  games(
+    filter: GameFilter
+    order: GameOrder
+    first: Int
+    after: Cursor
+  ): GameConnection!
+}
+
+input VariableFilter {
+  id: ID!
+  value: ID!
+}
+
+type Leaderboard {
+  game: Game!
+  category: Category!
+  level: Level
+  timing: GameRunTime!
+
+  runs(
+    first: Int = 3
+  ): [PlacedRun!]!
+}
+
+type PlacedRun {
+  place: Int!
+  run: Run!
+}
+
+type Level implements Node {
+  id: ID!
+  rawID: String!
+  name: String!
+  game: Game
+  weblink: String!
+  rules: String!
+
+  categories: [Category!]!
+  variables: [Variable!]!
+}
+
+input PlatformOrder {
+  field: PlatformOrderField
+  direction: OrderDirection
+}
+
+enum PlatformOrderField {
+  NAME
+  RELEASED
+}
+
+type PlatformConnection {
+  edges: [PlatformEdge!]!
+  nodes: [Platform!]!
+  pageInfo: PageInfo!
+}
+
+type PlatformEdge {
+  node: Platform!
+  cursor: Cursor
+}
+
+type Platform implements Node {
+  id: ID!
+  rawID: String!
+  name: String!
+  released: Int!
+
+  games(
+    filter: GameFilter
+    order: GameOrder
+    first: Int
+    after: Cursor
+  ): GameConnection!
+}
+
+type Region implements Node {
+  id: ID!
+  rawID: String!
+  name: String!
+
+  games(
+    filter: GameFilter
+    order: GameOrder
+    first: Int
+    after: Cursor
+  ): GameConnection!
+}
+
+input RunFilter {
+  user: ID
+  guest: String
+  examiner: ID
+  game: ID
+  level: ID
+  category: ID
+  platform: ID
+  region: ID
+  emulated: Boolean
+  status: RunStatusValue
+}
+
+input RunOrder {
+  field: RunOrderField
+  direction: OrderDirection
+}
+
+enum RunOrderField {
+  GAME
+  CATEGORY
+  LEVEL
+  PLATFORM
+  REGION
+  EMULATED
+  DATE
+  SUBMITTED
+  STATUS
+  VERIFY_DATE
+}
+
+type RunConnection {
+  edges: [RunEdge!]!
+  nodes: [Run!]!
+  pageInfo: PageInfo!
+}
+
+type RunEdge {
+  node: Run!
+  cursor: Cursor
+}
+
+type Run implements Node {
+  id: ID!
+  rawID: String!
+  game: Game!
+  category: Category!
+  level: Level
+  videos: RunVideos
+  comment: String!
+  status: RunStatus!
+  date: String
+  submitted: String
+  players: [RunPlayer!]!
+  splits: Link
+
+  time(timing: GameRunTime): Float
+
+  values: [VariableValue!]!
+  value(variableID: ID!): VariableValue
+}
+
+type RunStatus {
+  status: RunStatusValue!
+  examiner: User
+  verifyDate: Time
+  reason: String
+}
+
+enum RunStatusValue {
+  NEW
+  VERIFIED
+  REJECTED
+}
+
+type RunVideos {
+  text: String
+  links: [Link!]!
+}
+
+union RunPlayer = UserRunPlayer | GuestRunPlayer
+
+type UserRunPlayer {
+  user: User
+}
+
+type GuestRunPlayer {
+  name: String!
+}
+
+input UserFilter {
+  lookup: String
+  name: String
+  twitch: String
+  hitbox: String
+  twitter: String
+  speedrunslive: String
+}
+
+input UserOrder {
+  field: UserOrderField
+  direction: OrderDirection
+}
+
+enum UserOrderField {
+  NAME_INT
+  NAME_JAP
+  SIGNUP
+  ROLE
+}
+
+type UserConnection {
+  edges: [UserEdge!]!
+  nodes: [User!]!
+  pageInfo: PageInfo!
+}
+
+type UserEdge {
+  node: User!
+  cursor: Cursor
+}
+
+type User implements Node {
+  id: ID!
+  rawID: String!
+  name(variant: UserNameVariant = INTERNATIONAL): String
+  weblink: String!
+  nameStyle: UserNameStyle!
+  role: UserRole!
+  signup: Time
+  # TODO location
+  twitch: Link
+  hitbox: Link
+  youtube: Link
+  twitter: Link
+  speedrunslive: Link
+
+  runs(
+    filter: RunFilter
+    order: RunOrder
+    first: Int
+    after: Cursor
+  ): RunConnection!
+
+  personalBests: [PlacedRun!]!
+
+  moderatedGames(
+    filter: GameFilter
+    order: GameOrder
+    first: Int
+    after: Cursor
+  ): GameConnection!
+}
+
+enum UserNameVariant {
+  INTERNATIONAL
+  JAPANESE
+}
+
+union UserNameStyle = SolidUserNameStyle | GradientUserNameStyle
+
+type SolidUserNameStyle {
+  color: Color!
+}
+
+type GradientUserNameStyle {
+  fromColor: Color!
+  toColor: Color!
+}
+
+type Color {
+  light: String!
+  dark: String!
+}
+
+enum UserRole {
+  USER
+  BANNED
+  TRUSTED
+  MODERATOR
+  ADMIN
+  PROGRAMMER
+}
+
+type Variable implements Node {
+  id: ID!
+  rawID: String!
+  name: String!
+  game: Game
+  category: Category
+  scope: VariableScopeType!
+  # TODO level
+  mandatory: Boolean!
+  userDefined: Boolean!
+  obsoletes: Boolean!
+  isSubcategory: Boolean!
+
+  values: [VariableValue!]!
+  defaultValue: VariableValue
+  value(id: ID!): VariableValue
+}
+
+enum VariableScopeType {
+  GLOBAL
+  FULL_GAME
+  ALL_LEVELS
+  SINGLE_LEVEL
+}
+
+type VariableValue {
+  id: ID!
+  variable: Variable!
+  label: String!
+  rules: String
+  flags: VariableValueFlags
+}
+
+type VariableValueFlags {
+  miscellaneous: Boolean!
+}
