@@ -22,6 +22,10 @@
 		C952D2F6248C27B200858761 /* GameSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D2F5248C27B200858761 /* GameSearchResults.swift */; };
 		C952D2F9248C293500858761 /* GameSearchResults_games.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D2F7248C293500858761 /* GameSearchResults_games.graphql.swift */; };
 		C952D2FA248C293500858761 /* GameSearchResultsPaginationQuery.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D2F8248C293500858761 /* GameSearchResultsPaginationQuery.graphql.swift */; };
+		C952D2FD248C30BE00858761 /* GameSearchResultRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D2FC248C30BE00858761 /* GameSearchResultRow.swift */; };
+		C952D2FF248C310700858761 /* GameSearchResultRow_game.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D2FE248C310700858761 /* GameSearchResultRow_game.graphql.swift */; };
+		C952D302248C319500858761 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D300248C319500858761 /* AsyncImage.swift */; };
+		C952D303248C319500858761 /* ImagePlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D301248C319500858761 /* ImagePlaceholder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,10 @@
 		C952D2F7248C293500858761 /* GameSearchResults_games.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSearchResults_games.graphql.swift; sourceTree = "<group>"; };
 		C952D2F8248C293500858761 /* GameSearchResultsPaginationQuery.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSearchResultsPaginationQuery.graphql.swift; sourceTree = "<group>"; };
 		C952D2FB248C2B4500858761 /* Relay.swift */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Relay.swift; path = ../Relay.swift; sourceTree = "<group>"; };
+		C952D2FC248C30BE00858761 /* GameSearchResultRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSearchResultRow.swift; sourceTree = "<group>"; };
+		C952D2FE248C310700858761 /* GameSearchResultRow_game.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSearchResultRow_game.graphql.swift; sourceTree = "<group>"; };
+		C952D300248C319500858761 /* AsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
+		C952D301248C319500858761 /* ImagePlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePlaceholder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,8 +142,10 @@
 			isa = PBXGroup;
 			children = (
 				C952D2C1248C1D5600858761 /* AppDelegate.swift */,
-				C952D2C3248C1D5600858761 /* SceneDelegate.swift */,
+				C952D300248C319500858761 /* AsyncImage.swift */,
 				C952D2E9248C1E5500858761 /* Environment.swift */,
+				C952D301248C319500858761 /* ImagePlaceholder.swift */,
+				C952D2C3248C1D5600858761 /* SceneDelegate.swift */,
 			);
 			path = Infra;
 			sourceTree = "<group>";
@@ -145,6 +155,7 @@
 			children = (
 				C952D2EE248C219200858761 /* GameSearchScreen.swift */,
 				C952D2F5248C27B200858761 /* GameSearchResults.swift */,
+				C952D2FC248C30BE00858761 /* GameSearchResultRow.swift */,
 			);
 			path = "Game Search";
 			sourceTree = "<group>";
@@ -152,6 +163,7 @@
 		C952D2F2248C220C00858761 /* __generated__ */ = {
 			isa = PBXGroup;
 			children = (
+				C952D2FE248C310700858761 /* GameSearchResultRow_game.graphql.swift */,
 				C952D2F7248C293500858761 /* GameSearchResults_games.graphql.swift */,
 				C952D2F8248C293500858761 /* GameSearchResultsPaginationQuery.graphql.swift */,
 				C952D2F3248C220C00858761 /* GameSearchScreenQuery.graphql.swift */,
@@ -271,7 +283,11 @@
 				C952D2FA248C293500858761 /* GameSearchResultsPaginationQuery.graphql.swift in Sources */,
 				C952D2F4248C220C00858761 /* GameSearchScreenQuery.graphql.swift in Sources */,
 				C952D2EA248C1E5500858761 /* Environment.swift in Sources */,
+				C952D302248C319500858761 /* AsyncImage.swift in Sources */,
+				C952D303248C319500858761 /* ImagePlaceholder.swift in Sources */,
+				C952D2FF248C310700858761 /* GameSearchResultRow_game.graphql.swift in Sources */,
 				C952D2F9248C293500858761 /* GameSearchResults_games.graphql.swift in Sources */,
+				C952D2FD248C30BE00858761 /* GameSearchResultRow.swift in Sources */,
 				C952D2EF248C219200858761 /* GameSearchScreen.swift in Sources */,
 				C952D2F6248C27B200858761 /* GameSearchResults.swift in Sources */,
 				C952D2C4248C1D5600858761 /* SceneDelegate.swift in Sources */,

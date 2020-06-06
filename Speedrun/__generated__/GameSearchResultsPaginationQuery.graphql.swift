@@ -66,6 +66,21 @@ struct GameSearchResultsPaginationQuery {
                                                     .field(NormalizationScalarField(
                                                         name: "name"
                                                     )),
+                                                    .field(NormalizationLinkedField(
+                                                        name: "asset",
+                                                        alias: "cover",
+                                                        args: [
+                                                            LiteralArgument(name: "kind", value: "COVER_MEDIUM")
+                                                        ],
+                                                        storageKey: "asset(kind:\"COVER_MEDIUM\")",
+                                                        concreteType: "GameAsset",
+                                                        plural: false,
+                                                        selections: [
+                                                            .field(NormalizationScalarField(
+                                                                name: "uri"
+                                                            ))
+                                                        ]
+                                                    )),
                                                     .field(NormalizationScalarField(
                                                         name: "__typename"
                                                     ))
@@ -122,12 +137,19 @@ query GameSearchResultsPaginationQuery(
   }
 }
 
+fragment GameSearchResultRow_game on Game {
+  name
+  cover: asset(kind: COVER_MEDIUM) {
+    uri
+  }
+}
+
 fragment GameSearchResults_games_1jWD3d on Viewer {
   games(filter: {name: $query}, first: $count, after: $cursor) {
     edges {
       node {
         id
-        name
+        ...GameSearchResultRow_game
         __typename
       }
       cursor

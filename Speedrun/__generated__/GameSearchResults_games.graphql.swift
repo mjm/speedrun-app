@@ -38,10 +38,10 @@ struct GameSearchResults_games {
                                             name: "id"
                                         )),
                                         .field(ReaderScalarField(
-                                            name: "name"
-                                        )),
-                                        .field(ReaderScalarField(
                                             name: "__typename"
+                                        )),
+                                        .fragmentSpread(ReaderFragmentSpread(
+                                            name: "GameSearchResultRow_game"
                                         ))
                                     ]
                                 )),
@@ -92,13 +92,13 @@ extension GameSearchResults_games {
                     node = data.get(Game_node.self, "node")
                 }
 
-                struct Game_node: Readable {
+                struct Game_node: Readable, GameSearchResultRow_game_Key {
                     var id: String
-                    var name: String?
+                    var fragment_GameSearchResultRow_game: FragmentPointer
 
                     init(from data: SelectorData) {
                         id = data.get(String.self, "id")
-                        name = data.get(String?.self, "name")
+                        fragment_GameSearchResultRow_game = data.get(fragment: "GameSearchResultRow_game")
                     }
                 }
             }

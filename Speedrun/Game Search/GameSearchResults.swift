@@ -18,7 +18,7 @@ fragment GameSearchResults_games on Viewer
     edges {
       node {
         id
-        name
+        ...GameSearchResultRow_game
       }
     }
   }
@@ -40,7 +40,7 @@ struct GameSearchResults: View {
         Group {
             if games != nil {
                 List(gameNodes, id: \.id) { game in
-                    Text(game.name ?? "Name unknown")
+                    GameSearchResultRow(game: game)
                 }
             }
         }
