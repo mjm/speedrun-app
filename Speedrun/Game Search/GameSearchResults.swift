@@ -40,7 +40,9 @@ struct GameSearchResults: View {
         Group {
             if games != nil {
                 List(gameNodes, id: \.id) { game in
-                    GameSearchResultRow(game: game)
+                    NavigationLink(destination: GameDetailScreen(id: game.id)) {
+                        GameSearchResultRow(game: game)
+                    }
                 }
             }
         }

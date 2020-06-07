@@ -14,7 +14,7 @@ query GameSearchScreenQuery($query: String!) {
 struct GameSearchScreen: View {
     @RelayEnvironment var environment: Relay.Environment
     @Query(GameSearchScreenQuery.self) var query
-    @State private var searchText = ""
+    @State private var searchText = "link's awak"
     @State private var isInspectorPresented = false
 
     private let queryDelayer = PassthroughSubject<String, Never>()
@@ -27,12 +27,12 @@ struct GameSearchScreen: View {
     }
 
     init() {
-        $query = .init(query: "")
+        $query = .init(query: "link's awak")
     }
 
     var body: some View {
         VStack {
-            TextField("Search Query", text: searchTextBinding)
+            TextField("Search games…", text: searchTextBinding)
                 .padding(.horizontal)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
