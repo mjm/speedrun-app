@@ -45,3 +45,30 @@ struct LeaderboardScreen: View {
         }
     }
 }
+
+struct LeaderboardScreen_Previews: PreviewProvider {
+    static let mockEnvironment = MockEnvironment()
+
+    static let payload: [String: Any] = [
+        "data": [
+            "viewer": [
+                "leaderboard": [
+                    "category": [
+                        "name": "Glitchless",
+                    ],
+                ].merging( LeaderboardRunsList_Previews.leaderboardFragment) { $1 },
+            ],
+        ],
+    ]
+
+    static var previews: some View {
+        let op = LeaderboardScreenQuery(variables: .init(gameID: "foo", categoryID: "bar"))
+        mockEnvironment.mockResponse(op, payload)
+
+        return Group {
+            NavigationView {
+                LeaderboardScreen(gameID: "foo", categoryID: "bar")
+            }
+        }.relayEnvironment(mockEnvironment)
+    }
+}

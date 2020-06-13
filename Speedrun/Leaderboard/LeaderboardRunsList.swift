@@ -32,3 +32,40 @@ struct LeaderboardRunsList: View {
         }
     }
 }
+
+private let previewQuery = graphql("""
+query LeaderboardRunsListPreviewQuery {
+  viewer {
+    leaderboard(game: "foo", category: "bar") {
+      ...LeaderboardRunsList_leaderboard @arguments(count: 10)
+    }
+  }
+}
+""")
+
+struct LeaderboardRunsList_Previews: PreviewProvider {
+    static let mockEnvironment = MockEnvironment()
+
+    static let leaderboardFragment = [
+        "runs": LeaderboardRun_Previews.runFragments
+    ]
+
+    static var previews: some View {
+        let op = LeaderboardRunsListPreviewQuery()
+        mockEnvironment.cachePayload(op, [
+            "data": [
+                "viewer": [
+                    "leaderboard": leaderboardFragment,
+                ],
+            ],
+        ])
+
+        return Group {
+            QueryPreview(op) { data in
+                List {
+                    LeaderboardRunsList(leaderboard: data.viewer!.leaderboard!)
+                }
+            }
+        }.relayEnvironment(mockEnvironment)
+    }
+}
