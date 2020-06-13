@@ -1,4 +1,5 @@
 import SwiftUI
+import class Relay.MockEnvironment
 import RelaySwiftUI
 
 private let query = graphql("""
@@ -37,5 +38,32 @@ struct GameDetailScreen: View {
                     .listStyle(GroupedListStyle())
             }
         }
+    }
+}
+
+struct GameDetailScreen_Previews: PreviewProvider {
+    static let mockEnvironment = MockEnvironment()
+
+    static let mockGameID = GameDetailLeaderboardList_Previews.mockGameID
+
+    static let payload = [
+        "data": [
+            "game": [
+                "id": mockGameID
+            ]
+                .merging(GameDetailHeader_Previews.gameFragment) { $1 }
+                .merging(GameDetailLeaderboardList_Previews.gameFragment) { $1 },
+        ],
+    ]
+
+    static var previews: some View {
+        let op = GameDetailScreenQuery(variables: .init(id: mockGameID))
+        mockEnvironment.mockResponse(op, payload)
+
+        return Group {
+            NavigationView {
+                GameDetailScreen(id: mockGameID)
+            }
+        }.relayEnvironment(mockEnvironment)
     }
 }
