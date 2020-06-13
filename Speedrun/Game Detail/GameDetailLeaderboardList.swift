@@ -3,6 +3,7 @@ import RelaySwiftUI
 
 private let gameFragment = graphql("""
 fragment GameDetailLeaderboardList_game on Game {
+  id
   categories {
     id
     name
@@ -19,7 +20,9 @@ struct GameDetailLeaderboardList: View {
 
     var body: some View {
         ForEach(game?.categories ?? [], id: \.id) { category in
-            Text(category.name)
+            NavigationLink(destination: LeaderboardScreen(gameID: self.game!.id, categoryID: category.id)) {
+                Text(category.name)
+            }
         }
     }
 }

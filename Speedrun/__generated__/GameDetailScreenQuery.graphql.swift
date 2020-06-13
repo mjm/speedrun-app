@@ -104,6 +104,7 @@ fragment GameDetailHeader_game on Game {
 }
 
 fragment GameDetailLeaderboardList_game on Game {
+  id
   categories {
     id
     name

@@ -13,6 +13,9 @@ struct GameDetailLeaderboardList_game {
         ReaderFragment(
             name: "GameDetailLeaderboardList_game",
             selections: [
+                .field(ReaderScalarField(
+                    name: "id"
+                )),
                 .field(ReaderLinkedField(
                     name: "categories",
                     concreteType: "Category",
@@ -33,9 +36,11 @@ struct GameDetailLeaderboardList_game {
 
 extension GameDetailLeaderboardList_game {
     struct Data: Readable {
+        var id: String
         var categories: [Category_categories]
 
         init(from data: SelectorData) {
+            id = data.get(String.self, "id")
             categories = data.get([Category_categories].self, "categories")
         }
 
