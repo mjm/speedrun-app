@@ -26,8 +26,8 @@ struct GameSearchScreen: View {
         })
     }
 
-    init() {
-        $query = .init(query: "link's awak")
+    init(initialQuery: String = "link's awak") {
+        $query = .init(query: initialQuery)
     }
 
     var body: some View {
@@ -66,5 +66,24 @@ struct GameSearchScreen: View {
             .onReceive(queryDelayer.debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)) { text in
                 self.$query.query = text
             }
+    }
+}
+
+struct GameSearchScreen_Previews: PreviewProvider {
+    static let mockEnvironment = Relay.MockEnvironment()
+
+    static let payload = [
+        "data": [
+            "viewer": GameSearchResults_Previews.gamesFragment,
+        ],
+    ]
+
+    static var previews: some View {
+        let op = GameSearchScreenQuery(variables: .init(query: "link's awak"))
+        mockEnvironment.mockResponse(op, payload)
+
+        return Group {
+            GameSearchScreen()
+        }.relayEnvironment(mockEnvironment)
     }
 }

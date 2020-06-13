@@ -12,6 +12,7 @@ struct GameDetailHeader_game {
     static var node: ReaderFragment {
         ReaderFragment(
             name: "GameDetailHeader_game",
+            type: "Game",
             selections: [
                 .field(ReaderScalarField(
                     name: "name"

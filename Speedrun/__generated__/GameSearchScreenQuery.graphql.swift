@@ -13,6 +13,7 @@ struct GameSearchScreenQuery {
         ConcreteRequest(
             fragment: ReaderFragment(
                 name: "GameSearchScreenQuery",
+                type: "Query",
                 selections: [
                     .field(ReaderLinkedField(
                         name: "viewer",

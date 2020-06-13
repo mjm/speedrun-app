@@ -13,6 +13,7 @@ struct LeaderboardScreenQuery {
         ConcreteRequest(
             fragment: ReaderFragment(
                 name: "LeaderboardScreenQuery",
+                type: "Query",
                 selections: [
                     .field(ReaderLinkedField(
                         name: "viewer",

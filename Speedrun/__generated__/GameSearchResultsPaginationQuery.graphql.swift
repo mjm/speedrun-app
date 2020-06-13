@@ -13,6 +13,7 @@ struct GameSearchResultsPaginationQuery {
         ConcreteRequest(
             fragment: ReaderFragment(
                 name: "GameSearchResultsPaginationQuery",
+                type: "Query",
                 selections: [
                     .field(ReaderLinkedField(
                         name: "viewer",

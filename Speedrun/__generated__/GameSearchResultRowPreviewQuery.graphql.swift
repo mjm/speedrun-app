@@ -2,7 +2,7 @@
 
 import Relay
 
-struct GameDetailScreenQuery {
+struct GameSearchResultRowPreviewQuery {
     var variables: Variables
 
     init(variables: Variables) {
@@ -12,7 +12,7 @@ struct GameDetailScreenQuery {
     static var node: ConcreteRequest {
         ConcreteRequest(
             fragment: ReaderFragment(
-                name: "GameDetailScreenQuery",
+                name: "GameSearchResultRowPreviewQuery",
                 type: "Query",
                 selections: [
                     .field(ReaderLinkedField(
@@ -23,20 +23,14 @@ struct GameDetailScreenQuery {
                         concreteType: "Game",
                         plural: false,
                         selections: [
-                            .field(ReaderScalarField(
-                                name: "id"
-                            )),
                             .fragmentSpread(ReaderFragmentSpread(
-                                name: "GameDetailHeader_game"
-                            )),
-                            .fragmentSpread(ReaderFragmentSpread(
-                                name: "GameDetailLeaderboardList_game"
+                                name: "GameSearchResultRow_game"
                             ))
                         ]
                     ))
                 ]),
             operation: NormalizationOperation(
-                name: "GameDetailScreenQuery",
+                name: "GameSearchResultRowPreviewQuery",
                 selections: [
                     .field(NormalizationLinkedField(
                         name: "game",
@@ -46,9 +40,6 @@ struct GameDetailScreenQuery {
                         concreteType: "Game",
                         plural: false,
                         selections: [
-                            .field(NormalizationScalarField(
-                                name: "id"
-                            )),
                             .field(NormalizationScalarField(
                                 name: "name"
                             )),
@@ -67,48 +58,29 @@ struct GameDetailScreenQuery {
                                     ))
                                 ]
                             )),
-                            .field(NormalizationLinkedField(
-                                name: "categories",
-                                concreteType: "Category",
-                                plural: true,
-                                selections: [
-                                    .field(NormalizationScalarField(
-                                        name: "id"
-                                    )),
-                                    .field(NormalizationScalarField(
-                                        name: "name"
-                                    ))
-                                ]
+                            .field(NormalizationScalarField(
+                                name: "id"
                             ))
                         ]
                     ))
                 ]),
             params: RequestParameters(
-                name: "GameDetailScreenQuery",
+                name: "GameSearchResultRowPreviewQuery",
                 operationKind: .query,
                 text: """
-query GameDetailScreenQuery(
+query GameSearchResultRowPreviewQuery(
   $id: ID!
 ) {
   game(id: $id) {
+    ...GameSearchResultRow_game
     id
-    ...GameDetailHeader_game
-    ...GameDetailLeaderboardList_game
   }
 }
 
-fragment GameDetailHeader_game on Game {
+fragment GameSearchResultRow_game on Game {
   name
   cover: asset(kind: COVER_MEDIUM) {
     uri
-  }
-}
-
-fragment GameDetailLeaderboardList_game on Game {
-  id
-  categories {
-    id
-    name
   }
 }
 """))
@@ -116,7 +88,7 @@ fragment GameDetailLeaderboardList_game on Game {
 }
 
 
-extension GameDetailScreenQuery {
+extension GameSearchResultRowPreviewQuery {
     struct Variables: VariableDataConvertible {
         var id: String
 
@@ -128,7 +100,7 @@ extension GameDetailScreenQuery {
     }
 }
 
-extension GameDetailScreenQuery {
+extension GameSearchResultRowPreviewQuery {
     struct Data: Readable {
         var game: Game_game?
 
@@ -136,18 +108,14 @@ extension GameDetailScreenQuery {
             game = data.get(Game_game?.self, "game")
         }
 
-        struct Game_game: Readable, GameDetailHeader_game_Key, GameDetailLeaderboardList_game_Key {
-            var id: String
-            var fragment_GameDetailHeader_game: FragmentPointer
-            var fragment_GameDetailLeaderboardList_game: FragmentPointer
+        struct Game_game: Readable, GameSearchResultRow_game_Key {
+            var fragment_GameSearchResultRow_game: FragmentPointer
 
             init(from data: SelectorData) {
-                id = data.get(String.self, "id")
-                fragment_GameDetailHeader_game = data.get(fragment: "GameDetailHeader_game")
-                fragment_GameDetailLeaderboardList_game = data.get(fragment: "GameDetailLeaderboardList_game")
+                fragment_GameSearchResultRow_game = data.get(fragment: "GameSearchResultRow_game")
             }
         }
     }
 }
 
-extension GameDetailScreenQuery: Relay.Operation {}
+extension GameSearchResultRowPreviewQuery: Relay.Operation {}

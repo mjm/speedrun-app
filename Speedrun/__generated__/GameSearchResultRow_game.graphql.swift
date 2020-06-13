@@ -12,6 +12,7 @@ struct GameSearchResultRow_game {
     static var node: ReaderFragment {
         ReaderFragment(
             name: "GameSearchResultRow_game",
+            type: "Game",
             selections: [
                 .field(ReaderScalarField(
                     name: "name"

@@ -12,6 +12,7 @@ struct LeaderboardRunsList_leaderboard {
     static var node: ReaderFragment {
         ReaderFragment(
             name: "LeaderboardRunsList_leaderboard",
+            type: "Leaderboard",
             selections: [
                 .field(ReaderLinkedField(
                     name: "runs",

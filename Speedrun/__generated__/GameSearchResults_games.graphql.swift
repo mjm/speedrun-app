@@ -12,6 +12,7 @@ struct GameSearchResults_games {
     static var node: ReaderFragment {
         ReaderFragment(
             name: "GameSearchResults_games",
+            type: "Viewer",
             selections: [
                 .field(ReaderLinkedField(
                     name: "__GameSearchResults_games_connection",

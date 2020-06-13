@@ -12,6 +12,7 @@ struct LeaderboardRun_run {
     static var node: ReaderFragment {
         ReaderFragment(
             name: "LeaderboardRun_run",
+            type: "PlacedRun",
             selections: [
                 .field(ReaderScalarField(
                     name: "place"
