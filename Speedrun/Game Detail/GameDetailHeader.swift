@@ -32,6 +32,7 @@ struct GameDetailHeader: View {
 
             Text(game?.name ?? "")
                 .fontWeight(.semibold)
+                .foregroundColor(Color(red: 0.2, green: 0.2, blue: 0.2, opacity: 1.0))
                 .lineLimit(3)
                 .multilineTextAlignment(.center)
                 .font(.title)

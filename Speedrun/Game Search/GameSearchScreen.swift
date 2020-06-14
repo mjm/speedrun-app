@@ -14,7 +14,7 @@ query GameSearchScreenQuery($query: String!) {
 struct GameSearchScreen: View {
     @RelayEnvironment var environment: Relay.Environment
     @Query(GameSearchScreenQuery.self) var query
-    @State private var searchText = "link's awak"
+    @State private var searchText = ""
     @State private var isInspectorPresented = false
 
     private let queryDelayer = PassthroughSubject<String, Never>()
@@ -26,7 +26,7 @@ struct GameSearchScreen: View {
         })
     }
 
-    init(initialQuery: String = "link's awak") {
+    init(initialQuery: String = "") {
         $query = .init(query: initialQuery)
     }
 
@@ -83,7 +83,7 @@ struct GameSearchScreen_Previews: PreviewProvider {
         mockEnvironment.mockResponse(op, payload)
 
         return Group {
-            GameSearchScreen()
+            GameSearchScreen(initialQuery: "link's awak")
         }.relayEnvironment(mockEnvironment)
     }
 }
