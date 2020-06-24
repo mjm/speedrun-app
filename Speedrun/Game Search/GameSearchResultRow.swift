@@ -25,12 +25,16 @@ struct GameSearchResultRow: View {
                     Group {
                         if game!.cover == nil {
                             ImagePlaceholder()
+                                .frame(width: 80, height: 80)
                         } else {
-                            AsyncImage(url: URL(string: game!.cover!.uri)!,
-                                       placeholder: ImagePlaceholder())
+                            AsyncImage(
+                                url: URL(string: game!.cover!.uri)!,
+                                placeholder: ImagePlaceholder()
+                                    .frame(width: 80, height: 80))
                                 .aspectRatio(contentMode: .fit)
                         }
-                    }.frame(width: 80)
+                    }
+                    .frame(width: 80)
 
                     Text(game!.name ?? "Name unknown")
                         .font(.headline)
