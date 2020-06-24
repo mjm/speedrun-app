@@ -47,7 +47,7 @@ class ImageLoader: ObservableObject {
     }
 
     private(set) var isLoaded = false
-    private var cancellable: AnyCancellable?
+    private var cancellables = Set<AnyCancellable>()
     private static let imageQueue = DispatchQueue(label: "image-loader")
 
     init() {}
@@ -66,7 +66,7 @@ class ImageLoader: ObservableObject {
             return
         }
 
-        cancellable = URLSession.shared.dataTaskPublisher(for: url)
+        URLSession.shared.dataTaskPublisher(for: url)
             .subscribe(on: Self.imageQueue)
             .map { UIImage(data: $0.data) }
             .replaceError(with: nil)
@@ -78,11 +78,10 @@ class ImageLoader: ObservableObject {
                 }
             )
             .receive(on: DispatchQueue.main)
-            .assign(to: \.image, on: self)
-    }
-
-    func cancel() {
-        cancellable = nil
+            .sink { [weak self] newImage in
+                self?.image = newImage
+            }
+            .store(in: &cancellables)
     }
 }
 
