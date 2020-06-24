@@ -36,23 +36,13 @@ struct GameDetailLeaderboardList_game {
 
 
 extension GameDetailLeaderboardList_game {
-    struct Data: Readable {
+    struct Data: Decodable {
         var id: String
         var categories: [Category_categories]
 
-        init(from data: SelectorData) {
-            id = data.get(String.self, "id")
-            categories = data.get([Category_categories].self, "categories")
-        }
-
-        struct Category_categories: Readable {
+        struct Category_categories: Decodable {
             var id: String
             var name: String
-
-            init(from data: SelectorData) {
-                id = data.get(String.self, "id")
-                name = data.get(String.self, "name")
-            }
         }
     }
 }

@@ -97,19 +97,11 @@ extension GameDetailLeaderboardListPreviewQuery {
 }
 
 extension GameDetailLeaderboardListPreviewQuery {
-    struct Data: Readable {
+    struct Data: Decodable {
         var game: Game_game?
 
-        init(from data: SelectorData) {
-            game = data.get(Game_game?.self, "game")
-        }
-
-        struct Game_game: Readable, GameDetailLeaderboardList_game_Key {
+        struct Game_game: Decodable, GameDetailLeaderboardList_game_Key {
             var fragment_GameDetailLeaderboardList_game: FragmentPointer
-
-            init(from data: SelectorData) {
-                fragment_GameDetailLeaderboardList_game = data.get(fragment: "GameDetailLeaderboardList_game")
-            }
         }
     }
 }

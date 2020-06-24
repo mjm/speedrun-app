@@ -43,28 +43,15 @@ struct LeaderboardRunsList_leaderboard {
 
 
 extension LeaderboardRunsList_leaderboard {
-    struct Data: Readable {
+    struct Data: Decodable {
         var runs: [PlacedRun_runs]
 
-        init(from data: SelectorData) {
-            runs = data.get([PlacedRun_runs].self, "runs")
-        }
-
-        struct PlacedRun_runs: Readable, LeaderboardRun_run_Key {
+        struct PlacedRun_runs: Decodable, LeaderboardRun_run_Key {
             var run: Run_run
             var fragment_LeaderboardRun_run: FragmentPointer
 
-            init(from data: SelectorData) {
-                run = data.get(Run_run.self, "run")
-                fragment_LeaderboardRun_run = data.get(fragment: "LeaderboardRun_run")
-            }
-
-            struct Run_run: Readable {
+            struct Run_run: Decodable {
                 var id: String
-
-                init(from data: SelectorData) {
-                    id = data.get(String.self, "id")
-                }
             }
         }
     }

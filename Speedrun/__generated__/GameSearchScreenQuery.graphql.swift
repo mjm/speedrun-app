@@ -173,19 +173,11 @@ extension GameSearchScreenQuery {
 }
 
 extension GameSearchScreenQuery {
-    struct Data: Readable {
+    struct Data: Decodable {
         var viewer: Viewer_viewer?
 
-        init(from data: SelectorData) {
-            viewer = data.get(Viewer_viewer?.self, "viewer")
-        }
-
-        struct Viewer_viewer: Readable, GameSearchResults_games_Key {
+        struct Viewer_viewer: Decodable, GameSearchResults_games_Key {
             var fragment_GameSearchResults_games: FragmentPointer
-
-            init(from data: SelectorData) {
-                fragment_GameSearchResults_games = data.get(fragment: "GameSearchResults_games")
-            }
         }
     }
 }

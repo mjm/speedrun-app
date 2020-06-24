@@ -72,35 +72,18 @@ struct GameSearchResults_games {
 
 
 extension GameSearchResults_games {
-    struct Data: Readable {
+    struct Data: Decodable {
         var games: GameConnection_games
 
-        init(from data: SelectorData) {
-            games = data.get(GameConnection_games.self, "games")
-        }
-
-        struct GameConnection_games: Readable {
+        struct GameConnection_games: Decodable {
             var edges: [GameEdge_edges]
 
-            init(from data: SelectorData) {
-                edges = data.get([GameEdge_edges].self, "edges")
-            }
-
-            struct GameEdge_edges: Readable {
+            struct GameEdge_edges: Decodable {
                 var node: Game_node
 
-                init(from data: SelectorData) {
-                    node = data.get(Game_node.self, "node")
-                }
-
-                struct Game_node: Readable, GameSearchResultRow_game_Key {
+                struct Game_node: Decodable, GameSearchResultRow_game_Key {
                     var id: String
                     var fragment_GameSearchResultRow_game: FragmentPointer
-
-                    init(from data: SelectorData) {
-                        id = data.get(String.self, "id")
-                        fragment_GameSearchResultRow_game = data.get(fragment: "GameSearchResultRow_game")
-                    }
                 }
             }
         }

@@ -211,24 +211,25 @@ extension RunPlayerRowPreviewQuery {
 }
 
 extension RunPlayerRowPreviewQuery {
-    struct Data: Readable {
+    struct Data: Decodable {
         var node: Node_node?
 
-        init(from data: SelectorData) {
-            node = data.get(Node_node?.self, "node")
-        }
-
-        enum Node_node: Readable {
+        enum Node_node: Decodable {
             case run(Run)
             case node(Node)
+
+            private enum TypeKeys: String, CodingKey {
+                case __typename
+            }
   
-            init(from data: SelectorData) {
-                let typeName = data.get(String.self, "__typename")
+            init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: TypeKeys.self)
+                let typeName = try container.decode(String.self, forKey: .__typename)
                 switch typeName {
                 case "Run":
-                    self = .run(Run(from: data))
+                    self = .run(try Run(from: decoder))
                 default:
-                    self = .node(Node(from: data))
+                    self = .node(try Node(from: decoder))
                 }
             }
 
@@ -246,26 +247,15 @@ extension RunPlayerRowPreviewQuery {
                 return nil
             }
 
-            struct Run: Readable {
+            struct Run: Decodable {
                 var players: [RunPlayer_players]
 
-                init(from data: SelectorData) {
-                    players = data.get([RunPlayer_players].self, "players")
-                }
-
-                struct RunPlayer_players: Readable, RunPlayerRow_player_Key {
+                struct RunPlayer_players: Decodable, RunPlayerRow_player_Key {
                     var fragment_RunPlayerRow_player: FragmentPointer
-
-                    init(from data: SelectorData) {
-                        fragment_RunPlayerRow_player = data.get(fragment: "RunPlayerRow_player")
-                    }
                 }
             }
 
-            struct Node: Readable {
-
-                init(from data: SelectorData) {
-                }
+            struct Node: Decodable {
             }
         }
     }

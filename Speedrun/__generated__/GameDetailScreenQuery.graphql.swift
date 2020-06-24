@@ -129,23 +129,13 @@ extension GameDetailScreenQuery {
 }
 
 extension GameDetailScreenQuery {
-    struct Data: Readable {
+    struct Data: Decodable {
         var game: Game_game?
 
-        init(from data: SelectorData) {
-            game = data.get(Game_game?.self, "game")
-        }
-
-        struct Game_game: Readable, GameDetailHeader_game_Key, GameDetailLeaderboardList_game_Key {
+        struct Game_game: Decodable, GameDetailHeader_game_Key, GameDetailLeaderboardList_game_Key {
             var id: String
             var fragment_GameDetailHeader_game: FragmentPointer
             var fragment_GameDetailLeaderboardList_game: FragmentPointer
-
-            init(from data: SelectorData) {
-                id = data.get(String.self, "id")
-                fragment_GameDetailHeader_game = data.get(fragment: "GameDetailHeader_game")
-                fragment_GameDetailLeaderboardList_game = data.get(fragment: "GameDetailLeaderboardList_game")
-            }
         }
     }
 }

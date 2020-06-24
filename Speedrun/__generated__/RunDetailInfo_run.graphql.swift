@@ -72,47 +72,38 @@ struct RunDetailInfo_run {
 
 
 extension RunDetailInfo_run {
-    struct Data: Readable {
+    struct Data: Decodable {
         var game: Game_game
         var category: Category_category
         var players: [RunPlayer_players]
 
-        init(from data: SelectorData) {
-            game = data.get(Game_game.self, "game")
-            category = data.get(Category_category.self, "category")
-            players = data.get([RunPlayer_players].self, "players")
-        }
-
-        struct Game_game: Readable {
+        struct Game_game: Decodable {
             var name: String?
-
-            init(from data: SelectorData) {
-                name = data.get(String?.self, "name")
-            }
         }
 
-        struct Category_category: Readable {
+        struct Category_category: Decodable {
             var name: String
-
-            init(from data: SelectorData) {
-                name = data.get(String.self, "name")
-            }
         }
 
-        enum RunPlayer_players: Readable, RunPlayerRow_player_Key {
+        enum RunPlayer_players: Decodable, RunPlayerRow_player_Key {
             case userRunPlayer(UserRunPlayer)
             case guestRunPlayer(GuestRunPlayer)
-            case unknown
+            case runPlayer(RunPlayer)
+
+            private enum TypeKeys: String, CodingKey {
+                case __typename
+            }
   
-            init(from data: SelectorData) {
-                let typeName = data.get(String.self, "__typename")
+            init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: TypeKeys.self)
+                let typeName = try container.decode(String.self, forKey: .__typename)
                 switch typeName {
                 case "UserRunPlayer":
-                    self = .userRunPlayer(UserRunPlayer(from: data))
+                    self = .userRunPlayer(try UserRunPlayer(from: decoder))
                 case "GuestRunPlayer":
-                    self = .guestRunPlayer(GuestRunPlayer(from: data))
+                    self = .guestRunPlayer(try GuestRunPlayer(from: decoder))
                 default:
-                    self = .unknown
+                    self = .runPlayer(try RunPlayer(from: decoder))
                 }
             }
 
@@ -130,43 +121,40 @@ extension RunDetailInfo_run {
                 return nil
             }
 
+            var asRunPlayer: RunPlayer? {
+                if case .runPlayer(let val) = self {
+                    return val
+                }
+                return nil
+            }
+
             var fragment_RunPlayerRow_player: FragmentPointer {
                 switch self {
                 case .userRunPlayer(let val):
                     return val.fragment_RunPlayerRow_player
                 case .guestRunPlayer(let val):
                     return val.fragment_RunPlayerRow_player
-                default:
-                    preconditionFailure("Trying to access field 'fragment_RunPlayerRow_player' from unknown union member")
+                case .runPlayer(let val):
+                    return val.fragment_RunPlayerRow_player
                 }
             }
 
-            struct UserRunPlayer: Readable, RunPlayerRow_player_Key {
+            struct UserRunPlayer: Decodable, RunPlayerRow_player_Key {
                 var fragment_RunPlayerRow_player: FragmentPointer
                 var user: User_user?
 
-                init(from data: SelectorData) {
-                    fragment_RunPlayerRow_player = data.get(fragment: "RunPlayerRow_player")
-                    user = data.get(User_user?.self, "user")
-                }
-
-                struct User_user: Readable {
+                struct User_user: Decodable {
                     var name: String?
-
-                    init(from data: SelectorData) {
-                        name = data.get(String?.self, "name")
-                    }
                 }
             }
 
-            struct GuestRunPlayer: Readable, RunPlayerRow_player_Key {
+            struct GuestRunPlayer: Decodable, RunPlayerRow_player_Key {
                 var fragment_RunPlayerRow_player: FragmentPointer
                 var name: String
+            }
 
-                init(from data: SelectorData) {
-                    fragment_RunPlayerRow_player = data.get(fragment: "RunPlayerRow_player")
-                    name = data.get(String.self, "name")
-                }
+            struct RunPlayer: Decodable, RunPlayerRow_player_Key {
+                var fragment_RunPlayerRow_player: FragmentPointer
             }
         }
     }

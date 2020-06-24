@@ -223,35 +223,18 @@ extension LeaderboardScreenQuery {
 }
 
 extension LeaderboardScreenQuery {
-    struct Data: Readable {
+    struct Data: Decodable {
         var viewer: Viewer_viewer?
 
-        init(from data: SelectorData) {
-            viewer = data.get(Viewer_viewer?.self, "viewer")
-        }
-
-        struct Viewer_viewer: Readable {
+        struct Viewer_viewer: Decodable {
             var leaderboard: Leaderboard_leaderboard?
 
-            init(from data: SelectorData) {
-                leaderboard = data.get(Leaderboard_leaderboard?.self, "leaderboard")
-            }
-
-            struct Leaderboard_leaderboard: Readable, LeaderboardRunsList_leaderboard_Key {
+            struct Leaderboard_leaderboard: Decodable, LeaderboardRunsList_leaderboard_Key {
                 var category: Category_category
                 var fragment_LeaderboardRunsList_leaderboard: FragmentPointer
 
-                init(from data: SelectorData) {
-                    category = data.get(Category_category.self, "category")
-                    fragment_LeaderboardRunsList_leaderboard = data.get(fragment: "LeaderboardRunsList_leaderboard")
-                }
-
-                struct Category_category: Readable {
+                struct Category_category: Decodable {
                     var name: String
-
-                    init(from data: SelectorData) {
-                        name = data.get(String.self, "name")
-                    }
                 }
             }
         }

@@ -101,19 +101,11 @@ extension GameDetailHeaderPreviewQuery {
 }
 
 extension GameDetailHeaderPreviewQuery {
-    struct Data: Readable {
+    struct Data: Decodable {
         var game: Game_game?
 
-        init(from data: SelectorData) {
-            game = data.get(Game_game?.self, "game")
-        }
-
-        struct Game_game: Readable, GameDetailHeader_game_Key {
+        struct Game_game: Decodable, GameDetailHeader_game_Key {
             var fragment_GameDetailHeader_game: FragmentPointer
-
-            init(from data: SelectorData) {
-                fragment_GameDetailHeader_game = data.get(fragment: "GameDetailHeader_game")
-            }
         }
     }
 }

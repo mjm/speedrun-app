@@ -252,24 +252,25 @@ extension RunDetailInfoPreviewQuery {
 }
 
 extension RunDetailInfoPreviewQuery {
-    struct Data: Readable {
+    struct Data: Decodable {
         var node: Node_node?
 
-        init(from data: SelectorData) {
-            node = data.get(Node_node?.self, "node")
-        }
-
-        enum Node_node: Readable {
+        enum Node_node: Decodable {
             case run(Run)
             case node(Node)
+
+            private enum TypeKeys: String, CodingKey {
+                case __typename
+            }
   
-            init(from data: SelectorData) {
-                let typeName = data.get(String.self, "__typename")
+            init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: TypeKeys.self)
+                let typeName = try container.decode(String.self, forKey: .__typename)
                 switch typeName {
                 case "Run":
-                    self = .run(Run(from: data))
+                    self = .run(try Run(from: decoder))
                 default:
-                    self = .node(Node(from: data))
+                    self = .node(try Node(from: decoder))
                 }
             }
 
@@ -287,18 +288,11 @@ extension RunDetailInfoPreviewQuery {
                 return nil
             }
 
-            struct Run: Readable, RunDetailInfo_run_Key {
+            struct Run: Decodable, RunDetailInfo_run_Key {
                 var fragment_RunDetailInfo_run: FragmentPointer
-
-                init(from data: SelectorData) {
-                    fragment_RunDetailInfo_run = data.get(fragment: "RunDetailInfo_run")
-                }
             }
 
-            struct Node: Readable {
-
-                init(from data: SelectorData) {
-                }
+            struct Node: Decodable {
             }
         }
     }

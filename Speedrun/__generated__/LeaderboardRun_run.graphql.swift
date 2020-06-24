@@ -68,42 +68,35 @@ struct LeaderboardRun_run {
 
 
 extension LeaderboardRun_run {
-    struct Data: Readable {
+    struct Data: Decodable {
         var place: Int
         var run: Run_run
 
-        init(from data: SelectorData) {
-            place = data.get(Int.self, "place")
-            run = data.get(Run_run.self, "run")
-        }
-
-        struct Run_run: Readable {
+        struct Run_run: Decodable {
             var id: String
             var comment: String
             var time: Double?
             var players: [RunPlayer_players]
 
-            init(from data: SelectorData) {
-                id = data.get(String.self, "id")
-                comment = data.get(String.self, "comment")
-                time = data.get(Double?.self, "time")
-                players = data.get([RunPlayer_players].self, "players")
-            }
-
-            enum RunPlayer_players: Readable {
+            enum RunPlayer_players: Decodable {
                 case userRunPlayer(UserRunPlayer)
                 case guestRunPlayer(GuestRunPlayer)
-                case unknown
+                case runPlayer(RunPlayer)
+
+                private enum TypeKeys: String, CodingKey {
+                    case __typename
+                }
   
-                init(from data: SelectorData) {
-                    let typeName = data.get(String.self, "__typename")
+                init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: TypeKeys.self)
+                    let typeName = try container.decode(String.self, forKey: .__typename)
                     switch typeName {
                     case "UserRunPlayer":
-                        self = .userRunPlayer(UserRunPlayer(from: data))
+                        self = .userRunPlayer(try UserRunPlayer(from: decoder))
                     case "GuestRunPlayer":
-                        self = .guestRunPlayer(GuestRunPlayer(from: data))
+                        self = .guestRunPlayer(try GuestRunPlayer(from: decoder))
                     default:
-                        self = .unknown
+                        self = .runPlayer(try RunPlayer(from: decoder))
                     }
                 }
 
@@ -121,28 +114,26 @@ extension LeaderboardRun_run {
                     return nil
                 }
 
-                struct UserRunPlayer: Readable {
+                var asRunPlayer: RunPlayer? {
+                    if case .runPlayer(let val) = self {
+                        return val
+                    }
+                    return nil
+                }
+
+                struct UserRunPlayer: Decodable {
                     var user: User_user?
 
-                    init(from data: SelectorData) {
-                        user = data.get(User_user?.self, "user")
-                    }
-
-                    struct User_user: Readable {
+                    struct User_user: Decodable {
                         var name: String?
-
-                        init(from data: SelectorData) {
-                            name = data.get(String?.self, "name")
-                        }
                     }
                 }
 
-                struct GuestRunPlayer: Readable {
+                struct GuestRunPlayer: Decodable {
                     var name: String
+                }
 
-                    init(from data: SelectorData) {
-                        name = data.get(String.self, "name")
-                    }
+                struct RunPlayer: Decodable {
                 }
             }
         }

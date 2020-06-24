@@ -185,42 +185,21 @@ extension LeaderboardRunPreviewQuery {
 }
 
 extension LeaderboardRunPreviewQuery {
-    struct Data: Readable {
+    struct Data: Decodable {
         var viewer: Viewer_viewer?
 
-        init(from data: SelectorData) {
-            viewer = data.get(Viewer_viewer?.self, "viewer")
-        }
-
-        struct Viewer_viewer: Readable {
+        struct Viewer_viewer: Decodable {
             var leaderboard: Leaderboard_leaderboard?
 
-            init(from data: SelectorData) {
-                leaderboard = data.get(Leaderboard_leaderboard?.self, "leaderboard")
-            }
-
-            struct Leaderboard_leaderboard: Readable {
+            struct Leaderboard_leaderboard: Decodable {
                 var runs: [PlacedRun_runs]
 
-                init(from data: SelectorData) {
-                    runs = data.get([PlacedRun_runs].self, "runs")
-                }
-
-                struct PlacedRun_runs: Readable, LeaderboardRun_run_Key {
+                struct PlacedRun_runs: Decodable, LeaderboardRun_run_Key {
                     var run: Run_run
                     var fragment_LeaderboardRun_run: FragmentPointer
 
-                    init(from data: SelectorData) {
-                        run = data.get(Run_run.self, "run")
-                        fragment_LeaderboardRun_run = data.get(fragment: "LeaderboardRun_run")
-                    }
-
-                    struct Run_run: Readable {
+                    struct Run_run: Decodable {
                         var id: String
-
-                        init(from data: SelectorData) {
-                            id = data.get(String.self, "id")
-                        }
                     }
                 }
             }

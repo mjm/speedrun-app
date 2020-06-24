@@ -89,20 +89,25 @@ struct RunPlayerRow_player {
 
 
 extension RunPlayerRow_player {
-    enum Data: Readable {
+    enum Data: Decodable {
         case userRunPlayer(UserRunPlayer)
         case guestRunPlayer(GuestRunPlayer)
-        case unknown
+        case runPlayer(RunPlayer)
+
+        private enum TypeKeys: String, CodingKey {
+            case __typename
+        }
   
-        init(from data: SelectorData) {
-            let typeName = data.get(String.self, "__typename")
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: TypeKeys.self)
+            let typeName = try container.decode(String.self, forKey: .__typename)
             switch typeName {
             case "UserRunPlayer":
-                self = .userRunPlayer(UserRunPlayer(from: data))
+                self = .userRunPlayer(try UserRunPlayer(from: decoder))
             case "GuestRunPlayer":
-                self = .guestRunPlayer(GuestRunPlayer(from: data))
+                self = .guestRunPlayer(try GuestRunPlayer(from: decoder))
             default:
-                self = .unknown
+                self = .runPlayer(try RunPlayer(from: decoder))
             }
         }
 
@@ -120,36 +125,39 @@ extension RunPlayerRow_player {
             return nil
         }
 
-        struct UserRunPlayer: Readable {
+        var asRunPlayer: RunPlayer? {
+            if case .runPlayer(let val) = self {
+                return val
+            }
+            return nil
+        }
+
+        struct UserRunPlayer: Decodable {
             var user: User_user?
 
-            init(from data: SelectorData) {
-                user = data.get(User_user?.self, "user")
-            }
-
-            struct User_user: Readable {
+            struct User_user: Decodable {
                 var name: String?
                 var nameStyle: UserNameStyle_nameStyle
 
-                init(from data: SelectorData) {
-                    name = data.get(String?.self, "name")
-                    nameStyle = data.get(UserNameStyle_nameStyle.self, "nameStyle")
-                }
-
-                enum UserNameStyle_nameStyle: Readable {
+                enum UserNameStyle_nameStyle: Decodable {
                     case solidUserNameStyle(SolidUserNameStyle)
                     case gradientUserNameStyle(GradientUserNameStyle)
-                    case unknown
+                    case userNameStyle(UserNameStyle)
+
+                    private enum TypeKeys: String, CodingKey {
+                        case __typename
+                    }
   
-                    init(from data: SelectorData) {
-                        let typeName = data.get(String.self, "__typename")
+                    init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: TypeKeys.self)
+                        let typeName = try container.decode(String.self, forKey: .__typename)
                         switch typeName {
                         case "SolidUserNameStyle":
-                            self = .solidUserNameStyle(SolidUserNameStyle(from: data))
+                            self = .solidUserNameStyle(try SolidUserNameStyle(from: decoder))
                         case "GradientUserNameStyle":
-                            self = .gradientUserNameStyle(GradientUserNameStyle(from: data))
+                            self = .gradientUserNameStyle(try GradientUserNameStyle(from: decoder))
                         default:
-                            self = .unknown
+                            self = .userNameStyle(try UserNameStyle(from: decoder))
                         }
                     }
 
@@ -167,57 +175,45 @@ extension RunPlayerRow_player {
                         return nil
                     }
 
-                    struct SolidUserNameStyle: Readable {
+                    var asUserNameStyle: UserNameStyle? {
+                        if case .userNameStyle(let val) = self {
+                            return val
+                        }
+                        return nil
+                    }
+
+                    struct SolidUserNameStyle: Decodable {
                         var color: Color_color
 
-                        init(from data: SelectorData) {
-                            color = data.get(Color_color.self, "color")
-                        }
-
-                        struct Color_color: Readable {
+                        struct Color_color: Decodable {
                             var light: String
-
-                            init(from data: SelectorData) {
-                                light = data.get(String.self, "light")
-                            }
                         }
                     }
 
-                    struct GradientUserNameStyle: Readable {
+                    struct GradientUserNameStyle: Decodable {
                         var fromColor: Color_fromColor
                         var toColor: Color_toColor
 
-                        init(from data: SelectorData) {
-                            fromColor = data.get(Color_fromColor.self, "fromColor")
-                            toColor = data.get(Color_toColor.self, "toColor")
-                        }
-
-                        struct Color_fromColor: Readable {
+                        struct Color_fromColor: Decodable {
                             var light: String
-
-                            init(from data: SelectorData) {
-                                light = data.get(String.self, "light")
-                            }
                         }
 
-                        struct Color_toColor: Readable {
+                        struct Color_toColor: Decodable {
                             var light: String
-
-                            init(from data: SelectorData) {
-                                light = data.get(String.self, "light")
-                            }
                         }
+                    }
+
+                    struct UserNameStyle: Decodable {
                     }
                 }
             }
         }
 
-        struct GuestRunPlayer: Readable {
+        struct GuestRunPlayer: Decodable {
             var name: String
+        }
 
-            init(from data: SelectorData) {
-                name = data.get(String.self, "name")
-            }
+        struct RunPlayer: Decodable {
         }
     }
 }

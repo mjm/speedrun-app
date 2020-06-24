@@ -37,21 +37,12 @@ struct GameSearchResultRow_game {
 
 
 extension GameSearchResultRow_game {
-    struct Data: Readable {
+    struct Data: Decodable {
         var name: String?
         var cover: GameAsset_cover?
 
-        init(from data: SelectorData) {
-            name = data.get(String?.self, "name")
-            cover = data.get(GameAsset_cover?.self, "cover")
-        }
-
-        struct GameAsset_cover: Readable {
+        struct GameAsset_cover: Decodable {
             var uri: String
-
-            init(from data: SelectorData) {
-                uri = data.get(String.self, "uri")
-            }
         }
     }
 }

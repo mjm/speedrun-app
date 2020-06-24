@@ -101,19 +101,11 @@ extension GameSearchResultRowPreviewQuery {
 }
 
 extension GameSearchResultRowPreviewQuery {
-    struct Data: Readable {
+    struct Data: Decodable {
         var game: Game_game?
 
-        init(from data: SelectorData) {
-            game = data.get(Game_game?.self, "game")
-        }
-
-        struct Game_game: Readable, GameSearchResultRow_game_Key {
+        struct Game_game: Decodable, GameSearchResultRow_game_Key {
             var fragment_GameSearchResultRow_game: FragmentPointer
-
-            init(from data: SelectorData) {
-                fragment_GameSearchResultRow_game = data.get(fragment: "GameSearchResultRow_game")
-            }
         }
     }
 }
