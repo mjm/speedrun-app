@@ -11,7 +11,6 @@
 		C952D2CB248C1D5600858761 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C952D2CA248C1D5600858761 /* Preview Assets.xcassets */; };
 		C952D2CE248C1D5600858761 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C952D2CC248C1D5600858761 /* LaunchScreen.storyboard */; };
 		C952D2D9248C1D5700858761 /* SpeedrunTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D2D8248C1D5700858761 /* SpeedrunTests.swift */; };
-		C952D2E5248C1E2C00858761 /* Relay in Frameworks */ = {isa = PBXBuildFile; productRef = C952D2E4248C1E2C00858761 /* Relay */; };
 		C952D2E7248C1E2C00858761 /* RelaySwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C952D2E6248C1E2C00858761 /* RelaySwiftUI */; };
 		C952D2EA248C1E5500858761 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D2E9248C1E5500858761 /* Environment.swift */; };
 		C952D2EF248C219200858761 /* GameSearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D2EE248C219200858761 /* GameSearchScreen.swift */; };
@@ -115,7 +114,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C952D2E7248C1E2C00858761 /* RelaySwiftUI in Frameworks */,
-				C952D2E5248C1E2C00858761 /* Relay in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +276,6 @@
 			);
 			name = Speedrun;
 			packageProductDependencies = (
-				C952D2E4248C1E2C00858761 /* Relay */,
 				C952D2E6248C1E2C00858761 /* RelaySwiftUI */,
 			);
 			productName = Speedrun;
@@ -685,11 +682,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C952D2E4248C1E2C00858761 /* Relay */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C952D2E3248C1E2C00858761 /* XCRemoteSwiftPackageReference "Relay.swift" */;
-			productName = Relay;
-		};
 		C952D2E6248C1E2C00858761 /* RelaySwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C952D2E3248C1E2C00858761 /* XCRemoteSwiftPackageReference "Relay.swift" */;

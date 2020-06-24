@@ -45,6 +45,7 @@ struct GameSearchResults: View {
                         GameSearchResultRow(game: game)
                     }
                 }
+                .listStyle(PlainListStyle())
             }
         }
     }
@@ -92,6 +93,6 @@ struct GameSearchResults_Previews: PreviewProvider {
             }
             .navigationBarTitle("Games")
         }
-            .relayEnvironment(mockEnvironment)
+        .relayEnvironment(mockEnvironment)
     }
 }

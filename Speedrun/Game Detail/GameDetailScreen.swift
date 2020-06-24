@@ -31,7 +31,7 @@ struct GameDetailScreen: View {
                         EmptyView()
                     }
 
-                    Section(header: Text("LEADERBOARDS")) {
+                    Section(header: Text("Leaderboards")) {
                         GameDetailLeaderboardList(game: query.data!.game!)
                     }
                 }
