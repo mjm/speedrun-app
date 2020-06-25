@@ -15,57 +15,60 @@ struct GameSearchScreen: View {
     @RelayEnvironment var environment: Relay.Environment
     @Query(GameSearchScreenQuery.self) var query
     @State private var searchText = ""
+    @State private var queryText = ""
     @State private var isInspectorPresented = false
 
     private let queryDelayer = PassthroughSubject<String, Never>()
 
-    private var searchTextBinding: Binding<String> {
-        Binding(get: { self.searchText }, set: {
-            self.searchText = $0
-            self.queryDelayer.send($0)
-        })
-    }
-
     init(initialQuery: String = "") {
-        $query = .init(query: initialQuery)
+        _searchText = State(wrappedValue: initialQuery)
+        _queryText = State(wrappedValue: initialQuery)
     }
 
     var body: some View {
         VStack {
-            TextField("Search games…", text: searchTextBinding)
+            TextField("Search games…", text: $searchText)
                 .padding(.horizontal)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
             VStack {
-                if !$query.query.isEmpty {
-                    if query.isLoading {
+                if !queryText.isEmpty {
+                    switch query.get(.init(query: queryText)) {
+                    case .loading:
                         Text("Loading…")
-                    } else if query.error != nil {
-                        Text("Error: \(query.error!.localizedDescription)")
-                    } else if query.data?.viewer != nil {
-                        GameSearchResults(games: query.data!.viewer!)
+                    case .failure(let error):
+                        Text("Error: \(error.localizedDescription)")
+                    case .success(let data):
+                        if let viewer = data?.viewer {
+                            GameSearchResults(games: viewer)
+                        }
                     }
                 }
             }.frame(maxHeight: .infinity)
         }
-            .navigationBarTitle("Games")
-            .navigationBarItems(trailing: Group {
+        .navigationBarTitle("Games")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
                 #if DEBUG
                 Button(
-                    action: { self.isInspectorPresented = true},
+                    action: { isInspectorPresented = true},
                     label: { Image(systemName: "briefcase") }
                 ).sheet(isPresented: $isInspectorPresented) {
                     NavigationView {
                         RelaySwiftUI.Inspector()
-                    }.relayEnvironment(self.environment)
+                    }.relayEnvironment(environment)
                 }
                 #else
                 EmptyView()
                 #endif
-            })
-            .onReceive(queryDelayer.debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)) { text in
-                self.$query.query = text
             }
+        }
+        .onChange(of: searchText) { newText in
+            queryDelayer.send(newText)
+        }
+        .onReceive(queryDelayer.debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)) { text in
+            queryText = text
+        }
     }
 }
 

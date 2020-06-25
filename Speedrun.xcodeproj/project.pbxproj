@@ -38,6 +38,7 @@
 		C981E2952495F43F00AC1463 /* RunPlayerRow_player.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981E2942495F43F00AC1463 /* RunPlayerRow_player.graphql.swift */; };
 		C981E2972496953E00AC1463 /* RunPlayerRowPreviewQuery.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981E2962496953E00AC1463 /* RunPlayerRowPreviewQuery.graphql.swift */; };
 		C9C9C01824A2F0B0005BF960 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9C01724A2F0B0005BF960 /* App.swift */; };
+		C9C9C01A24A2FE0F005BF960 /* RelaySwiftUINext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9C01924A2FE0F005BF960 /* RelaySwiftUINext.swift */; };
 		C9F373D124947D32005D93EB /* LeaderboardRunsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F373D024947D32005D93EB /* LeaderboardRunsList.swift */; };
 		C9F373D524947E34005D93EB /* LeaderboardRunsList_leaderboard.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F373D424947E34005D93EB /* LeaderboardRunsList_leaderboard.graphql.swift */; };
 		C9F373D724947EF6005D93EB /* LeaderboardRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F373D624947EF6005D93EB /* LeaderboardRun.swift */; };
@@ -97,6 +98,7 @@
 		C981E2942495F43F00AC1463 /* RunPlayerRow_player.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunPlayerRow_player.graphql.swift; sourceTree = "<group>"; };
 		C981E2962496953E00AC1463 /* RunPlayerRowPreviewQuery.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunPlayerRowPreviewQuery.graphql.swift; sourceTree = "<group>"; };
 		C9C9C01724A2F0B0005BF960 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		C9C9C01924A2FE0F005BF960 /* RelaySwiftUINext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelaySwiftUINext.swift; sourceTree = "<group>"; };
 		C9F373D024947D32005D93EB /* LeaderboardRunsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardRunsList.swift; sourceTree = "<group>"; };
 		C9F373D424947E34005D93EB /* LeaderboardRunsList_leaderboard.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardRunsList_leaderboard.graphql.swift; sourceTree = "<group>"; };
 		C9F373D624947EF6005D93EB /* LeaderboardRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardRun.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				C952D2E9248C1E5500858761 /* Environment.swift */,
 				C952D301248C319500858761 /* ImagePlaceholder.swift */,
 				C9C9C01724A2F0B0005BF960 /* App.swift */,
+				C9C9C01924A2FE0F005BF960 /* RelaySwiftUINext.swift */,
 			);
 			path = Infra;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				C952D310248C6C7B00858761 /* GameDetailLeaderboardList.swift in Sources */,
 				C952D306248C349100858761 /* GameDetailScreen.swift in Sources */,
 				C952D2F6248C27B200858761 /* GameSearchResults.swift in Sources */,
+				C9C9C01A24A2FE0F005BF960 /* RelaySwiftUINext.swift in Sources */,
 				C952D308248C614D00858761 /* GameDetailScreenQuery.graphql.swift in Sources */,
 				C981E2912495EB2400AC1463 /* RunDetailInfo_run.graphql.swift in Sources */,
 				C9F373E124956435005D93EB /* GameDetailHeaderPreviewQuery.graphql.swift in Sources */,

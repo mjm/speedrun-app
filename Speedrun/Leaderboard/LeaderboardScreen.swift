@@ -23,24 +23,26 @@ query LeaderboardScreenQuery(
 """)
 
 struct LeaderboardScreen: View {
-    @Query(LeaderboardScreenQuery.self) var query
+    let gameID: String
+    let categoryID: String
+    let levelID: String? = nil
 
-    init(gameID: String, categoryID: String, levelID: String? = nil) {
-        $query = .init(gameID: gameID, categoryID: categoryID, levelID: levelID)
-    }
+    @Query(LeaderboardScreenQuery.self) var query
 
     var body: some View {
         Group {
-            if query.isLoading {
+            switch query.get(.init(gameID: gameID, categoryID: categoryID, levelID: levelID)) {
+            case .loading:
                 Text("Loading…")
-            } else if query.error != nil {
-                Text("Error: \(query.error!.localizedDescription)")
-            } else {
+            case .failure(let error):
+                Text("Error: \(error.localizedDescription)")
+            case .success(let data):
                 List {
-                    if query.data?.viewer?.leaderboard != nil {
-                        LeaderboardRunsList(leaderboard: query.data!.viewer!.leaderboard!)
+                    if let leaderboard = data?.viewer?.leaderboard {
+                        LeaderboardRunsList(leaderboard: leaderboard)
                     }
-                }.navigationBarTitle(query.data?.viewer?.leaderboard?.category.name ?? "")
+                }
+                .navigationBarTitle(data?.viewer?.leaderboard?.category.name ?? "")
             }
         }
     }

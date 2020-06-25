@@ -13,29 +13,30 @@ query GameDetailScreenQuery($id: ID!) {
 """)
 
 struct GameDetailScreen: View {
-    @Query(GameDetailScreenQuery.self) var query
+    let id: String
 
-    init(id: String) {
-        $query = .init(id: id)
-    }
+    @Query(GameDetailScreenQuery.self) var query
 
     var body: some View {
         Group {
-            if query.isLoading {
+            switch query.get(.init(id: id)) {
+            case .loading:
                 Text("Loading…")
-            } else if query.error != nil {
-                Text("Error: \(query.error!.localizedDescription)")
-            } else if query.data?.game != nil {
-                List {
-                    Section(header: GameDetailHeader(game: query.data!.game!)) {
-                        EmptyView()
-                    }
+            case .failure(let error):
+                Text("Error: \(error.localizedDescription)")
+            case .success(let data):
+                if let game = data?.game {
+                    List {
+                        Section(header: GameDetailHeader(game: game)) {
+                            EmptyView()
+                        }
 
-                    Section(header: Text("Leaderboards")) {
-                        GameDetailLeaderboardList(game: query.data!.game!)
+                        Section(header: Text("Leaderboards")) {
+                            GameDetailLeaderboardList(game: game)
+                        }
                     }
-                }
                     .listStyle(GroupedListStyle())
+                }
             }
         }
     }
