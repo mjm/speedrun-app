@@ -14,26 +14,22 @@ query GameSearchScreenQuery($query: String!) {
 struct GameSearchScreen: View {
     @RelayEnvironment var environment: Relay.Environment
     @Query(GameSearchScreenQuery.self) var query
-    @State private var searchText = ""
-    @State private var queryText = ""
+    @StateObject private var searchDelayer: SearchDelayer
     @State private var isInspectorPresented = false
 
-    private let queryDelayer = PassthroughSubject<String, Never>()
-
     init(initialQuery: String = "") {
-        _searchText = State(wrappedValue: initialQuery)
-        _queryText = State(wrappedValue: initialQuery)
+        _searchDelayer = StateObject(wrappedValue: SearchDelayer(text: initialQuery))
     }
 
     var body: some View {
         VStack {
-            TextField("Search games…", text: $searchText)
+            TextField("Search games…", text: $searchDelayer.inputText)
                 .padding(.horizontal)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
             VStack {
-                if !queryText.isEmpty {
-                    switch query.get(.init(query: queryText)) {
+                if !searchDelayer.query.isEmpty {
+                    switch query.get(.init(query: searchDelayer.query)) {
                     case .loading:
                         Text("Loading…")
                     case .failure(let error):
@@ -63,12 +59,20 @@ struct GameSearchScreen: View {
                 #endif
             }
         }
-        .onChange(of: searchText) { newText in
-            queryDelayer.send(newText)
-        }
-        .onReceive(queryDelayer.debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)) { text in
-            queryText = text
-        }
+    }
+}
+
+private class SearchDelayer: ObservableObject {
+    @Published var inputText: String
+    @Published var query: String
+
+    init(text: String) {
+        inputText = text
+        query = text
+
+        $inputText
+            .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
+            .assign(to: $query)
     }
 }
 
