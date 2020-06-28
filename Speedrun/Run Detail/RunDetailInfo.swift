@@ -58,6 +58,19 @@ struct RunDetailInfo: View {
     }
 }
 
+private extension RunDetailInfo_run.Data.RunPlayer_players {
+    var name: String {
+        switch self {
+        case .userRunPlayer(let player):
+            return player.user?.name ?? ""
+        case .guestRunPlayer(let player):
+            return player.name
+        default:
+            return ""
+        }
+    }
+}
+
 private let previewQuery = graphql("""
 query RunDetailInfoPreviewQuery($id: ID!) {
   node(id: $id) {
@@ -69,49 +82,18 @@ query RunDetailInfoPreviewQuery($id: ID!) {
 """)
 
 struct RunDetailInfo_Previews: PreviewProvider {
-    static let mockEnvironment = MockEnvironment()
-
-    static let mockRunID = UUID().uuidString
-
-    static let runFragment: [String: Any] = [
-        "game": [
-            "name": "Link's Awakening (2019)",
-        ],
-        "category": [
-            "name": "Glitchless",
-        ],
-        "players": RunPlayerRow_Previews.playerFragments,
-    ]
+    static let op = RunDetailInfoPreviewQuery(variables: .init(id: "foo"))
 
     static var previews: some View {
-        let op = RunDetailInfoPreviewQuery(variables: .init(id: mockRunID))
-        mockEnvironment.cachePayload(op, [
-            "data": [
-                "node": [
-                    "__typename": "Run",
-                ].merging(runFragment) { $1 },
-            ],
-        ])
-
-        return Group {
-            QueryPreview(op) { data in
-                List {
-                    RunDetailInfo(run: data.node!.asRun!)
-                }.listStyle(GroupedListStyle())
+        Group {
+            ForEach(["TGH", "Glan"], id: \.self) { player in
+                QueryPreview(op) { data in
+                    List {
+                        RunDetailInfo(run: data.node!.asRun!)
+                    }.listStyle(GroupedListStyle())
+                }
+                .previewPayload(op, resource: "RunDetailInfoPreview_\(player)")
             }
-        }.relayEnvironment(mockEnvironment)
-    }
-}
-
-private extension RunDetailInfo_run.Data.RunPlayer_players {
-    var name: String {
-        switch self {
-        case .userRunPlayer(let player):
-            return player.user?.name ?? ""
-        case .guestRunPlayer(let player):
-            return player.name
-        default:
-            return ""
         }
     }
 }

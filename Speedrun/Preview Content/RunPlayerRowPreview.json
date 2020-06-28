@@ -1,0 +1,63 @@
+{
+  "data": {
+    "node": {
+      "__typename": "Run",
+      "players": [
+        {
+          "__typename": "UserRunPlayer",
+          "user": {
+            "name": "TGH",
+            "nameStyle": {
+              "__typename": "GradientUserNameStyle",
+              "fromColor": {
+                "light": "#808080"
+              },
+              "toColor": {
+                "light": "#000000"
+              }
+            },
+            "id": "dXNlcjoicWpvMzE5MGoi"
+          }
+        },
+        {
+          "__typename": "UserRunPlayer",
+          "user": {
+            "name": "Skurry",
+            "nameStyle": {
+              "__typename": "GradientUserNameStyle",
+              "fromColor": {
+                  "light": "#EF2081",
+              },
+              "toColor": {
+                  "light": "#009856",
+              },
+            },
+            "id": "foobar"
+          }
+        },
+        {
+          "__typename": "UserRunPlayer",
+          "user": {
+            "name": "Glan",
+            "nameStyle": {
+              "__typename": "GradientUserNameStyle",
+              "fromColor": {
+                "light": "#DAA520"
+              },
+              "toColor": {
+                "light": "#DAA520"
+              }
+            },
+            "id": "dXNlcjoicGowb3lvd2oi"
+          }
+        },
+        {
+          "__typename": "GuestRunPlayer",
+          "name": "MattMattPartyHat"
+        }
+      ],
+      "id": "cnVuOiJ6NWoycjdubSI="
+    }
+  }
+}
+

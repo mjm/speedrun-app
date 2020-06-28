@@ -38,10 +38,15 @@ struct RunPlayerRow: View {
 
     var body: some View {
         Group {
-            if player?.asUserRunPlayer?.user != nil {
-                UserRunPlayerRow(user: player!.asUserRunPlayer!.user!)
-            } else if player?.asGuestRunPlayer != nil {
-                GuestRunPlayerRow(player: player!.asGuestRunPlayer!)
+            switch player {
+            case .userRunPlayer(let userPlayer):
+                if let user = userPlayer.user {
+                    UserRunPlayerRow(user: user)
+                }
+            case .guestRunPlayer(let guestPlayer):
+                GuestRunPlayerRow(player: guestPlayer)
+            default:
+                EmptyView()
             }
         }
     }
@@ -51,29 +56,43 @@ struct RunPlayerRow: View {
 
         var body: some View {
             HStack {
-                Circle()
-                    .fill(dotBackground)
-                    .shadow(radius: 2)
-                    .aspectRatio(1, contentMode: .fit)
-                    .fixedSize(horizontal: true, vertical: false)
-                    .padding(.vertical, 8)
-                Text(user.name ?? "").font(.headline)
+                Label {
+                    Text(user.name ?? "")
+                } icon: {
+                    filledIcon
+                }
+                .font(.headline)
             }
         }
 
-        var dotBackground: some ShapeStyle {
-            let gradient: Gradient
-            if user.nameStyle.asGradientUserNameStyle != nil {
-                gradient = Gradient(colors: [
-                    Color(hex: user.nameStyle.asGradientUserNameStyle!.fromColor.light),
-                    Color(hex: user.nameStyle.asGradientUserNameStyle!.toColor.light),
-                ])
-            } else if user.nameStyle.asSolidUserNameStyle != nil {
-                gradient = Gradient(colors: [Color(hex: user.nameStyle.asSolidUserNameStyle!.color.light)])
-            } else {
-                gradient = Gradient(colors: [.black])
+        var filledIcon: some View {
+            let image = Image(systemName: "person.crop.circle.fill")
+            return Group {
+                if let style = user.nameStyle.asGradientUserNameStyle {
+                    if style.toColor.light != style.fromColor.light {
+                        image
+                            .overlay(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [
+                                        Color(hex: style.fromColor.light),
+                                        Color(hex: style.toColor.light),
+                                    ]),
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                )
+                                .mask(image))
+                    } else {
+                        image
+                            .foregroundColor(Color(hex: style.toColor.light))
+                    }
+                } else if let style = user.nameStyle.asSolidUserNameStyle {
+                    image
+                        .foregroundColor(Color(hex: style.color.light))
+                } else {
+                    image
+                        .foregroundColor(Color.black)
+                }
             }
-            return LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom)
         }
     }
 
@@ -81,7 +100,8 @@ struct RunPlayerRow: View {
         var player: RunPlayerRow_player.Data.GuestRunPlayer
 
         var body: some View {
-            Text(player.name).font(.headline)
+            Label(player.name, systemImage: "person.crop.circle.badge.questionmark")
+                .font(.headline)
         }
     }
 }
@@ -99,68 +119,17 @@ query RunPlayerRowPreviewQuery($id: ID!) {
 """)
 
 struct RunPlayerRow_Previews: PreviewProvider {
-    static let mockEnvironment = MockEnvironment()
-
-    static let mockRunID = UUID().uuidString
-
-    static let playerFragments: [[String: Any]] = [
-        [
-            "__typename": "UserRunPlayer",
-            "user": [
-                "name": "TGH",
-                "nameStyle": [
-                    "__typename": "GradientUserNameStyle",
-                    "fromColor": [
-                      "light": "#808080",
-                    ],
-                    "toColor": [
-                      "light": "#000000",
-                    ],
-                ],
-            ],
-        ],
-        [
-            "__typename": "UserRunPlayer",
-            "user": [
-                "name": "Skurry",
-                "nameStyle": [
-                    "__typename": "GradientUserNameStyle",
-                    "fromColor": [
-                        "light": "#EF2081",
-                    ],
-                    "toColor": [
-                        "light": "#009856",
-                    ],
-                ],
-            ],
-        ],
-        [
-            "__typename": "GuestRunPlayer",
-            "name": "MattMattPartyHat",
-        ],
-    ]
-
+    static let op = RunPlayerRowPreviewQuery(variables: .init(id: "foo"))
 
     static var previews: some View {
-        let op = RunPlayerRowPreviewQuery(variables: .init(id: mockRunID))
-        mockEnvironment.cachePayload(op, [
-            "data": [
-                "node": [
-                    "__typename": "Run",
-                    "players": playerFragments,
-                ],
-            ],
-        ])
-
-        return Group {
-            QueryPreview(op) { data in
-                return List(data.node!.asRun!.players.indices, id: \.self) { idx in
-                    RunPlayerRow(player: data.node!.asRun!.players[idx])
-                }.listStyle(GroupedListStyle())
+        QueryPreview(op) { data in
+            List(data.node!.asRun!.players.indices, id: \.self) { idx in
+                RunPlayerRow(player: data.node!.asRun!.players[idx])
             }
+            .listStyle(GroupedListStyle())
         }
-            .relayEnvironment(mockEnvironment)
-            .previewLayout(.fixed(width: 400, height: 200))
+        .previewPayload(op, resource: "RunPlayerRowPreview")
+        .previewLayout(.fixed(width: 400, height: 250))
     }
 }
 

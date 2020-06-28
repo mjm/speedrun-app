@@ -44,6 +44,9 @@
 		C99D699224A913260014A74F /* GameDetailScreenPreview.json in Resources */ = {isa = PBXBuildFile; fileRef = C99D699124A913260014A74F /* GameDetailScreenPreview.json */; };
 		C99D699424A914EA0014A74F /* LeaderboardScreenPreview.json in Resources */ = {isa = PBXBuildFile; fileRef = C99D699324A914EA0014A74F /* LeaderboardScreenPreview.json */; };
 		C99D699624A915EB0014A74F /* LeaderboardRunPreview.json in Resources */ = {isa = PBXBuildFile; fileRef = C99D699524A915EB0014A74F /* LeaderboardRunPreview.json */; };
+		C99D699824A917140014A74F /* RunDetailInfoPreview_Glan.json in Resources */ = {isa = PBXBuildFile; fileRef = C99D699724A917140014A74F /* RunDetailInfoPreview_Glan.json */; };
+		C99D699A24A917BE0014A74F /* RunDetailInfoPreview_TGH.json in Resources */ = {isa = PBXBuildFile; fileRef = C99D699924A917BE0014A74F /* RunDetailInfoPreview_TGH.json */; };
+		C99D699C24A91BE90014A74F /* RunPlayerRowPreview.json in Resources */ = {isa = PBXBuildFile; fileRef = C99D699B24A91BE90014A74F /* RunPlayerRowPreview.json */; };
 		C9C9C01824A2F0B0005BF960 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9C01724A2F0B0005BF960 /* App.swift */; };
 		C9C9C01A24A2FE0F005BF960 /* RelaySwiftUINext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9C01924A2FE0F005BF960 /* RelaySwiftUINext.swift */; };
 		C9F373D124947D32005D93EB /* LeaderboardRunsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F373D024947D32005D93EB /* LeaderboardRunsList.swift */; };
@@ -109,6 +112,9 @@
 		C99D699124A913260014A74F /* GameDetailScreenPreview.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameDetailScreenPreview.json; sourceTree = "<group>"; };
 		C99D699324A914EA0014A74F /* LeaderboardScreenPreview.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LeaderboardScreenPreview.json; sourceTree = "<group>"; };
 		C99D699524A915EB0014A74F /* LeaderboardRunPreview.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LeaderboardRunPreview.json; sourceTree = "<group>"; };
+		C99D699724A917140014A74F /* RunDetailInfoPreview_Glan.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RunDetailInfoPreview_Glan.json; sourceTree = "<group>"; };
+		C99D699924A917BE0014A74F /* RunDetailInfoPreview_TGH.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RunDetailInfoPreview_TGH.json; sourceTree = "<group>"; };
+		C99D699B24A91BE90014A74F /* RunPlayerRowPreview.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RunPlayerRowPreview.json; sourceTree = "<group>"; };
 		C9C9C01724A2F0B0005BF960 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		C9C9C01924A2FE0F005BF960 /* RelaySwiftUINext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelaySwiftUINext.swift; sourceTree = "<group>"; };
 		C9F373D024947D32005D93EB /* LeaderboardRunsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardRunsList.swift; sourceTree = "<group>"; };
@@ -188,6 +194,9 @@
 				C99D699124A913260014A74F /* GameDetailScreenPreview.json */,
 				C99D699324A914EA0014A74F /* LeaderboardScreenPreview.json */,
 				C99D699524A915EB0014A74F /* LeaderboardRunPreview.json */,
+				C99D699724A917140014A74F /* RunDetailInfoPreview_Glan.json */,
+				C99D699924A917BE0014A74F /* RunDetailInfoPreview_TGH.json */,
+				C99D699B24A91BE90014A74F /* RunPlayerRowPreview.json */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -367,11 +376,14 @@
 				C952D2CE248C1D5600858761 /* LaunchScreen.storyboard in Resources */,
 				C99D699624A915EB0014A74F /* LeaderboardRunPreview.json in Resources */,
 				C952D2CB248C1D5600858761 /* Preview Assets.xcassets in Resources */,
+				C99D699824A917140014A74F /* RunDetailInfoPreview_Glan.json in Resources */,
 				C99D699424A914EA0014A74F /* LeaderboardScreenPreview.json in Resources */,
 				C99D698E24A910F60014A74F /* GameSearchResultRowPreview_LAS.json in Resources */,
 				C99D698C24A910690014A74F /* GameSearchResultsPreview.json in Resources */,
 				C99D698A24A90EDA0014A74F /* GameSearchScreenPreview.json in Resources */,
 				C99D699024A912880014A74F /* GameSearchResultRowPreview_Empty.json in Resources */,
+				C99D699C24A91BE90014A74F /* RunPlayerRowPreview.json in Resources */,
+				C99D699A24A917BE0014A74F /* RunDetailInfoPreview_TGH.json in Resources */,
 				C99D699224A913260014A74F /* GameDetailScreenPreview.json in Resources */,
 				C952D2C8248C1D5600858761 /* Assets.xcassets in Resources */,
 			);

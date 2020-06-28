@@ -1,0 +1,34 @@
+{
+  "data": {
+    "node": {
+      "__typename": "Run",
+      "game": {
+        "name": "The Legend of Zelda: Link's Awakening (2019)",
+        "id": "Z2FtZToieWQ0bzMydzEi"
+      },
+      "category": {
+        "name": "Any% (Glitchless)",
+        "id": "Y2F0ZWdvcnk6IjdrajNwbTQyIg=="
+      },
+      "players": [
+        {
+          "__typename": "UserRunPlayer",
+          "user": {
+            "name": "Glan",
+            "nameStyle": {
+              "__typename": "GradientUserNameStyle",
+              "fromColor": {
+                "light": "#DAA520"
+              },
+              "toColor": {
+                "light": "#DAA520"
+              }
+            },
+            "id": "dXNlcjoicGowb3lvd2oi"
+          }
+        }
+      ],
+      "id": "cnVuOiJ5ZDVkeGxqbSI="
+    }
+  }
+}
