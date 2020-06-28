@@ -1,0 +1,41 @@
+{
+  "data": {
+    "game": {
+      "id": "Z2FtZToieWQ0bzMydzEi",
+      "name": "The Legend of Zelda: Link's Awakening (2019)",
+      "cover": {
+        "uri": "https://www.speedrun.com/themes/las/cover-128.png"
+      },
+      "categories": [
+        {
+          "id": "Y2F0ZWdvcnk6IjVkdzQwbjVrIg==",
+          "name": "Any%"
+        },
+        {
+          "id": "Y2F0ZWdvcnk6IjgyNGc4MXcyIg==",
+          "name": "Any% (No HW)"
+        },
+        {
+          "id": "Y2F0ZWdvcnk6ImpkejlweHgyIg==",
+          "name": "Any%"
+        },
+        {
+          "id": "Y2F0ZWdvcnk6IjdrajNwbTQyIg==",
+          "name": "Any% (Glitchless)"
+        },
+        {
+          "id": "Y2F0ZWdvcnk6IjgyNGdwN3cyIg==",
+          "name": "100%"
+        },
+        {
+          "id": "Y2F0ZWdvcnk6InZkbzh5ajZrIg==",
+          "name": "Color Dungeon"
+        },
+        {
+          "id": "Y2F0ZWdvcnk6IndrcDFuN2prIg==",
+          "name": "All Secret Seashells"
+        }
+      ]
+    }
+  }
+}

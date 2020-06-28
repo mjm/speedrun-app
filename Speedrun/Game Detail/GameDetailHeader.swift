@@ -43,44 +43,20 @@ struct GameDetailHeader: View {
     }
 }
 
-private let previewQuery = graphql("""
-query GameDetailHeaderPreviewQuery($id: ID!) {
-  game(id: $id) {
-    ...GameDetailHeader_game
-  }
-}
-""")
-
 struct GameDetailHeader_Previews: PreviewProvider {
-    static let mockEnvironment = MockEnvironment()
-
-    static let mockGameID = UUID().uuidString
-
-    static let gameFragment: [String: Any] = [
-        "name": "The Legend of Zelda: Link's Awakening (2019)",
-        "cover": [
-            "uri": "https://www.speedrun.com/themes/las/cover-256.png?version=e4b0e636",
-        ],
-    ]
+    static let op = GameDetailScreenQuery(variables: .init(id: "Z2FtZToieWQ0bzMydzEi"))
 
     static var previews: some View {
-        let op = GameDetailHeaderPreviewQuery(variables: .init(id: mockGameID))
-        mockEnvironment.cachePayload(op, [
-            "data": [
-                "game": gameFragment
-            ],
-        ])
-
-        return Group {
-            QueryPreview(op) { data in
-                NavigationView {
-                    List {
-                        Section(header: GameDetailHeader(game: data.game!)) {
-                            EmptyView()
-                        }
-                    }.listStyle(GroupedListStyle())
+        QueryPreview(op) { data in
+            NavigationView {
+                List {
+                    Section(header: GameDetailHeader(game: data.game!)) {
+                        EmptyView()
+                    }
                 }
+                .listStyle(GroupedListStyle())
             }
-        }.relayEnvironment(mockEnvironment)
+        }
+        .previewPayload(op, resource: "GameDetailScreenPreview")
     }
 }
