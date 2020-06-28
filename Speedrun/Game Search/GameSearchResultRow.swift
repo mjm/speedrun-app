@@ -53,46 +53,19 @@ query GameSearchResultRowPreviewQuery($id: ID!) {
 """)
 
 struct GameSearchResultRow_Previews: PreviewProvider {
-    static let mockEnvironment = MockEnvironment()
-    static let mockID1 = UUID().uuidString
-    static let mockID2 = UUID().uuidString
-
-    static let completeFragment: [String: Any] = [
-        "name": "Link's Awakening (2019)",
-        "cover": [
-            "uri": "https://www.speedrun.com/themes/las/cover-256.png?version=e4b0e636",
-        ],
-    ]
-
-    static let missingDataFragment: [String: Any] = [
-        "name": NSNull(),
-        "cover": NSNull(),
-    ]
+    static let op = GameSearchResultRowPreviewQuery(variables: .init(id: UUID().uuidString))
 
     static var previews: some View {
-        let op1 = GameSearchResultRowPreviewQuery(variables: .init(id: mockID1))
-        mockEnvironment.cachePayload(op1, [
-            "data": [
-                "game": completeFragment,
-            ],
-        ])
-        let op2 = GameSearchResultRowPreviewQuery(variables: .init(id: mockID2))
-        mockEnvironment.cachePayload(op2, [
-            "data": [
-                "game": missingDataFragment,
-            ],
-        ])
-
-        return Group {
-            List {
-                QueryPreview(op1) { data in
-                    GameSearchResultRow(game: data.game!)
-                }
-                QueryPreview(op2) { data in
-                    GameSearchResultRow(game: data.game!)
-                }
+        List {
+            QueryPreview(op) { data in
+                GameSearchResultRow(game: data.game!)
             }
-                .relayEnvironment(mockEnvironment)
+            .previewPayload(op, resource: "GameSearchResultRowPreview_LAS")
+
+            QueryPreview(op) { data in
+                GameSearchResultRow(game: data.game!)
+            }
+            .previewPayload(op, resource: "GameSearchResultRowPreview_Empty")
         }
     }
 }

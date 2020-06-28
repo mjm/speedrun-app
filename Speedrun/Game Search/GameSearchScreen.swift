@@ -77,20 +77,10 @@ private class SearchDelayer: ObservableObject {
 }
 
 struct GameSearchScreen_Previews: PreviewProvider {
-    static let mockEnvironment = Relay.MockEnvironment()
-
-    static let payload = [
-        "data": [
-            "viewer": GameSearchResults_Previews.gamesFragment,
-        ],
-    ]
+    static let op = GameSearchScreenQuery(variables: .init(query: "link's awak"))
 
     static var previews: some View {
-        let op = GameSearchScreenQuery(variables: .init(query: "link's awak"))
-        mockEnvironment.mockResponse(op, payload)
-
-        return Group {
-            GameSearchScreen(initialQuery: "link's awak")
-        }.relayEnvironment(mockEnvironment)
+        GameSearchScreen(initialQuery: "link's awak")
+            .previewPayload(op, resource: "GameSearchScreenPreview")
     }
 }

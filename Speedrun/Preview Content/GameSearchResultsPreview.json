@@ -1,0 +1,47 @@
+{
+  "data": {
+    "viewer": {
+      "games": {
+        "edges": [
+          {
+            "node": {
+              "id": "Z2FtZToiMzY5NzgyMWwi",
+              "name": "The Legend of Zelda: Link's Awakening",
+              "cover": {
+                "uri": "https://www.speedrun.com/themes/la/cover-128.png"
+              },
+              "__typename": "Game"
+            },
+            "cursor": null
+          },
+          {
+            "node": {
+              "id": "Z2FtZToicGR2ajJ2ZHci",
+              "name": "The Legend of Zelda: Link's Awakening DX",
+              "cover": {
+                "uri": "https://www.speedrun.com/themes/ladx/cover-128.png"
+              },
+              "__typename": "Game"
+            },
+            "cursor": null
+          },
+          {
+            "node": {
+              "id": "Z2FtZToieWQ0bzMydzEi",
+              "name": "The Legend of Zelda: Link's Awakening (2019)",
+              "cover": {
+                "uri": "https://www.speedrun.com/themes/las/cover-128.png"
+              },
+              "__typename": "Game"
+            },
+            "cursor": null
+          }
+        ],
+        "pageInfo": {
+          "endCursor": null,
+          "hasNextPage": false
+        }
+      }
+    }
+  }
+}

@@ -52,47 +52,13 @@ struct GameSearchResults: View {
 }
 
 struct GameSearchResults_Previews: PreviewProvider {
-    static let mockEnvironment = MockEnvironment()
-
-    static let gamesFragment = [
-        "games": [
-            "edges": [
-                [
-                    "node": [
-                        "__typename": "Game",
-                        "id": GameSearchResultRow_Previews.mockID1,
-                    ].merging(GameSearchResultRow_Previews.completeFragment) { $1 },
-                    "cursor": NSNull(),
-                ],
-                [
-                    "node": [
-                        "__typename": "Game",
-                        "id": GameSearchResultRow_Previews.mockID2,
-                    ].merging(GameSearchResultRow_Previews.missingDataFragment) { $1 },
-                    "cursor": NSNull(),
-                ],
-            ],
-            "pageInfo": [
-                "hasNextPage": false,
-                "endCursor": NSNull(),
-            ],
-        ],
-    ]
+    static let op = GameSearchResultsPaginationQuery(variables: .init(query: "link's aw"))
 
     static var previews: some View {
-        let op = GameSearchResultsPaginationQuery(variables: .init(query: "link's aw"))
-        mockEnvironment.cachePayload(op, [
-            "data": [
-                "viewer": gamesFragment
-            ],
-        ])
-
-        return Group {
-            QueryPreview(op) { data in
-                GameSearchResults(games: data.viewer!)
-            }
-            .navigationBarTitle("Games")
+        QueryPreview(op) { data in
+            GameSearchResults(games: data.viewer!)
         }
-        .relayEnvironment(mockEnvironment)
+        .navigationBarTitle("Games")
+        .previewPayload(op, resource: "GameSearchResultsPreview")
     }
 }
