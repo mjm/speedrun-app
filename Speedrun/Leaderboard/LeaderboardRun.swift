@@ -89,93 +89,14 @@ query LeaderboardRunPreviewQuery {
 """)
 
 struct LeaderboardRun_Previews: PreviewProvider {
-    static let mockEnvironment = MockEnvironment()
-
-    static let runFragments: [[String: Any]] = [
-        [
-            "place": 1,
-            "run": [
-                "id": UUID().uuidString,
-                "comment": "",
-                "time": 5997,
-                "players": [
-                    [
-                        "__typename": "UserRunPlayer",
-                        "user": [
-                            "name": "TGH"
-                        ],
-                    ],
-                ],
-            ],
-        ],
-        [
-            "place": 2,
-            "run": [
-                "id": UUID().uuidString,
-                "comment": "happ",
-                "time": 6312,
-                "players": [
-                    [
-                        "__typename": "UserRunPlayer",
-                        "user": [
-                            "name": "Skurry"
-                        ],
-                    ],
-                ],
-            ],
-        ],
-        [
-            "place": 3,
-            "run": [
-                "id": UUID().uuidString,
-                "comment": "",
-                "time": 6321,
-                "players": [
-                    [
-                        "__typename": "UserRunPlayer",
-                        "user": [
-                            "name": "Samura1man"
-                        ],
-                    ],
-                ],
-            ],
-        ],
-        [
-            "place": 4,
-            "run": [
-                "id": UUID().uuidString,
-                "comment": "Slime eel went very bad, everything else went pretty well. Perfect Nightmare rng",
-                "time": 6325,
-                "players": [
-                    [
-                        "__typename": "UserRunPlayer",
-                        "user": [
-                            "name": "Glan"
-                        ],
-                    ],
-                ],
-            ],
-        ],
-    ]
+    static let op = LeaderboardRunPreviewQuery()
 
     static var previews: some View {
-        let op = LeaderboardRunPreviewQuery()
-        mockEnvironment.cachePayload(op, [
-            "data": [
-                "viewer": [
-                    "leaderboard": [
-                        "runs": runFragments,
-                    ],
-                ],
-            ],
-        ])
-
-        return Group {
-            QueryPreview(op) { data in
-                List(data.viewer!.leaderboard!.runs, id: \.run.id) { run in
-                    LeaderboardRun(run: run)
-                }
+        QueryPreview(op) { data in
+            List(data.viewer!.leaderboard!.runs, id: \.run.id) { run in
+                LeaderboardRun(run: run)
             }
-        }.relayEnvironment(mockEnvironment)
+        }
+        .previewPayload(op, resource: "LeaderboardRunPreview")
     }
 }

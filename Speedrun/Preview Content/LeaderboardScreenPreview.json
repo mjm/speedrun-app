@@ -1,0 +1,507 @@
+{
+  "data": {
+    "viewer": {
+      "leaderboard": {
+        "category": {
+          "name": "Any% (Glitchless)",
+          "id": "Y2F0ZWdvcnk6IjdrajNwbTQyIg=="
+        },
+        "runs": [
+          {
+            "run": {
+              "id": "cnVuOiJ6NWoycjdubSI=",
+              "comment": "",
+              "time": 5997,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "TGH",
+                    "id": "dXNlcjoicWpvMzE5MGoi"
+                  }
+                }
+              ]
+            },
+            "place": 1
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ5ZDVkeGxqbSI=",
+              "comment": "Please ignore the part where I have feather on X",
+              "time": 6299,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "Glan",
+                    "id": "dXNlcjoicGowb3lvd2oi"
+                  }
+                }
+              ]
+            },
+            "place": 2
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ6Z2s2d2RueSI=",
+              "comment": "happ",
+              "time": 6312,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "Skurry",
+                    "id": "dXNlcjoicWoyMnduNmoi"
+                  }
+                }
+              ]
+            },
+            "place": 3
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ5MjEyNTE3eiI=",
+              "comment": "",
+              "time": 6321,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "Samura1man",
+                    "id": "dXNlcjoiZGtqcGxrOHEi"
+                  }
+                }
+              ]
+            },
+            "place": 4
+          },
+          {
+            "run": {
+              "id": "cnVuOiJtN2c4ajJ3bSI=",
+              "comment": "I died to Hot Head reeee",
+              "time": 6399,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "EDL666",
+                    "id": "dXNlcjoidjhsN2wxN2oi"
+                  }
+                }
+              ]
+            },
+            "place": 5
+          },
+          {
+            "run": {
+              "id": "cnVuOiJtMzF2NmxxeiI=",
+              "comment": "",
+              "time": 6446,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "WeightyWords",
+                    "id": "dXNlcjoiOThybHpvZzgi"
+                  }
+                }
+              ]
+            },
+            "place": 6
+          },
+          {
+            "run": {
+              "id": "cnVuOiJtcmtxOXJkeSI=",
+              "comment": "will submit again once i hit 1:45 me thinks",
+              "time": 6478,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "bdudegames",
+                    "id": "dXNlcjoicXhrZDQxN2oi"
+                  }
+                }
+              ]
+            },
+            "place": 7
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ6bnJsdzl2eSI=",
+              "comment": "Didn't realize I never submitted this time. Oop",
+              "time": 6483,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "Mr_Shasta",
+                    "id": "dXNlcjoicWoyd2Rwamsi"
+                  }
+                }
+              ]
+            },
+            "place": 8
+          },
+          {
+            "run": {
+              "id": "cnVuOiJtMzU3NTR3eSI=",
+              "comment": "I got lost in D8. ",
+              "time": 6573,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "Mchan338",
+                    "id": "dXNlcjoiN2o0cnJubDgi"
+                  }
+                }
+              ]
+            },
+            "place": 9
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ5djZxMjg4eiI=",
+              "comment": "Getting closer to joining the 1:40 club!\r\n\r\nMod note: retimed to 1:51:55",
+              "time": 6714,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "BuhDihKuh",
+                    "id": "dXNlcjoiam8zNDZ2M2oi"
+                  }
+                }
+              ]
+            },
+            "place": 10
+          },
+          {
+            "run": {
+              "id": "cnVuOiJtMzFwOTF3eiI=",
+              "comment": "",
+              "time": 6761,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "Gidano",
+                    "id": "dXNlcjoiNjh3d201cTgi"
+                  }
+                }
+              ]
+            },
+            "place": 11
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ5NDFnb25xeSI=",
+              "comment": "",
+              "time": 6800,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "Dragonstrike",
+                    "id": "dXNlcjoidjgxOTdkM3gi"
+                  }
+                }
+              ]
+            },
+            "place": 12
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ5ZDUxMDZ2bSI=",
+              "comment": "Wasn't expecting to get another PB so soon! Especially not after I played Ballad of the Wind Fish twice at Marin XD\r\n\r\n**mod note: removed milliseconds**",
+              "time": 6810,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "HeroineofTime",
+                    "id": "dXNlcjoiOThyb3IxZDgi"
+                  }
+                }
+              ]
+            },
+            "place": 13
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ5OTU4MXB2eiI=",
+              "comment": "videogames\r\n\r\nfor mods: date done was incorrect, date is edited for accuracy purposes.",
+              "time": 6845,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "stealinbread",
+                    "id": "dXNlcjoiMGptNmRlODEi"
+                  }
+                }
+              ]
+            },
+            "place": 14
+          },
+          {
+            "run": {
+              "id": "cnVuOiJtZXhxOHJxeiI=",
+              "comment": "Same run I had up and verified already, I just changed the date because it was wrong.",
+              "time": 6898,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "THiEF_HD209",
+                    "id": "dXNlcjoiajJ5NnY1bzgi"
+                  }
+                }
+              ]
+            },
+            "place": 15
+          },
+          {
+            "run": {
+              "id": "cnVuOiJtN3FrNTQ5eiI=",
+              "comment": "Goal time of 1:55 achieved after cutting a hard 3+ minutes off my run in one shot. Very excited!",
+              "time": 6928,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "Tristnal",
+                    "id": "dXNlcjoiNjh3enluMzgi"
+                  }
+                }
+              ]
+            },
+            "place": 16
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ6eGtqNDhxbSI=",
+              "comment": "big PB jump, getting better",
+              "time": 7042,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "AirAngel",
+                    "id": "dXNlcjoienh6azV5bngi"
+                  }
+                }
+              ]
+            },
+            "place": 17
+          },
+          {
+            "run": {
+              "id": "cnVuOiJtMzVsMzE0eSI=",
+              "comment": "The first run I was able to get below two hours! Finally stepping things up.\r\n\r\n**mod note: removed milliseconds**",
+              "time": 7145.069,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "BlueMageBrilly",
+                    "id": "dXNlcjoiMThxbzY2d2oi"
+                  }
+                }
+              ]
+            },
+            "place": 18
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ6cDR2Z284eiI=",
+              "comment": "",
+              "time": 7179,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "randomNPC",
+                    "id": "dXNlcjoicGowbjNtcjgi"
+                  }
+                }
+              ]
+            },
+            "place": 19
+          },
+          {
+            "run": {
+              "id": "cnVuOiJtMzF3MDl3eiI=",
+              "comment": "First PB",
+              "time": 7297,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "Sylvaned",
+                    "id": "dXNlcjoidjgxazFvcGoi"
+                  }
+                }
+              ]
+            },
+            "place": 20
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ6eGtuMzBnbSI=",
+              "comment": "First completed run. Physical for now. Will submit again when I hit sub 2.",
+              "time": 7478,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "dMG",
+                    "id": "dXNlcjoiNDhnbjZneWoi"
+                  }
+                }
+              ]
+            },
+            "place": 21
+          },
+          {
+            "run": {
+              "id": "cnVuOiJtZW8xd2ozeiI=",
+              "comment": "Dropped the D7 ball in a pit TWICE",
+              "time": 7522,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "MattMattPartyHat",
+                    "id": "dXNlcjoieHk1eXZybjgi"
+                  }
+                }
+              ]
+            },
+            "place": 22
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ5dzR4d3gyeiI=",
+              "comment": "Still running in english text and no hookshot skew!",
+              "time": 7641,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "nintendoid",
+                    "id": "dXNlcjoiNWo1djk1ejgi"
+                  }
+                }
+              ]
+            },
+            "place": 23
+          },
+          {
+            "run": {
+              "id": "cnVuOiJtN3EwZXI1eiI=",
+              "comment": "Could definitely grind this down more, but going to come back to later. Wind Fish is best whale friend.",
+              "time": 7672,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "FuzzyGames",
+                    "id": "dXNlcjoidjhsbm0yNHgi"
+                  }
+                }
+              ]
+            },
+            "place": 24
+          },
+          {
+            "run": {
+              "id": "cnVuOiJtZXhnd3gzeiI=",
+              "comment": "Really good run, need to improve my movement and menu but overall quite satisfied\r\n\r\nEdit: Resubmitted with the right video",
+              "time": 7679,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "Darkceo",
+                    "id": "dXNlcjoidjgxcjByeHAi"
+                  }
+                }
+              ]
+            },
+            "place": 25
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ5NjVyNm82eiI=",
+              "comment": "first actually las run in like 8 months, will get sub 2 in glitchless then hundo time :)",
+              "time": 7970,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "BubbleBass",
+                    "id": "dXNlcjoiOThycWc3cXgi"
+                  }
+                }
+              ]
+            },
+            "place": 26
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ5ODFwNGx4eiI=",
+              "comment": "",
+              "time": 8031,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "Pterodactyl0",
+                    "id": "dXNlcjoieDdxcWU1Njgi"
+                  }
+                }
+              ]
+            },
+            "place": 27
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ6MDVyOTY5bSI=",
+              "comment": "Getting a little better",
+              "time": 8287,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "joro550",
+                    "id": "dXNlcjoiODZ2Nm9vMGoi"
+                  }
+                }
+              ]
+            },
+            "place": 28
+          },
+          {
+            "run": {
+              "id": "cnVuOiJtN3FsbDR3eiI=",
+              "comment": "First completed run.  I have SIGNIFICANT time saves I can make by simply learning some basic strats (and not dieing thus taking 25 minutes on the final nightmares).",
+              "time": 10163,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "LiminalityCarb",
+                    "id": "dXNlcjoieng3b3A0Nmoi"
+                  }
+                }
+              ]
+            },
+            "place": 29
+          }
+        ]
+      }
+    }
+  }
+}

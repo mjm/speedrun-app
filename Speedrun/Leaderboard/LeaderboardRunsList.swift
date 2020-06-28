@@ -44,28 +44,19 @@ query LeaderboardRunsListPreviewQuery {
 """)
 
 struct LeaderboardRunsList_Previews: PreviewProvider {
-    static let mockEnvironment = MockEnvironment()
-
-    static let leaderboardFragment = [
-        "runs": LeaderboardRun_Previews.runFragments
-    ]
+    static let op = LeaderboardScreenQuery(
+        variables: .init(
+            gameID: "Z2FtZToieWQ0bzMydzEi",
+            categoryID: "Y2F0ZWdvcnk6IjdrajNwbTQyIg=="
+        )
+    )
 
     static var previews: some View {
-        let op = LeaderboardRunsListPreviewQuery()
-        mockEnvironment.cachePayload(op, [
-            "data": [
-                "viewer": [
-                    "leaderboard": leaderboardFragment,
-                ],
-            ],
-        ])
-
-        return Group {
-            QueryPreview(op) { data in
-                List {
-                    LeaderboardRunsList(leaderboard: data.viewer!.leaderboard!)
-                }
+        QueryPreview(op) { data in
+            List {
+                LeaderboardRunsList(leaderboard: data.viewer!.leaderboard!)
             }
-        }.relayEnvironment(mockEnvironment)
+        }
+        .previewPayload(op, resource: "LeaderboardScreenPreview")
     }
 }

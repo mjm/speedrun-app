@@ -1,0 +1,82 @@
+{
+  "data": {
+    "viewer": {
+      "leaderboard": {
+        "category": {
+          "name": "Any% (Glitchless)",
+          "id": "Y2F0ZWdvcnk6IjdrajNwbTQyIg=="
+        },
+        "runs": [
+          {
+            "run": {
+              "id": "cnVuOiJ6NWoycjdubSI=",
+              "comment": "",
+              "time": 5997,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "TGH",
+                    "id": "dXNlcjoicWpvMzE5MGoi"
+                  }
+                }
+              ]
+            },
+            "place": 1
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ5ZDVkeGxqbSI=",
+              "comment": "Please ignore the part where I have feather on X",
+              "time": 6299,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "Glan",
+                    "id": "dXNlcjoicGowb3lvd2oi"
+                  }
+                }
+              ]
+            },
+            "place": 2
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ6Z2s2d2RueSI=",
+              "comment": "happ",
+              "time": 6312,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "Skurry",
+                    "id": "dXNlcjoicWoyMnduNmoi"
+                  }
+                }
+              ]
+            },
+            "place": 3
+          },
+          {
+            "run": {
+              "id": "cnVuOiJ5MjEyNTE3eiI=",
+              "comment": "",
+              "time": 6321,
+              "players": [
+                {
+                  "__typename": "UserRunPlayer",
+                  "user": {
+                    "name": "Samura1man",
+                    "id": "dXNlcjoiZGtqcGxrOHEi"
+                  }
+                }
+              ]
+            },
+            "place": 4
+          }
+        ]
+      }
+    }
+  }
+}
