@@ -132,6 +132,19 @@ extension GameDetailScreenQuery {
     }
 }
 
+#if canImport(RelaySwiftUI)
+
+import RelaySwiftUI
+
+@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+extension RelaySwiftUI.QueryNext.WrappedValue where O == GameDetailScreenQuery {
+    func get(id: String) -> RelaySwiftUI.QueryNext<GameDetailScreenQuery>.Result {
+        self.get(.init(id: id))
+    }
+}
+
+#endif
+
 extension GameDetailScreenQuery {
     struct Data: Decodable {
         var game: Game_game?

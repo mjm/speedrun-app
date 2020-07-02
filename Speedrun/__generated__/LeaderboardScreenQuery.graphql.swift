@@ -226,6 +226,19 @@ extension LeaderboardScreenQuery {
     }
 }
 
+#if canImport(RelaySwiftUI)
+
+import RelaySwiftUI
+
+@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+extension RelaySwiftUI.QueryNext.WrappedValue where O == LeaderboardScreenQuery {
+    func get(gameID: String, categoryID: String, levelID: String? = nil) -> RelaySwiftUI.QueryNext<LeaderboardScreenQuery>.Result {
+        self.get(.init(gameID: gameID, categoryID: categoryID, levelID: levelID))
+    }
+}
+
+#endif
+
 extension LeaderboardScreenQuery {
     struct Data: Decodable {
         var viewer: Viewer_viewer?

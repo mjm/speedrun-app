@@ -30,7 +30,7 @@ struct LeaderboardScreen: View {
     @Query<LeaderboardScreenQuery> var query
 
     @ViewBuilder var body: some View {
-        switch query.get(.init(gameID: gameID, categoryID: categoryID, levelID: levelID)) {
+        switch query.get(gameID: gameID, categoryID: categoryID, levelID: levelID) {
         case .loading:
             Text("Loading…")
         case .failure(let error):

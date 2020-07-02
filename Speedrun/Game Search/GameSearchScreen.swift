@@ -29,7 +29,7 @@ struct GameSearchScreen: View {
 
             VStack {
                 if !searchDelayer.query.isEmpty {
-                    switch query.get(.init(query: searchDelayer.query)) {
+                    switch query.get(query: searchDelayer.query) {
                     case .loading:
                         Text("Loading…")
                     case .failure(let error):

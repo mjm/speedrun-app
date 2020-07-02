@@ -184,6 +184,19 @@ extension LeaderboardRunPreviewQuery {
     typealias Variables = EmptyVariables
 }
 
+#if canImport(RelaySwiftUI)
+
+import RelaySwiftUI
+
+@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+extension RelaySwiftUI.QueryNext.WrappedValue where O == LeaderboardRunPreviewQuery {
+    func get() -> RelaySwiftUI.QueryNext<LeaderboardRunPreviewQuery>.Result {
+        self.get(.init())
+    }
+}
+
+#endif
+
 extension LeaderboardRunPreviewQuery {
     struct Data: Decodable {
         var viewer: Viewer_viewer?

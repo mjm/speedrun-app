@@ -18,7 +18,7 @@ struct GameDetailScreen: View {
     @Query<GameDetailScreenQuery> var query
 
     @ViewBuilder var body: some View {
-        switch query.get(.init(id: id)) {
+        switch query.get(id: id) {
         case .loading:
             Text("Loading…")
         case .failure(let error):

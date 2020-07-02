@@ -186,6 +186,19 @@ extension GameSearchResultsPaginationQuery {
     }
 }
 
+#if canImport(RelaySwiftUI)
+
+import RelaySwiftUI
+
+@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+extension RelaySwiftUI.QueryNext.WrappedValue where O == GameSearchResultsPaginationQuery {
+    func get(query: String, count: Int? = nil, cursor: String? = nil) -> RelaySwiftUI.QueryNext<GameSearchResultsPaginationQuery>.Result {
+        self.get(.init(query: query, count: count, cursor: cursor))
+    }
+}
+
+#endif
+
 extension GameSearchResultsPaginationQuery {
     struct Data: Decodable {
         var viewer: Viewer_viewer?

@@ -104,6 +104,19 @@ extension GameSearchResultRowPreviewQuery {
     }
 }
 
+#if canImport(RelaySwiftUI)
+
+import RelaySwiftUI
+
+@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+extension RelaySwiftUI.QueryNext.WrappedValue where O == GameSearchResultRowPreviewQuery {
+    func get(id: String) -> RelaySwiftUI.QueryNext<GameSearchResultRowPreviewQuery>.Result {
+        self.get(.init(id: id))
+    }
+}
+
+#endif
+
 extension GameSearchResultRowPreviewQuery {
     struct Data: Decodable {
         var game: Game_game?

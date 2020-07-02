@@ -255,6 +255,19 @@ extension RunDetailInfoPreviewQuery {
     }
 }
 
+#if canImport(RelaySwiftUI)
+
+import RelaySwiftUI
+
+@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+extension RelaySwiftUI.QueryNext.WrappedValue where O == RunDetailInfoPreviewQuery {
+    func get(id: String) -> RelaySwiftUI.QueryNext<RunDetailInfoPreviewQuery>.Result {
+        self.get(.init(id: id))
+    }
+}
+
+#endif
+
 extension RunDetailInfoPreviewQuery {
     struct Data: Decodable {
         var node: Node_node?
