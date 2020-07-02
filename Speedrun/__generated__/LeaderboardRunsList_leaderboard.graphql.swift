@@ -50,7 +50,7 @@ extension LeaderboardRunsList_leaderboard {
             var run: Run_run
             var fragment_LeaderboardRun_run: FragmentPointer
 
-            struct Run_run: Decodable {
+            struct Run_run: Decodable, Identifiable {
                 var id: String
             }
         }
@@ -62,3 +62,16 @@ protocol LeaderboardRunsList_leaderboard_Key {
 }
 
 extension LeaderboardRunsList_leaderboard: Relay.Fragment {}
+
+#if canImport(RelaySwiftUI)
+
+import RelaySwiftUI
+
+extension LeaderboardRunsList_leaderboard_Key {
+    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+    func asFragment() -> RelaySwiftUI.FragmentNext<LeaderboardRunsList_leaderboard> {
+        RelaySwiftUI.FragmentNext<LeaderboardRunsList_leaderboard>(self)
+    }
+}
+
+#endif

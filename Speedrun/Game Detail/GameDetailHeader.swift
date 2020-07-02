@@ -12,21 +12,17 @@ fragment GameDetailHeader_game on Game {
 """)
 
 struct GameDetailHeader: View {
-    @Fragment(GameDetailHeader_game.self) var game
-
-    init(game: GameDetailHeader_game_Key) {
-        $game = game
-    }
+    @Fragment<GameDetailHeader_game> var game
 
     var body: some View {
         VStack(alignment: .center) {
             Group {
-                if game?.cover == nil {
-                    ImagePlaceholder()
-                } else {
-                    AsyncImage(url: URL(string: game!.cover!.uri)!,
+                if let cover = game?.cover {
+                    AsyncImage(url: URL(string: cover.uri)!,
                                placeholder: ImagePlaceholder())
                         .aspectRatio(contentMode: .fit)
+                } else {
+                    ImagePlaceholder()
                 }
             }.frame(height: 200)
 
@@ -44,13 +40,13 @@ struct GameDetailHeader: View {
 }
 
 struct GameDetailHeader_Previews: PreviewProvider {
-    static let op = GameDetailScreenQuery(variables: .init(id: "Z2FtZToieWQ0bzMydzEi"))
+    static let op = GameDetailScreenQuery(id: "Z2FtZToieWQ0bzMydzEi")
 
     static var previews: some View {
         QueryPreview(op) { data in
             NavigationView {
                 List {
-                    Section(header: GameDetailHeader(game: data.game!)) {
+                    Section(header: GameDetailHeader(game: data.game!.asFragment())) {
                         EmptyView()
                     }
                 }

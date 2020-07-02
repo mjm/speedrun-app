@@ -15,35 +15,33 @@ query GameDetailScreenQuery($id: ID!) {
 struct GameDetailScreen: View {
     let id: String
 
-    @Query(GameDetailScreenQuery.self) var query
+    @Query<GameDetailScreenQuery> var query
 
-    var body: some View {
-        Group {
-            switch query.get(.init(id: id)) {
-            case .loading:
-                Text("Loading…")
-            case .failure(let error):
-                Text("Error: \(error.localizedDescription)")
-            case .success(let data):
-                if let game = data?.game {
-                    List {
-                        Section(header: GameDetailHeader(game: game)) {
-                            EmptyView()
-                        }
-
-                        Section(header: Text("Leaderboards")) {
-                            GameDetailLeaderboardList(game: game)
-                        }
+    @ViewBuilder var body: some View {
+        switch query.get(.init(id: id)) {
+        case .loading:
+            Text("Loading…")
+        case .failure(let error):
+            Text("Error: \(error.localizedDescription)")
+        case .success(let data):
+            if let game = data?.game {
+                List {
+                    Section(header: GameDetailHeader(game: game.asFragment())) {
+                        EmptyView()
                     }
-                    .listStyle(GroupedListStyle())
+
+                    Section(header: Text("Leaderboards")) {
+                        GameDetailLeaderboardList(game: game.asFragment())
+                    }
                 }
+                .listStyle(GroupedListStyle())
             }
         }
     }
 }
 
 struct GameDetailScreen_Previews: PreviewProvider {
-    static let op = GameDetailScreenQuery(variables: .init(id: "Z2FtZToieWQ0bzMydzEi"))
+    static let op = GameDetailScreenQuery(id: "Z2FtZToieWQ0bzMydzEi")
 
     static var previews: some View {
         NavigationView {

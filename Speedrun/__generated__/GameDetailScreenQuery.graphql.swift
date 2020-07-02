@@ -126,13 +126,17 @@ extension GameDetailScreenQuery {
             ]
         }
     }
+
+    init(id: String) {
+        self.init(variables: .init(id: id))
+    }
 }
 
 extension GameDetailScreenQuery {
     struct Data: Decodable {
         var game: Game_game?
 
-        struct Game_game: Decodable, GameDetailHeader_game_Key, GameDetailLeaderboardList_game_Key {
+        struct Game_game: Decodable, Identifiable, GameDetailHeader_game_Key, GameDetailLeaderboardList_game_Key {
             var id: String
             var fragment_GameDetailHeader_game: FragmentPointer
             var fragment_GameDetailLeaderboardList_game: FragmentPointer

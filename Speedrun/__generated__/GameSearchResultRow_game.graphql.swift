@@ -52,3 +52,16 @@ protocol GameSearchResultRow_game_Key {
 }
 
 extension GameSearchResultRow_game: Relay.Fragment {}
+
+#if canImport(RelaySwiftUI)
+
+import RelaySwiftUI
+
+extension GameSearchResultRow_game_Key {
+    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+    func asFragment() -> RelaySwiftUI.FragmentNext<GameSearchResultRow_game> {
+        RelaySwiftUI.FragmentNext<GameSearchResultRow_game>(self)
+    }
+}
+
+#endif

@@ -27,36 +27,26 @@ fragment GameSearchResults_games on Viewer
 """)
 
 struct GameSearchResults: View {
-    @PaginationFragment(GameSearchResults_games.self) var games
+    @PaginationFragment<GameSearchResults_games> var games
 
-    init(games: GameSearchResults_games_Key) {
-        $games = games
-    }
-
-    private var gameNodes: [GameSearchResults_games.Data.GameConnection_games.GameEdge_edges.Game_node] {
-        games?.games.edges.map { $0.node } ?? []
-    }
-
-    var body: some View {
-        Group {
-            if games != nil {
-                List(gameNodes, id: \.id) { game in
-                    NavigationLink(destination: GameDetailScreen(id: game.id)) {
-                        GameSearchResultRow(game: game)
-                    }
+    @ViewBuilder var body: some View {
+        if let games = games {
+            List(games.games.edges.map { $0.node } ?? []) { game in
+                NavigationLink(destination: GameDetailScreen(id: game.id)) {
+                    GameSearchResultRow(game: game.asFragment())
                 }
-                .listStyle(PlainListStyle())
             }
+            .listStyle(PlainListStyle())
         }
     }
 }
 
 struct GameSearchResults_Previews: PreviewProvider {
-    static let op = GameSearchResultsPaginationQuery(variables: .init(query: "link's aw"))
+    static let op = GameSearchResultsPaginationQuery(query: "link's aw")
 
     static var previews: some View {
         QueryPreview(op) { data in
-            GameSearchResults(games: data.viewer!)
+            GameSearchResults(games: data.viewer!.asFragment())
         }
         .navigationBarTitle("Games")
         .previewPayload(op, resource: "GameSearchResultsPreview")

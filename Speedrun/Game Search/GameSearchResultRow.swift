@@ -12,33 +12,27 @@ fragment GameSearchResultRow_game on Game {
 """)
 
 struct GameSearchResultRow: View {
-    @Fragment(GameSearchResultRow_game.self) var game
+    @Fragment<GameSearchResultRow_game> var game
 
-    init(game: GameSearchResultRow_game_Key) {
-        $game = game
-    }
-
-    var body: some View {
-        Group {
-            if game != nil {
-                HStack {
-                    Group {
-                        if game!.cover == nil {
-                            ImagePlaceholder()
-                                .frame(width: 80, height: 80)
-                        } else {
-                            AsyncImage(
-                                url: URL(string: game!.cover!.uri)!,
-                                placeholder: ImagePlaceholder()
-                                    .frame(width: 80, height: 80))
-                                .aspectRatio(contentMode: .fit)
-                        }
+    @ViewBuilder var body: some View {
+        if let game = game {
+            HStack {
+                Group {
+                    if let cover = game.cover {
+                        AsyncImage(
+                            url: URL(string: cover.uri)!,
+                            placeholder: ImagePlaceholder()
+                                .frame(width: 80, height: 80))
+                            .aspectRatio(contentMode: .fit)
+                    } else {
+                        ImagePlaceholder()
+                            .frame(width: 80, height: 80)
                     }
-                    .frame(width: 80)
-
-                    Text(game!.name ?? "Name unknown")
-                        .font(.headline)
                 }
+                .frame(width: 80)
+                
+                Text(game.name ?? "Name unknown")
+                    .font(.headline)
             }
         }
     }
@@ -53,17 +47,17 @@ query GameSearchResultRowPreviewQuery($id: ID!) {
 """)
 
 struct GameSearchResultRow_Previews: PreviewProvider {
-    static let op = GameSearchResultRowPreviewQuery(variables: .init(id: UUID().uuidString))
+    static let op = GameSearchResultRowPreviewQuery(id: UUID().uuidString)
 
     static var previews: some View {
         List {
             QueryPreview(op) { data in
-                GameSearchResultRow(game: data.game!)
+                GameSearchResultRow(game: data.game!.asFragment())
             }
             .previewPayload(op, resource: "GameSearchResultRowPreview_LAS")
 
             QueryPreview(op) { data in
-                GameSearchResultRow(game: data.game!)
+                GameSearchResultRow(game: data.game!.asFragment())
             }
             .previewPayload(op, resource: "GameSearchResultRowPreview_Empty")
         }

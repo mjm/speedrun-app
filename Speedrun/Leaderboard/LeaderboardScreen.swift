@@ -27,33 +27,29 @@ struct LeaderboardScreen: View {
     let categoryID: String
     let levelID: String? = nil
 
-    @Query(LeaderboardScreenQuery.self) var query
+    @Query<LeaderboardScreenQuery> var query
 
-    var body: some View {
-        Group {
-            switch query.get(.init(gameID: gameID, categoryID: categoryID, levelID: levelID)) {
-            case .loading:
-                Text("Loading…")
-            case .failure(let error):
-                Text("Error: \(error.localizedDescription)")
-            case .success(let data):
-                List {
-                    if let leaderboard = data?.viewer?.leaderboard {
-                        LeaderboardRunsList(leaderboard: leaderboard)
-                    }
+    @ViewBuilder var body: some View {
+        switch query.get(.init(gameID: gameID, categoryID: categoryID, levelID: levelID)) {
+        case .loading:
+            Text("Loading…")
+        case .failure(let error):
+            Text("Error: \(error.localizedDescription)")
+        case .success(let data):
+            List {
+                if let leaderboard = data?.viewer?.leaderboard {
+                    LeaderboardRunsList(leaderboard: leaderboard.asFragment())
                 }
-                .navigationBarTitle(data?.viewer?.leaderboard?.category.name ?? "")
             }
+            .navigationBarTitle(data?.viewer?.leaderboard?.category.name ?? "")
         }
     }
 }
 
 struct LeaderboardScreen_Previews: PreviewProvider {
     static let op = LeaderboardScreenQuery(
-        variables: .init(
-            gameID: "Z2FtZToieWQ0bzMydzEi",
-            categoryID: "Y2F0ZWdvcnk6IjdrajNwbTQyIg=="
-        )
+        gameID: "Z2FtZToieWQ0bzMydzEi",
+        categoryID: "Y2F0ZWdvcnk6IjdrajNwbTQyIg=="
     )
 
     static var previews: some View {

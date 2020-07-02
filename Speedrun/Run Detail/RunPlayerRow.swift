@@ -30,24 +30,18 @@ fragment RunPlayerRow_player on RunPlayer {
 """)
 
 struct RunPlayerRow: View {
-    @Fragment(RunPlayerRow_player.self) var player
+    @Fragment<RunPlayerRow_player> var player
 
-    init(player: RunPlayerRow_player_Key) {
-        $player = player
-    }
-
-    var body: some View {
-        Group {
-            switch player {
-            case .userRunPlayer(let userPlayer):
-                if let user = userPlayer.user {
-                    UserRunPlayerRow(user: user)
-                }
-            case .guestRunPlayer(let guestPlayer):
-                GuestRunPlayerRow(player: guestPlayer)
-            default:
-                EmptyView()
+    @ViewBuilder var body: some View {
+        switch player {
+        case .userRunPlayer(let userPlayer):
+            if let user = userPlayer.user {
+                UserRunPlayerRow(user: user)
             }
+        case .guestRunPlayer(let guestPlayer):
+            GuestRunPlayerRow(player: guestPlayer)
+        default:
+            EmptyView()
         }
     }
 
@@ -119,12 +113,12 @@ query RunPlayerRowPreviewQuery($id: ID!) {
 """)
 
 struct RunPlayerRow_Previews: PreviewProvider {
-    static let op = RunPlayerRowPreviewQuery(variables: .init(id: "foo"))
+    static let op = RunPlayerRowPreviewQuery(id: "foo")
 
     static var previews: some View {
         QueryPreview(op) { data in
             List(data.node!.asRun!.players.indices, id: \.self) { idx in
-                RunPlayerRow(player: data.node!.asRun!.players[idx])
+                RunPlayerRow(player: data.node!.asRun!.players[idx].asFragment())
             }
             .listStyle(GroupedListStyle())
         }

@@ -165,3 +165,16 @@ protocol RunDetailInfo_run_Key {
 }
 
 extension RunDetailInfo_run: Relay.Fragment {}
+
+#if canImport(RelaySwiftUI)
+
+import RelaySwiftUI
+
+extension RunDetailInfo_run_Key {
+    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+    func asFragment() -> RelaySwiftUI.FragmentNext<RunDetailInfo_run> {
+        RelaySwiftUI.FragmentNext<RunDetailInfo_run>(self)
+    }
+}
+
+#endif

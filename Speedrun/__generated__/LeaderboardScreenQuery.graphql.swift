@@ -220,6 +220,10 @@ extension LeaderboardScreenQuery {
             ]
         }
     }
+
+    init(gameID: String, categoryID: String, levelID: String? = nil) {
+        self.init(variables: .init(gameID: gameID, categoryID: categoryID, levelID: levelID))
+    }
 }
 
 extension LeaderboardScreenQuery {

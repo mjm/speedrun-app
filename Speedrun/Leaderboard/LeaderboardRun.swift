@@ -23,38 +23,32 @@ fragment LeaderboardRun_run on PlacedRun {
 """)
 
 struct LeaderboardRun: View {
-    @Fragment(LeaderboardRun_run.self) var run
+    @Fragment<LeaderboardRun_run> var run
 
-    init(run: LeaderboardRun_run_Key) {
-        $run = run
-    }
-
-    var body: some View {
-        Group {
-            if run != nil {
-                HStack(alignment: .firstTextBaseline) {
-                    Text(ordinalFormatter.string(from: run!.place as NSNumber)!)
+    @ViewBuilder var body: some View {
+        if let run = run {
+            HStack(alignment: .firstTextBaseline) {
+                Text(ordinalFormatter.string(from: run.place as NSNumber)!)
+                    .font(.callout)
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(run.run.players.first?.asUserRunPlayer?.user?.name ?? "(unknown name)")
+                        .font(.headline)
+                    if !run.run.comment.isEmpty {
+                        Text(run.run.comment)
+                            .lineLimit(2)
+                            .font(Font.caption.italic())
+                            .foregroundColor(.secondary)
+                    }
+                }
+                
+                Spacer()
+                
+                if run.run.time != nil {
+                    Text(runTimeFormatter.string(from: run.run.time!)!)
                         .font(.callout)
-
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(run!.run.players.first?.asUserRunPlayer?.user?.name ?? "(unknown name)")
-                            .font(.headline)
-                        if !run!.run.comment.isEmpty {
-                            Text(run!.run.comment)
-                                .lineLimit(2)
-                                .font(Font.caption.italic())
-                                .foregroundColor(.secondary)
-                        }
-                    }
-
-                    Spacer()
-
-                    if run!.run.time != nil {
-                        Text(runTimeFormatter.string(from: run!.run.time!)!)
-                            .font(.callout)
-                    }
-                }.padding(.vertical, 4)
-            }
+                }
+            }.padding(.vertical, 4)
         }
     }
 }
@@ -94,7 +88,7 @@ struct LeaderboardRun_Previews: PreviewProvider {
     static var previews: some View {
         QueryPreview(op) { data in
             List(data.viewer!.leaderboard!.runs, id: \.run.id) { run in
-                LeaderboardRun(run: run)
+                LeaderboardRun(run: run.asFragment())
             }
         }
         .previewPayload(op, resource: "LeaderboardRunPreview")

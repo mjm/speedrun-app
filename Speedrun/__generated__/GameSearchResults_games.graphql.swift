@@ -81,7 +81,7 @@ extension GameSearchResults_games {
             struct GameEdge_edges: Decodable {
                 var node: Game_node
 
-                struct Game_node: Decodable, GameSearchResultRow_game_Key {
+                struct Game_node: Decodable, Identifiable, GameSearchResultRow_game_Key {
                     var id: String
                     var fragment_GameSearchResultRow_game: FragmentPointer
                 }
@@ -108,3 +108,21 @@ extension GameSearchResults_games: Relay.PaginationFragment {
                 forward: ConnectionVariableConfig(count: "count", cursor: "cursor")))
     }
 }
+
+#if canImport(RelaySwiftUI)
+
+import RelaySwiftUI
+
+extension GameSearchResults_games_Key {
+    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+    func asFragment() -> RelaySwiftUI.FragmentNext<GameSearchResults_games> {
+        RelaySwiftUI.FragmentNext<GameSearchResults_games>(self)
+    }
+
+    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+    func asFragment() -> RelaySwiftUI.PaginationFragmentNext<GameSearchResults_games> {
+        RelaySwiftUI.PaginationFragmentNext<GameSearchResults_games>(self)
+    }
+}
+
+#endif

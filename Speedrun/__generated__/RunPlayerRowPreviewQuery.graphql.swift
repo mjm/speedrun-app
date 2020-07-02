@@ -208,6 +208,10 @@ extension RunPlayerRowPreviewQuery {
             ]
         }
     }
+
+    init(id: String) {
+        self.init(variables: .init(id: id))
+    }
 }
 
 extension RunPlayerRowPreviewQuery {

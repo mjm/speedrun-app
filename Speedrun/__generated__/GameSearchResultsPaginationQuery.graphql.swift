@@ -180,6 +180,10 @@ extension GameSearchResultsPaginationQuery {
             ]
         }
     }
+
+    init(query: String, count: Int? = nil, cursor: String? = nil) {
+        self.init(variables: .init(query: query, count: count, cursor: cursor))
+    }
 }
 
 extension GameSearchResultsPaginationQuery {

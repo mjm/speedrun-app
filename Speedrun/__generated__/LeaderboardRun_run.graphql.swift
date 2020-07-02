@@ -72,7 +72,7 @@ extension LeaderboardRun_run {
         var place: Int
         var run: Run_run
 
-        struct Run_run: Decodable {
+        struct Run_run: Decodable, Identifiable {
             var id: String
             var comment: String
             var time: Double?
@@ -145,3 +145,16 @@ protocol LeaderboardRun_run_Key {
 }
 
 extension LeaderboardRun_run: Relay.Fragment {}
+
+#if canImport(RelaySwiftUI)
+
+import RelaySwiftUI
+
+extension LeaderboardRun_run_Key {
+    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+    func asFragment() -> RelaySwiftUI.FragmentNext<LeaderboardRun_run> {
+        RelaySwiftUI.FragmentNext<LeaderboardRun_run>(self)
+    }
+}
+
+#endif

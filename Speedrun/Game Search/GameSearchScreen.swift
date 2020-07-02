@@ -13,7 +13,7 @@ query GameSearchScreenQuery($query: String!) {
 
 struct GameSearchScreen: View {
     @RelayEnvironment var environment: Relay.Environment
-    @Query(GameSearchScreenQuery.self) var query
+    @Query<GameSearchScreenQuery> var query
     @StateObject private var searchDelayer: SearchDelayer
     @State private var isInspectorPresented = false
 
@@ -36,7 +36,7 @@ struct GameSearchScreen: View {
                         Text("Error: \(error.localizedDescription)")
                     case .success(let data):
                         if let viewer = data?.viewer {
-                            GameSearchResults(games: viewer)
+                            GameSearchResults(games: viewer.asFragment())
                         }
                     }
                 }
@@ -77,7 +77,7 @@ private class SearchDelayer: ObservableObject {
 }
 
 struct GameSearchScreen_Previews: PreviewProvider {
-    static let op = GameSearchScreenQuery(variables: .init(query: "link's awak"))
+    static let op = GameSearchScreenQuery(query: "link's awak")
 
     static var previews: some View {
         GameSearchScreen(initialQuery: "link's awak")

@@ -249,6 +249,10 @@ extension RunDetailInfoPreviewQuery {
             ]
         }
     }
+
+    init(id: String) {
+        self.init(variables: .init(id: id))
+    }
 }
 
 extension RunDetailInfoPreviewQuery {

@@ -198,7 +198,7 @@ extension LeaderboardRunPreviewQuery {
                     var run: Run_run
                     var fragment_LeaderboardRun_run: FragmentPointer
 
-                    struct Run_run: Decodable {
+                    struct Run_run: Decodable, Identifiable {
                         var id: String
                     }
                 }

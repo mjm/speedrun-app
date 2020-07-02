@@ -36,11 +36,11 @@ struct GameDetailLeaderboardList_game {
 
 
 extension GameDetailLeaderboardList_game {
-    struct Data: Decodable {
+    struct Data: Decodable, Identifiable {
         var id: String
         var categories: [Category_categories]
 
-        struct Category_categories: Decodable {
+        struct Category_categories: Decodable, Identifiable {
             var id: String
             var name: String
         }
@@ -52,3 +52,16 @@ protocol GameDetailLeaderboardList_game_Key {
 }
 
 extension GameDetailLeaderboardList_game: Relay.Fragment {}
+
+#if canImport(RelaySwiftUI)
+
+import RelaySwiftUI
+
+extension GameDetailLeaderboardList_game_Key {
+    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+    func asFragment() -> RelaySwiftUI.FragmentNext<GameDetailLeaderboardList_game> {
+        RelaySwiftUI.FragmentNext<GameDetailLeaderboardList_game>(self)
+    }
+}
+
+#endif

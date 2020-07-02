@@ -170,6 +170,10 @@ extension GameSearchScreenQuery {
             ]
         }
     }
+
+    init(query: String) {
+        self.init(variables: .init(query: query))
+    }
 }
 
 extension GameSearchScreenQuery {

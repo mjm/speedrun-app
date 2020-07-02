@@ -223,3 +223,16 @@ protocol RunPlayerRow_player_Key {
 }
 
 extension RunPlayerRow_player: Relay.Fragment {}
+
+#if canImport(RelaySwiftUI)
+
+import RelaySwiftUI
+
+extension RunPlayerRow_player_Key {
+    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+    func asFragment() -> RelaySwiftUI.FragmentNext<RunPlayerRow_player> {
+        RelaySwiftUI.FragmentNext<RunPlayerRow_player>(self)
+    }
+}
+
+#endif
