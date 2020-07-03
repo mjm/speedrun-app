@@ -31,7 +31,7 @@ struct GameSearchResults: View {
 
     @ViewBuilder var body: some View {
         if let games = games {
-            List(games.games.edges.map { $0.node } ?? []) { game in
+            List(games.games) { game in
                 NavigationLink(destination: GameDetailScreen(id: game.id)) {
                     GameSearchResultRow(game: game.asFragment())
                 }

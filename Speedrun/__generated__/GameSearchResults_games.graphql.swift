@@ -75,13 +75,13 @@ extension GameSearchResults_games {
     struct Data: Decodable {
         var games: GameConnection_games
 
-        struct GameConnection_games: Decodable {
+        struct GameConnection_games: Decodable, ConnectionCollection {
             var edges: [GameEdge_edges]
 
-            struct GameEdge_edges: Decodable {
+            struct GameEdge_edges: Decodable, ConnectionEdge {
                 var node: Game_node
 
-                struct Game_node: Decodable, Identifiable, GameSearchResultRow_game_Key {
+                struct Game_node: Decodable, Identifiable, GameSearchResultRow_game_Key, ConnectionNode {
                     var id: String
                     var fragment_GameSearchResultRow_game: FragmentPointer
                 }
