@@ -10,6 +10,14 @@
         "name": "Any% (Glitchless)",
         "id": "Y2F0ZWdvcnk6IjdrajNwbTQyIg=="
       },
+      "videos": {
+        "links": [
+          {
+            "uri": "https://www.youtube.com/watch?v=cLu4E4aZFtI"
+          }
+        ]
+      },
+      "comment": "",
       "players": [
         {
           "__typename": "UserRunPlayer",

@@ -2,7 +2,7 @@
 
 import Relay
 
-public struct RunDetailInfoPreviewQuery {
+public struct RunDetailScreenQuery {
     public var variables: Variables
 
     public init(variables: Variables) {
@@ -12,7 +12,7 @@ public struct RunDetailInfoPreviewQuery {
     public static var node: ConcreteRequest {
         ConcreteRequest(
             fragment: ReaderFragment(
-                name: "RunDetailInfoPreviewQuery",
+                name: "RunDetailScreenQuery",
                 type: "Query",
                 selections: [
                     .field(ReaderLinkedField(
@@ -35,7 +35,7 @@ public struct RunDetailInfoPreviewQuery {
                 ]
             ),
             operation: NormalizationOperation(
-                name: "RunDetailInfoPreviewQuery",
+                name: "RunDetailScreenQuery",
                 selections: [
                     .field(NormalizationLinkedField(
                         name: "node",
@@ -190,10 +190,10 @@ public struct RunDetailInfoPreviewQuery {
                 ]
             ),
             params: RequestParameters(
-                name: "RunDetailInfoPreviewQuery",
+                name: "RunDetailScreenQuery",
                 operationKind: .query,
                 text: """
-query RunDetailInfoPreviewQuery(
+query RunDetailScreenQuery(
   $id: ID!
 ) {
   node(id: $id) {
@@ -268,7 +268,7 @@ fragment RunPlayerRow_player on RunPlayer {
     }
 }
 
-extension RunDetailInfoPreviewQuery {
+extension RunDetailScreenQuery {
     public struct Variables: VariableDataConvertible {
         public var id: String
 
@@ -291,13 +291,13 @@ extension RunDetailInfoPreviewQuery {
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
-@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)extension RelaySwiftUI.QueryNext.WrappedValue where O == RunDetailInfoPreviewQuery {
-    public func get(id: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<RunDetailInfoPreviewQuery>.Result {
+@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)extension RelaySwiftUI.QueryNext.WrappedValue where O == RunDetailScreenQuery {
+    public func get(id: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<RunDetailScreenQuery>.Result {
         self.get(.init(id: id), fetchKey: fetchKey)
     }
 }
 #endif
-extension RunDetailInfoPreviewQuery {
+extension RunDetailScreenQuery {
     public struct Data: Decodable {
         public var node: Node_node?
 
@@ -343,4 +343,4 @@ extension RunDetailInfoPreviewQuery {
         }
     }
 }
-extension RunDetailInfoPreviewQuery: Relay.Operation {}
+extension RunDetailScreenQuery: Relay.Operation {}

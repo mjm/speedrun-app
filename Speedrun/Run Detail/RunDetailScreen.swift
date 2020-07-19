@@ -1,14 +1,35 @@
 import SwiftUI
 import RelaySwiftUI
+import SpeedrunGenerated
+
+private let query = graphql("""
+query RunDetailScreenQuery($id: ID!) {
+  node(id: $id) {
+    ...on Run {
+      ...RunDetailInfo_run
+    }
+  }
+}
+""")
 
 struct RunDetailScreen: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    let id: String
 
-struct RunDetailScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        RunDetailScreen()
+    @Query<RunDetailScreenQuery> var query
+
+    var body: some View {
+        switch query.get(id: id) {
+        case .loading:
+            Text("Loading…")
+        case .failure(let error):
+            Text("Error: \(error.localizedDescription)")
+        case .success(let data):
+            if let run = data?.node?.asRun {
+                List {
+                    RunDetailInfo(run: run.asFragment())
+                }
+                .listStyle(InsetGroupedListStyle())
+            }
+        }
     }
 }

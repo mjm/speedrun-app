@@ -10,6 +10,14 @@
         "name": "Any% (Glitchless)",
         "id": "Y2F0ZWdvcnk6IjdrajNwbTQyIg=="
       },
+      "videos": {
+        "links": [
+          {
+            "uri": "https://www.twitch.tv/videos/647517504"
+          }
+        ]
+      },
+      "comment": "Please ignore the part where I have feather on X",
       "players": [
         {
           "__typename": "UserRunPlayer",

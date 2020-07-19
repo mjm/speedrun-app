@@ -22,7 +22,9 @@ struct LeaderboardRunsList: View {
     @ViewBuilder var body: some View {
         if let leaderboard = leaderboard {
             ForEach(leaderboard.runs, id: \.run.id) { placedRun in
-                LeaderboardRun(run: placedRun.asFragment())
+                NavigationLink(destination: RunDetailScreen(id: placedRun.run.id)) {
+                    LeaderboardRun(run: placedRun.asFragment())
+                }
             }
         }
     }

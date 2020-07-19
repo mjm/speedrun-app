@@ -10,6 +10,12 @@ fragment RunDetailInfo_run on Run {
   category {
     name
   }
+  videos {
+    links {
+      uri
+    }
+  }
+  comment
   players {
     ...RunPlayerRow_player
     ...on UserRunPlayer {
@@ -26,13 +32,30 @@ fragment RunDetailInfo_run on Run {
 
 struct RunDetailInfo: View {
     @Fragment<RunDetailInfo_run> var run
+    @Environment(\.openURL) var openURL
 
     @ViewBuilder var body: some View {
         if let run = run {
-            Section(header: Text(run.players.count == 1 ? "PLAYER" : "PLAYERS")) {
-                ForEach(run.players, id: \.name) { player in
-                    RunPlayerRow(player: player.asFragment())
+            if let videos = run.videos, !videos.links.isEmpty {
+                Section {
+                    ForEach(videos.links, id: \.uri) { link in
+                        if let url = URL(string: link.uri), let hostname = url.host {
+                            Button {
+                                openURL(url)
+                            } label: {
+                                Label("View on \(hostname.hasPrefix("www.") ? String(hostname.dropFirst(4)) : hostname)", systemImage: "safari.fill")
+                            }
+                        }
+                    }
                 }
+            }
+
+            ForEach(run.players, id: \.name) { player in
+                RunPlayerRow(player: player.asFragment())
+            }
+            if !run.comment.isEmpty {
+                Text(run.comment)
+                    .padding(.vertical, 6)
             }
             
             Section {
@@ -41,12 +64,14 @@ struct RunDetailInfo: View {
                     Spacer()
                     Text(run.game.name ?? "Unknown")
                         .foregroundColor(.secondary)
+                        .multilineTextAlignment(.trailing)
                 }
                 HStack {
                     Text("Category")
                     Spacer()
                     Text(run.category.name)
                         .foregroundColor(.secondary)
+                        .multilineTextAlignment(.trailing)
                 }
             }
         }
@@ -85,7 +110,7 @@ struct RunDetailInfo_Previews: PreviewProvider {
                 QueryPreview(op) { data in
                     List {
                         RunDetailInfo(run: data.node!.asRun!.asFragment())
-                    }.listStyle(GroupedListStyle())
+                    }.listStyle(InsetGroupedListStyle())
                 }
                 .previewPayload(op, resource: "RunDetailInfoPreview_\(player)")
             }

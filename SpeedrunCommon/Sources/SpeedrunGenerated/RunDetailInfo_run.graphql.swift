@@ -35,6 +35,26 @@ public struct RunDetailInfo_run {
                     ]
                 )),
                 .field(ReaderLinkedField(
+                    name: "videos",
+                    concreteType: "RunVideos",
+                    plural: false,
+                    selections: [
+                        .field(ReaderLinkedField(
+                            name: "links",
+                            concreteType: "Link",
+                            plural: true,
+                            selections: [
+                                .field(ReaderScalarField(
+                                    name: "uri"
+                                ))
+                            ]
+                        ))
+                    ]
+                )),
+                .field(ReaderScalarField(
+                    name: "comment"
+                )),
+                .field(ReaderLinkedField(
                     name: "players",
                     plural: true,
                     selections: [
@@ -75,6 +95,8 @@ extension RunDetailInfo_run {
     public struct Data: Decodable {
         public var game: Game_game
         public var category: Category_category
+        public var videos: RunVideos_videos?
+        public var comment: String
         public var players: [RunPlayer_players]
 
         public struct Game_game: Decodable {
@@ -83,6 +105,14 @@ extension RunDetailInfo_run {
 
         public struct Category_category: Decodable {
             public var name: String
+        }
+
+        public struct RunVideos_videos: Decodable {
+            public var links: [Link_links]
+
+            public struct Link_links: Decodable {
+                public var uri: String
+            }
         }
 
         public enum RunPlayer_players: Decodable, RunPlayerRow_player_Key {
