@@ -3,7 +3,8 @@ import class Relay.MockEnvironment
 import RelaySwiftUI
 
 private let gameFragment = graphql("""
-fragment GameDetailLeaderboardList_game on Game {
+fragment GameDetailLeaderboardList_game on Game
+@refetchable(queryName: "GameDetailLeaderboardListRefetchQuery") {
   id
   categories {
     id
@@ -13,12 +14,26 @@ fragment GameDetailLeaderboardList_game on Game {
 """)
 
 struct GameDetailLeaderboardList: View {
-    @Fragment<GameDetailLeaderboardList_game> var game
+    @RefetchableFragment<GameDetailLeaderboardList_game> var game
 
     var body: some View {
-        ForEach(game?.categories ?? []) { category in
-            NavigationLink(destination: LeaderboardScreen(gameID: game!.id, categoryID: category.id)) {
-                Text(category.name)
+        Section(header: HStack {
+            Text("Leaderboards")
+            Spacer()
+            Button {
+                game?.refetch()
+            } label: {
+                Image(systemName: "arrow.clockwise.circle.fill")
+                    .font(.system(size: 22))
+                    .foregroundColor(.accentColor)
+            }
+        }) {
+            ForEach(game?.categories ?? []) { category in
+                NavigationLink(
+                    destination: LeaderboardScreen(gameID: game!.id, categoryID: category.id)
+                ) {
+                    Text(category.name)
+                }
             }
         }
     }

@@ -30,10 +30,10 @@ struct GameDetailLeaderboardList_game {
                         ))
                     ]
                 ))
-            ])
+            ]
+        )
     }
 }
-
 
 extension GameDetailLeaderboardList_game {
     struct Data: Decodable, Identifiable {
@@ -53,8 +53,18 @@ protocol GameDetailLeaderboardList_game_Key {
 
 extension GameDetailLeaderboardList_game: Relay.Fragment {}
 
-#if canImport(RelaySwiftUI)
+extension GameDetailLeaderboardList_game: Relay.RefetchFragment {
+    typealias Operation = GameDetailLeaderboardListRefetchQuery
+    static var metadata: Metadata {
+        RefetchMetadata(
+            path: ["node"],
+            identifierField: "id",
+            operation: Operation.self
+        )
+    }
+}
 
+#if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 extension GameDetailLeaderboardList_game_Key {
@@ -62,6 +72,9 @@ extension GameDetailLeaderboardList_game_Key {
     func asFragment() -> RelaySwiftUI.FragmentNext<GameDetailLeaderboardList_game> {
         RelaySwiftUI.FragmentNext<GameDetailLeaderboardList_game>(self)
     }
+    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+    func asFragment() -> RelaySwiftUI.RefetchableFragment<GameDetailLeaderboardList_game> {
+        RelaySwiftUI.RefetchableFragment<GameDetailLeaderboardList_game>(self)
+    }
 }
-
 #endif

@@ -22,6 +22,7 @@ struct LeaderboardRunsListPreviewQuery {
                         selections: [
                             .field(ReaderLinkedField(
                                 name: "leaderboard",
+                                storageKey: "leaderboard(category:\"bar\",game:\"foo\")",
                                 args: [
                                     LiteralArgument(name: "category", value: "bar"),
                                     LiteralArgument(name: "game", value: "foo")
@@ -39,7 +40,8 @@ struct LeaderboardRunsListPreviewQuery {
                             ))
                         ]
                     ))
-                ]),
+                ]
+            ),
             operation: NormalizationOperation(
                 name: "LeaderboardRunsListPreviewQuery",
                 selections: [
@@ -127,7 +129,8 @@ struct LeaderboardRunsListPreviewQuery {
                             ))
                         ]
                     ))
-                ]),
+                ]
+            ),
             params: RequestParameters(
                 name: "LeaderboardRunsListPreviewQuery",
                 operationKind: .query,
@@ -169,27 +172,16 @@ fragment LeaderboardRunsList_leaderboard_1KmBw7 on Leaderboard {
     ...LeaderboardRun_run
   }
 }
-"""))
+"""
+            )
+        )
     }
 }
-
 
 extension LeaderboardRunsListPreviewQuery {
     typealias Variables = EmptyVariables
 }
 
-#if canImport(RelaySwiftUI)
-
-import RelaySwiftUI
-
-@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-extension RelaySwiftUI.QueryNext.WrappedValue where O == LeaderboardRunsListPreviewQuery {
-    func get() -> RelaySwiftUI.QueryNext<LeaderboardRunsListPreviewQuery>.Result {
-        self.get(.init())
-    }
-}
-
-#endif
 
 extension LeaderboardRunsListPreviewQuery {
     struct Data: Decodable {

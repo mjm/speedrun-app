@@ -32,7 +32,8 @@ struct RunDetailInfoPreviewQuery {
                             ))
                         ]
                     ))
-                ]),
+                ]
+            ),
             operation: NormalizationOperation(
                 name: "RunDetailInfoPreviewQuery",
                 selections: [
@@ -166,7 +167,8 @@ struct RunDetailInfoPreviewQuery {
                             ))
                         ]
                     ))
-                ]),
+                ]
+            ),
             params: RequestParameters(
                 name: "RunDetailInfoPreviewQuery",
                 operationKind: .query,
@@ -234,10 +236,11 @@ fragment RunPlayerRow_player on RunPlayer {
     name
   }
 }
-"""))
+"""
+            )
+        )
     }
 }
-
 
 extension RunDetailInfoPreviewQuery {
     struct Variables: VariableDataConvertible {
@@ -245,7 +248,7 @@ extension RunDetailInfoPreviewQuery {
 
         var variableData: VariableData {
             [
-                "id": id,
+                "id": id
             ]
         }
     }
@@ -255,17 +258,15 @@ extension RunDetailInfoPreviewQuery {
     }
 }
 
-#if canImport(RelaySwiftUI)
-
+#if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
 extension RelaySwiftUI.QueryNext.WrappedValue where O == RunDetailInfoPreviewQuery {
-    func get(id: String) -> RelaySwiftUI.QueryNext<RunDetailInfoPreviewQuery>.Result {
-        self.get(.init(id: id))
+    func get(id: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<RunDetailInfoPreviewQuery>.Result {
+        self.get(.init(id: id), fetchKey: fetchKey)
     }
 }
-
 #endif
 
 extension RunDetailInfoPreviewQuery {
@@ -279,7 +280,7 @@ extension RunDetailInfoPreviewQuery {
             private enum TypeKeys: String, CodingKey {
                 case __typename
             }
-  
+
             init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: TypeKeys.self)
                 let typeName = try container.decode(String.self, forKey: .__typename)

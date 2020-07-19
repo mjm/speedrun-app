@@ -17,7 +17,7 @@ struct GameDetailScreen: View {
 
     @Query<GameDetailScreenQuery> var query
 
-    @ViewBuilder var body: some View {
+    var body: some View {
         switch query.get(id: id) {
         case .loading:
             Text("Loading…")
@@ -30,9 +30,7 @@ struct GameDetailScreen: View {
                         EmptyView()
                     }
 
-                    Section(header: Text("Leaderboards")) {
-                        GameDetailLeaderboardList(game: game.asFragment())
-                    }
+                    GameDetailLeaderboardList(game: game.asFragment())
                 }
                 .listStyle(GroupedListStyle())
             }

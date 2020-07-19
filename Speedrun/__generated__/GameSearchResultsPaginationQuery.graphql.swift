@@ -30,7 +30,8 @@ struct GameSearchResultsPaginationQuery {
                             ))
                         ]
                     ))
-                ]),
+                ]
+            ),
             operation: NormalizationOperation(
                 name: "GameSearchResultsPaginationQuery",
                 selections: [
@@ -123,7 +124,8 @@ struct GameSearchResultsPaginationQuery {
                             ))
                         ]
                     ))
-                ]),
+                ]
+            ),
             params: RequestParameters(
                 name: "GameSearchResultsPaginationQuery",
                 operationKind: .query,
@@ -161,10 +163,11 @@ fragment GameSearchResults_games_1jWD3d on Viewer {
     }
   }
 }
-"""))
+"""
+            )
+        )
     }
 }
-
 
 extension GameSearchResultsPaginationQuery {
     struct Variables: VariableDataConvertible {
@@ -176,7 +179,7 @@ extension GameSearchResultsPaginationQuery {
             [
                 "query": query,
                 "count": count,
-                "cursor": cursor,
+                "cursor": cursor
             ]
         }
     }
@@ -186,17 +189,15 @@ extension GameSearchResultsPaginationQuery {
     }
 }
 
-#if canImport(RelaySwiftUI)
-
+#if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
 extension RelaySwiftUI.QueryNext.WrappedValue where O == GameSearchResultsPaginationQuery {
-    func get(query: String, count: Int? = nil, cursor: String? = nil) -> RelaySwiftUI.QueryNext<GameSearchResultsPaginationQuery>.Result {
-        self.get(.init(query: query, count: count, cursor: cursor))
+    func get(query: String, count: Int? = nil, cursor: String? = nil, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<GameSearchResultsPaginationQuery>.Result {
+        self.get(.init(query: query, count: count, cursor: cursor), fetchKey: fetchKey)
     }
 }
-
 #endif
 
 extension GameSearchResultsPaginationQuery {

@@ -83,10 +83,10 @@ struct RunPlayerRow_player {
                         ))
                     ]
                 ))
-            ])
+            ]
+        )
     }
 }
-
 
 extension RunPlayerRow_player {
     enum Data: Decodable {
@@ -97,7 +97,7 @@ extension RunPlayerRow_player {
         private enum TypeKeys: String, CodingKey {
             case __typename
         }
-  
+
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: TypeKeys.self)
             let typeName = try container.decode(String.self, forKey: .__typename)
@@ -147,7 +147,7 @@ extension RunPlayerRow_player {
                     private enum TypeKeys: String, CodingKey {
                         case __typename
                     }
-  
+
                     init(from decoder: Decoder) throws {
                         let container = try decoder.container(keyedBy: TypeKeys.self)
                         let typeName = try container.decode(String.self, forKey: .__typename)
@@ -224,8 +224,7 @@ protocol RunPlayerRow_player_Key {
 
 extension RunPlayerRow_player: Relay.Fragment {}
 
-#if canImport(RelaySwiftUI)
-
+#if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 extension RunPlayerRow_player_Key {
@@ -234,5 +233,4 @@ extension RunPlayerRow_player_Key {
         RelaySwiftUI.FragmentNext<RunPlayerRow_player>(self)
     }
 }
-
 #endif

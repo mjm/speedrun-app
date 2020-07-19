@@ -28,7 +28,8 @@ struct GameSearchResultRowPreviewQuery {
                             ))
                         ]
                     ))
-                ]),
+                ]
+            ),
             operation: NormalizationOperation(
                 name: "GameSearchResultRowPreviewQuery",
                 selections: [
@@ -63,7 +64,8 @@ struct GameSearchResultRowPreviewQuery {
                             ))
                         ]
                     ))
-                ]),
+                ]
+            ),
             params: RequestParameters(
                 name: "GameSearchResultRowPreviewQuery",
                 operationKind: .query,
@@ -83,10 +85,11 @@ fragment GameSearchResultRow_game on Game {
     uri
   }
 }
-"""))
+"""
+            )
+        )
     }
 }
-
 
 extension GameSearchResultRowPreviewQuery {
     struct Variables: VariableDataConvertible {
@@ -94,7 +97,7 @@ extension GameSearchResultRowPreviewQuery {
 
         var variableData: VariableData {
             [
-                "id": id,
+                "id": id
             ]
         }
     }
@@ -104,17 +107,15 @@ extension GameSearchResultRowPreviewQuery {
     }
 }
 
-#if canImport(RelaySwiftUI)
-
+#if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
 extension RelaySwiftUI.QueryNext.WrappedValue where O == GameSearchResultRowPreviewQuery {
-    func get(id: String) -> RelaySwiftUI.QueryNext<GameSearchResultRowPreviewQuery>.Result {
-        self.get(.init(id: id))
+    func get(id: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<GameSearchResultRowPreviewQuery>.Result {
+        self.get(.init(id: id), fetchKey: fetchKey)
     }
 }
-
 #endif
 
 extension GameSearchResultRowPreviewQuery {

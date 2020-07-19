@@ -66,10 +66,10 @@ struct RunDetailInfo_run {
                         ))
                     ]
                 ))
-            ])
+            ]
+        )
     }
 }
-
 
 extension RunDetailInfo_run {
     struct Data: Decodable {
@@ -93,7 +93,7 @@ extension RunDetailInfo_run {
             private enum TypeKeys: String, CodingKey {
                 case __typename
             }
-  
+
             init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: TypeKeys.self)
                 let typeName = try container.decode(String.self, forKey: .__typename)
@@ -166,8 +166,7 @@ protocol RunDetailInfo_run_Key {
 
 extension RunDetailInfo_run: Relay.Fragment {}
 
-#if canImport(RelaySwiftUI)
-
+#if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 extension RunDetailInfo_run_Key {
@@ -176,5 +175,4 @@ extension RunDetailInfo_run_Key {
         RelaySwiftUI.FragmentNext<RunDetailInfo_run>(self)
     }
 }
-
 #endif

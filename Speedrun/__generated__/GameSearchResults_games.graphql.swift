@@ -66,10 +66,10 @@ struct GameSearchResults_games {
                         ))
                     ]
                 ))
-            ])
+            ]
+        )
     }
 }
-
 
 extension GameSearchResults_games {
     struct Data: Decodable {
@@ -98,19 +98,19 @@ extension GameSearchResults_games: Relay.Fragment {}
 
 extension GameSearchResults_games: Relay.PaginationFragment {
     typealias Operation = GameSearchResultsPaginationQuery
-
     static var metadata: Metadata {
         RefetchMetadata(
             path: ["viewer"],
             operation: Operation.self,
             connection: ConnectionMetadata(
                 path: ["games"],
-                forward: ConnectionVariableConfig(count: "count", cursor: "cursor")))
+                forward: ConnectionVariableConfig(count: "count", cursor: "cursor")
+            )
+        )
     }
 }
 
-#if canImport(RelaySwiftUI)
-
+#if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 extension GameSearchResults_games_Key {
@@ -118,11 +118,13 @@ extension GameSearchResults_games_Key {
     func asFragment() -> RelaySwiftUI.FragmentNext<GameSearchResults_games> {
         RelaySwiftUI.FragmentNext<GameSearchResults_games>(self)
     }
-
+    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+    func asFragment() -> RelaySwiftUI.RefetchableFragment<GameSearchResults_games> {
+        RelaySwiftUI.RefetchableFragment<GameSearchResults_games>(self)
+    }
     @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
     func asFragment() -> RelaySwiftUI.PaginationFragmentNext<GameSearchResults_games> {
         RelaySwiftUI.PaginationFragmentNext<GameSearchResults_games>(self)
     }
 }
-
 #endif

@@ -50,7 +50,8 @@ struct LeaderboardScreenQuery {
                             ))
                         ]
                     ))
-                ]),
+                ]
+            ),
             operation: NormalizationOperation(
                 name: "LeaderboardScreenQuery",
                 selections: [
@@ -151,7 +152,8 @@ struct LeaderboardScreenQuery {
                             ))
                         ]
                     ))
-                ]),
+                ]
+            ),
             params: RequestParameters(
                 name: "LeaderboardScreenQuery",
                 operationKind: .query,
@@ -201,10 +203,11 @@ fragment LeaderboardRunsList_leaderboard_knr29 on Leaderboard {
     ...LeaderboardRun_run
   }
 }
-"""))
+"""
+            )
+        )
     }
 }
-
 
 extension LeaderboardScreenQuery {
     struct Variables: VariableDataConvertible {
@@ -216,7 +219,7 @@ extension LeaderboardScreenQuery {
             [
                 "gameID": gameID,
                 "categoryID": categoryID,
-                "levelID": levelID,
+                "levelID": levelID
             ]
         }
     }
@@ -226,17 +229,15 @@ extension LeaderboardScreenQuery {
     }
 }
 
-#if canImport(RelaySwiftUI)
-
+#if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
 extension RelaySwiftUI.QueryNext.WrappedValue where O == LeaderboardScreenQuery {
-    func get(gameID: String, categoryID: String, levelID: String? = nil) -> RelaySwiftUI.QueryNext<LeaderboardScreenQuery>.Result {
-        self.get(.init(gameID: gameID, categoryID: categoryID, levelID: levelID))
+    func get(gameID: String, categoryID: String, levelID: String? = nil, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<LeaderboardScreenQuery>.Result {
+        self.get(.init(gameID: gameID, categoryID: categoryID, levelID: levelID), fetchKey: fetchKey)
     }
 }
-
 #endif
 
 extension LeaderboardScreenQuery {

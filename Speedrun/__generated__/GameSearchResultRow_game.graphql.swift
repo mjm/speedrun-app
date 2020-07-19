@@ -20,6 +20,7 @@ struct GameSearchResultRow_game {
                 .field(ReaderLinkedField(
                     name: "asset",
                     alias: "cover",
+                    storageKey: "asset(kind:\"COVER_MEDIUM\")",
                     args: [
                         LiteralArgument(name: "kind", value: "COVER_MEDIUM")
                     ],
@@ -31,10 +32,10 @@ struct GameSearchResultRow_game {
                         ))
                     ]
                 ))
-            ])
+            ]
+        )
     }
 }
-
 
 extension GameSearchResultRow_game {
     struct Data: Decodable {
@@ -53,8 +54,7 @@ protocol GameSearchResultRow_game_Key {
 
 extension GameSearchResultRow_game: Relay.Fragment {}
 
-#if canImport(RelaySwiftUI)
-
+#if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 extension GameSearchResultRow_game_Key {
@@ -63,5 +63,4 @@ extension GameSearchResultRow_game_Key {
         RelaySwiftUI.FragmentNext<GameSearchResultRow_game>(self)
     }
 }
-
 #endif

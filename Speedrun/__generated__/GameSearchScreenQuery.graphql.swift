@@ -28,7 +28,8 @@ struct GameSearchScreenQuery {
                             ))
                         ]
                     ))
-                ]),
+                ]
+            ),
             operation: NormalizationOperation(
                 name: "GameSearchScreenQuery",
                 selections: [
@@ -119,7 +120,8 @@ struct GameSearchScreenQuery {
                             ))
                         ]
                     ))
-                ]),
+                ]
+            ),
             params: RequestParameters(
                 name: "GameSearchScreenQuery",
                 operationKind: .query,
@@ -155,10 +157,11 @@ fragment GameSearchResults_games_1Qr5xf on Viewer {
     }
   }
 }
-"""))
+"""
+            )
+        )
     }
 }
-
 
 extension GameSearchScreenQuery {
     struct Variables: VariableDataConvertible {
@@ -166,7 +169,7 @@ extension GameSearchScreenQuery {
 
         var variableData: VariableData {
             [
-                "query": query,
+                "query": query
             ]
         }
     }
@@ -176,17 +179,15 @@ extension GameSearchScreenQuery {
     }
 }
 
-#if canImport(RelaySwiftUI)
-
+#if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
 extension RelaySwiftUI.QueryNext.WrappedValue where O == GameSearchScreenQuery {
-    func get(query: String) -> RelaySwiftUI.QueryNext<GameSearchScreenQuery>.Result {
-        self.get(.init(query: query))
+    func get(query: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<GameSearchScreenQuery>.Result {
+        self.get(.init(query: query), fetchKey: fetchKey)
     }
 }
-
 #endif
 
 extension GameSearchScreenQuery {

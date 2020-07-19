@@ -40,14 +40,9 @@ struct AsyncImage_Previews: PreviewProvider {
 }
 
 class ImageLoader: ObservableObject {
-    var image: UIImage? {
-        willSet {
-            objectWillChange.send()
-        }
-    }
+    @Published var image: UIImage?
 
     private(set) var isLoaded = false
-    private var cancellables = Set<AnyCancellable>()
     private static let imageQueue = DispatchQueue(label: "image-loader")
 
     init() {}
@@ -78,10 +73,7 @@ class ImageLoader: ObservableObject {
                 }
             )
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] newImage in
-                self?.image = newImage
-            }
-            .store(in: &cancellables)
+            .assign(to: $image)
     }
 }
 

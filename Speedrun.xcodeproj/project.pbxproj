@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -37,6 +37,7 @@
 		C981E2932495F32F00AC1463 /* RunPlayerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981E2922495F32F00AC1463 /* RunPlayerRow.swift */; };
 		C981E2952495F43F00AC1463 /* RunPlayerRow_player.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981E2942495F43F00AC1463 /* RunPlayerRow_player.graphql.swift */; };
 		C981E2972496953E00AC1463 /* RunPlayerRowPreviewQuery.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981E2962496953E00AC1463 /* RunPlayerRowPreviewQuery.graphql.swift */; };
+		C9935D7524BB7F3100095B87 /* GameDetailLeaderboardListRefetchQuery.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9935D7424BB7F3100095B87 /* GameDetailLeaderboardListRefetchQuery.graphql.swift */; };
 		C99D698A24A90EDA0014A74F /* GameSearchScreenPreview.json in Resources */ = {isa = PBXBuildFile; fileRef = C99D698924A90EDA0014A74F /* GameSearchScreenPreview.json */; };
 		C99D698C24A910690014A74F /* GameSearchResultsPreview.json in Resources */ = {isa = PBXBuildFile; fileRef = C99D698B24A910690014A74F /* GameSearchResultsPreview.json */; };
 		C99D698E24A910F60014A74F /* GameSearchResultRowPreview_LAS.json in Resources */ = {isa = PBXBuildFile; fileRef = C99D698D24A910F60014A74F /* GameSearchResultRowPreview_LAS.json */; };
@@ -105,6 +106,7 @@
 		C981E2922495F32F00AC1463 /* RunPlayerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunPlayerRow.swift; sourceTree = "<group>"; };
 		C981E2942495F43F00AC1463 /* RunPlayerRow_player.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunPlayerRow_player.graphql.swift; sourceTree = "<group>"; };
 		C981E2962496953E00AC1463 /* RunPlayerRowPreviewQuery.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunPlayerRowPreviewQuery.graphql.swift; sourceTree = "<group>"; };
+		C9935D7424BB7F3100095B87 /* GameDetailLeaderboardListRefetchQuery.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailLeaderboardListRefetchQuery.graphql.swift; sourceTree = "<group>"; };
 		C99D698924A90EDA0014A74F /* GameSearchScreenPreview.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameSearchScreenPreview.json; sourceTree = "<group>"; };
 		C99D698B24A910690014A74F /* GameSearchResultsPreview.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameSearchResultsPreview.json; sourceTree = "<group>"; };
 		C99D698D24A910F60014A74F /* GameSearchResultRowPreview_LAS.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameSearchResultRowPreview_LAS.json; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 			children = (
 				C952D30D248C665600858761 /* GameDetailHeader_game.graphql.swift */,
 				C952D311248C6CAE00858761 /* GameDetailLeaderboardList_game.graphql.swift */,
+				C9935D7424BB7F3100095B87 /* GameDetailLeaderboardListRefetchQuery.graphql.swift */,
 				C952D307248C614C00858761 /* GameDetailScreenQuery.graphql.swift */,
 				C952D2FE248C310700858761 /* GameSearchResultRow_game.graphql.swift */,
 				C9F373DA249542B4005D93EB /* GameSearchResultRowPreviewQuery.graphql.swift */,
@@ -293,6 +296,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C952D2DD248C1D5700858761 /* Build configuration list for PBXNativeTarget "Speedrun" */;
 			buildPhases = (
+				C9935D7324BB7E4500095B87 /* ShellScript */,
 				C952D2BA248C1D5600858761 /* Sources */,
 				C952D2BB248C1D5600858761 /* Frameworks */,
 				C952D2BC248C1D5600858761 /* Resources */,
@@ -398,6 +402,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C9935D7324BB7E4500095B87 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/zsh;
+			shellScript = "if [[ -d \"$HOME/.nodenv\" ]]; then\n    eval \"$(nodenv init -)\"\nfi\n\ncd Speedrun\nnpx relay-compiler\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C952D2BA248C1D5600858761 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -423,6 +448,7 @@
 				C952D2F9248C293500858761 /* GameSearchResults_games.graphql.swift in Sources */,
 				C981E2972496953E00AC1463 /* RunPlayerRowPreviewQuery.graphql.swift in Sources */,
 				C952D315248C6F3A00858761 /* LeaderboardScreen.swift in Sources */,
+				C9935D7524BB7F3100095B87 /* GameDetailLeaderboardListRefetchQuery.graphql.swift in Sources */,
 				C952D2FD248C30BE00858761 /* GameSearchResultRow.swift in Sources */,
 				C981E2952495F43F00AC1463 /* RunPlayerRow_player.graphql.swift in Sources */,
 				C9F373D524947E34005D93EB /* LeaderboardRunsList_leaderboard.graphql.swift in Sources */,

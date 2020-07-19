@@ -34,7 +34,8 @@ struct GameDetailScreenQuery {
                             ))
                         ]
                     ))
-                ]),
+                ]
+            ),
             operation: NormalizationOperation(
                 name: "GameDetailScreenQuery",
                 selections: [
@@ -82,7 +83,8 @@ struct GameDetailScreenQuery {
                             ))
                         ]
                     ))
-                ]),
+                ]
+            ),
             params: RequestParameters(
                 name: "GameDetailScreenQuery",
                 operationKind: .query,
@@ -111,10 +113,11 @@ fragment GameDetailLeaderboardList_game on Game {
     name
   }
 }
-"""))
+"""
+            )
+        )
     }
 }
-
 
 extension GameDetailScreenQuery {
     struct Variables: VariableDataConvertible {
@@ -122,7 +125,7 @@ extension GameDetailScreenQuery {
 
         var variableData: VariableData {
             [
-                "id": id,
+                "id": id
             ]
         }
     }
@@ -132,17 +135,15 @@ extension GameDetailScreenQuery {
     }
 }
 
-#if canImport(RelaySwiftUI)
-
+#if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
 extension RelaySwiftUI.QueryNext.WrappedValue where O == GameDetailScreenQuery {
-    func get(id: String) -> RelaySwiftUI.QueryNext<GameDetailScreenQuery>.Result {
-        self.get(.init(id: id))
+    func get(id: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<GameDetailScreenQuery>.Result {
+        self.get(.init(id: id), fetchKey: fetchKey)
     }
 }
-
 #endif
 
 extension GameDetailScreenQuery {

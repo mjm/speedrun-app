@@ -37,10 +37,10 @@ struct LeaderboardRunsList_leaderboard {
                         ))
                     ]
                 ))
-            ])
+            ]
+        )
     }
 }
-
 
 extension LeaderboardRunsList_leaderboard {
     struct Data: Decodable {
@@ -63,8 +63,7 @@ protocol LeaderboardRunsList_leaderboard_Key {
 
 extension LeaderboardRunsList_leaderboard: Relay.Fragment {}
 
-#if canImport(RelaySwiftUI)
-
+#if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 extension LeaderboardRunsList_leaderboard_Key {
@@ -73,5 +72,4 @@ extension LeaderboardRunsList_leaderboard_Key {
         RelaySwiftUI.FragmentNext<LeaderboardRunsList_leaderboard>(self)
     }
 }
-
 #endif

@@ -20,6 +20,7 @@ struct GameDetailHeader_game {
                 .field(ReaderLinkedField(
                     name: "asset",
                     alias: "cover",
+                    storageKey: "asset(kind:\"COVER_MEDIUM\")",
                     args: [
                         LiteralArgument(name: "kind", value: "COVER_MEDIUM")
                     ],
@@ -31,10 +32,10 @@ struct GameDetailHeader_game {
                         ))
                     ]
                 ))
-            ])
+            ]
+        )
     }
 }
-
 
 extension GameDetailHeader_game {
     struct Data: Decodable {
@@ -53,8 +54,7 @@ protocol GameDetailHeader_game_Key {
 
 extension GameDetailHeader_game: Relay.Fragment {}
 
-#if canImport(RelaySwiftUI)
-
+#if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 extension GameDetailHeader_game_Key {
@@ -63,5 +63,4 @@ extension GameDetailHeader_game_Key {
         RelaySwiftUI.FragmentNext<GameDetailHeader_game>(self)
     }
 }
-
 #endif
