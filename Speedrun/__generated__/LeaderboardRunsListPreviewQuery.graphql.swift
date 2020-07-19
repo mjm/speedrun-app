@@ -2,14 +2,14 @@
 
 import Relay
 
-struct LeaderboardRunsListPreviewQuery {
-    var variables: Variables
+public struct LeaderboardRunsListPreviewQuery {
+    public var variables: Variables
 
-    init(variables: Variables) {
+    public init(variables: Variables) {
         self.variables = variables
     }
 
-    static var node: ConcreteRequest {
+    public static var node: ConcreteRequest {
         ConcreteRequest(
             fragment: ReaderFragment(
                 name: "LeaderboardRunsListPreviewQuery",
@@ -179,22 +179,20 @@ fragment LeaderboardRunsList_leaderboard_1KmBw7 on Leaderboard {
 }
 
 extension LeaderboardRunsListPreviewQuery {
-    typealias Variables = EmptyVariables
+    public typealias Variables = EmptyVariables
 }
 
-
 extension LeaderboardRunsListPreviewQuery {
-    struct Data: Decodable {
-        var viewer: Viewer_viewer?
+    public struct Data: Decodable {
+        public var viewer: Viewer_viewer?
 
-        struct Viewer_viewer: Decodable {
-            var leaderboard: Leaderboard_leaderboard?
+        public struct Viewer_viewer: Decodable {
+            public var leaderboard: Leaderboard_leaderboard?
 
-            struct Leaderboard_leaderboard: Decodable, LeaderboardRunsList_leaderboard_Key {
-                var fragment_LeaderboardRunsList_leaderboard: FragmentPointer
+            public struct Leaderboard_leaderboard: Decodable, LeaderboardRunsList_leaderboard_Key {
+                public var fragment_LeaderboardRunsList_leaderboard: FragmentPointer
             }
         }
     }
 }
-
 extension LeaderboardRunsListPreviewQuery: Relay.Operation {}

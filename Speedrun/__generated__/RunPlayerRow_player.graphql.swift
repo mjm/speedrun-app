@@ -2,14 +2,14 @@
 
 import Relay
 
-struct RunPlayerRow_player {
-    var fragmentPointer: FragmentPointer
+public struct RunPlayerRow_player {
+    public var fragmentPointer: FragmentPointer
 
-    init(key: RunPlayerRow_player_Key) {
+    public init(key: RunPlayerRow_player_Key) {
         fragmentPointer = key.fragment_RunPlayerRow_player
     }
 
-    static var node: ReaderFragment {
+    public static var node: ReaderFragment {
         ReaderFragment(
             name: "RunPlayerRow_player",
             type: "RunPlayer",
@@ -89,7 +89,7 @@ struct RunPlayerRow_player {
 }
 
 extension RunPlayerRow_player {
-    enum Data: Decodable {
+    public enum Data: Decodable {
         case userRunPlayer(UserRunPlayer)
         case guestRunPlayer(GuestRunPlayer)
         case runPlayer(RunPlayer)
@@ -98,7 +98,7 @@ extension RunPlayerRow_player {
             case __typename
         }
 
-        init(from decoder: Decoder) throws {
+        public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: TypeKeys.self)
             let typeName = try container.decode(String.self, forKey: .__typename)
             switch typeName {
@@ -111,35 +111,35 @@ extension RunPlayerRow_player {
             }
         }
 
-        var asUserRunPlayer: UserRunPlayer? {
+        public var asUserRunPlayer: UserRunPlayer? {
             if case .userRunPlayer(let val) = self {
                 return val
             }
             return nil
         }
 
-        var asGuestRunPlayer: GuestRunPlayer? {
+        public var asGuestRunPlayer: GuestRunPlayer? {
             if case .guestRunPlayer(let val) = self {
                 return val
             }
             return nil
         }
 
-        var asRunPlayer: RunPlayer? {
+        public var asRunPlayer: RunPlayer? {
             if case .runPlayer(let val) = self {
                 return val
             }
             return nil
         }
 
-        struct UserRunPlayer: Decodable {
-            var user: User_user?
+        public struct UserRunPlayer: Decodable {
+            public var user: User_user?
 
-            struct User_user: Decodable {
-                var name: String?
-                var nameStyle: UserNameStyle_nameStyle
+            public struct User_user: Decodable {
+                public var name: String?
+                public var nameStyle: UserNameStyle_nameStyle
 
-                enum UserNameStyle_nameStyle: Decodable {
+                public enum UserNameStyle_nameStyle: Decodable {
                     case solidUserNameStyle(SolidUserNameStyle)
                     case gradientUserNameStyle(GradientUserNameStyle)
                     case userNameStyle(UserNameStyle)
@@ -148,7 +148,7 @@ extension RunPlayerRow_player {
                         case __typename
                     }
 
-                    init(from decoder: Decoder) throws {
+                    public init(from decoder: Decoder) throws {
                         let container = try decoder.container(keyedBy: TypeKeys.self)
                         let typeName = try container.decode(String.self, forKey: .__typename)
                         switch typeName {
@@ -161,75 +161,73 @@ extension RunPlayerRow_player {
                         }
                     }
 
-                    var asSolidUserNameStyle: SolidUserNameStyle? {
+                    public var asSolidUserNameStyle: SolidUserNameStyle? {
                         if case .solidUserNameStyle(let val) = self {
                             return val
                         }
                         return nil
                     }
 
-                    var asGradientUserNameStyle: GradientUserNameStyle? {
+                    public var asGradientUserNameStyle: GradientUserNameStyle? {
                         if case .gradientUserNameStyle(let val) = self {
                             return val
                         }
                         return nil
                     }
 
-                    var asUserNameStyle: UserNameStyle? {
+                    public var asUserNameStyle: UserNameStyle? {
                         if case .userNameStyle(let val) = self {
                             return val
                         }
                         return nil
                     }
 
-                    struct SolidUserNameStyle: Decodable {
-                        var color: Color_color
+                    public struct SolidUserNameStyle: Decodable {
+                        public var color: Color_color
 
-                        struct Color_color: Decodable {
-                            var light: String
+                        public struct Color_color: Decodable {
+                            public var light: String
                         }
                     }
 
-                    struct GradientUserNameStyle: Decodable {
-                        var fromColor: Color_fromColor
-                        var toColor: Color_toColor
+                    public struct GradientUserNameStyle: Decodable {
+                        public var fromColor: Color_fromColor
+                        public var toColor: Color_toColor
 
-                        struct Color_fromColor: Decodable {
-                            var light: String
+                        public struct Color_fromColor: Decodable {
+                            public var light: String
                         }
 
-                        struct Color_toColor: Decodable {
-                            var light: String
+                        public struct Color_toColor: Decodable {
+                            public var light: String
                         }
                     }
 
-                    struct UserNameStyle: Decodable {
+                    public struct UserNameStyle: Decodable {
                     }
                 }
             }
         }
 
-        struct GuestRunPlayer: Decodable {
-            var name: String
+        public struct GuestRunPlayer: Decodable {
+            public var name: String
         }
 
-        struct RunPlayer: Decodable {
+        public struct RunPlayer: Decodable {
         }
     }
 }
 
-protocol RunPlayerRow_player_Key {
+public protocol RunPlayerRow_player_Key {
     var fragment_RunPlayerRow_player: FragmentPointer { get }
 }
-
 extension RunPlayerRow_player: Relay.Fragment {}
 
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
-
 extension RunPlayerRow_player_Key {
     @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-    func asFragment() -> RelaySwiftUI.FragmentNext<RunPlayerRow_player> {
+    public func asFragment() -> RelaySwiftUI.FragmentNext<RunPlayerRow_player> {
         RelaySwiftUI.FragmentNext<RunPlayerRow_player>(self)
     }
 }

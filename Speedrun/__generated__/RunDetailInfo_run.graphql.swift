@@ -2,14 +2,14 @@
 
 import Relay
 
-struct RunDetailInfo_run {
-    var fragmentPointer: FragmentPointer
+public struct RunDetailInfo_run {
+    public var fragmentPointer: FragmentPointer
 
-    init(key: RunDetailInfo_run_Key) {
+    public init(key: RunDetailInfo_run_Key) {
         fragmentPointer = key.fragment_RunDetailInfo_run
     }
 
-    static var node: ReaderFragment {
+    public static var node: ReaderFragment {
         ReaderFragment(
             name: "RunDetailInfo_run",
             type: "Run",
@@ -72,20 +72,20 @@ struct RunDetailInfo_run {
 }
 
 extension RunDetailInfo_run {
-    struct Data: Decodable {
-        var game: Game_game
-        var category: Category_category
-        var players: [RunPlayer_players]
+    public struct Data: Decodable {
+        public var game: Game_game
+        public var category: Category_category
+        public var players: [RunPlayer_players]
 
-        struct Game_game: Decodable {
-            var name: String?
+        public struct Game_game: Decodable {
+            public var name: String?
         }
 
-        struct Category_category: Decodable {
-            var name: String
+        public struct Category_category: Decodable {
+            public var name: String
         }
 
-        enum RunPlayer_players: Decodable, RunPlayerRow_player_Key {
+        public enum RunPlayer_players: Decodable, RunPlayerRow_player_Key {
             case userRunPlayer(UserRunPlayer)
             case guestRunPlayer(GuestRunPlayer)
             case runPlayer(RunPlayer)
@@ -94,7 +94,7 @@ extension RunDetailInfo_run {
                 case __typename
             }
 
-            init(from decoder: Decoder) throws {
+            public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: TypeKeys.self)
                 let typeName = try container.decode(String.self, forKey: .__typename)
                 switch typeName {
@@ -107,28 +107,28 @@ extension RunDetailInfo_run {
                 }
             }
 
-            var asUserRunPlayer: UserRunPlayer? {
+            public var asUserRunPlayer: UserRunPlayer? {
                 if case .userRunPlayer(let val) = self {
                     return val
                 }
                 return nil
             }
 
-            var asGuestRunPlayer: GuestRunPlayer? {
+            public var asGuestRunPlayer: GuestRunPlayer? {
                 if case .guestRunPlayer(let val) = self {
                     return val
                 }
                 return nil
             }
 
-            var asRunPlayer: RunPlayer? {
+            public var asRunPlayer: RunPlayer? {
                 if case .runPlayer(let val) = self {
                     return val
                 }
                 return nil
             }
 
-            var fragment_RunPlayerRow_player: FragmentPointer {
+            public var fragment_RunPlayerRow_player: FragmentPointer {
                 switch self {
                 case .userRunPlayer(let val):
                     return val.fragment_RunPlayerRow_player
@@ -139,39 +139,37 @@ extension RunDetailInfo_run {
                 }
             }
 
-            struct UserRunPlayer: Decodable, RunPlayerRow_player_Key {
-                var fragment_RunPlayerRow_player: FragmentPointer
-                var user: User_user?
+            public struct UserRunPlayer: Decodable, RunPlayerRow_player_Key {
+                public var fragment_RunPlayerRow_player: FragmentPointer
+                public var user: User_user?
 
-                struct User_user: Decodable {
-                    var name: String?
+                public struct User_user: Decodable {
+                    public var name: String?
                 }
             }
 
-            struct GuestRunPlayer: Decodable, RunPlayerRow_player_Key {
-                var fragment_RunPlayerRow_player: FragmentPointer
-                var name: String
+            public struct GuestRunPlayer: Decodable, RunPlayerRow_player_Key {
+                public var fragment_RunPlayerRow_player: FragmentPointer
+                public var name: String
             }
 
-            struct RunPlayer: Decodable, RunPlayerRow_player_Key {
-                var fragment_RunPlayerRow_player: FragmentPointer
+            public struct RunPlayer: Decodable, RunPlayerRow_player_Key {
+                public var fragment_RunPlayerRow_player: FragmentPointer
             }
         }
     }
 }
 
-protocol RunDetailInfo_run_Key {
+public protocol RunDetailInfo_run_Key {
     var fragment_RunDetailInfo_run: FragmentPointer { get }
 }
-
 extension RunDetailInfo_run: Relay.Fragment {}
 
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
-
 extension RunDetailInfo_run_Key {
     @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-    func asFragment() -> RelaySwiftUI.FragmentNext<RunDetailInfo_run> {
+    public func asFragment() -> RelaySwiftUI.FragmentNext<RunDetailInfo_run> {
         RelaySwiftUI.FragmentNext<RunDetailInfo_run>(self)
     }
 }

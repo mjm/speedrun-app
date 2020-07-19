@@ -2,14 +2,14 @@
 
 import Relay
 
-struct GameDetailLeaderboardListRefetchQuery {
-    var variables: Variables
+public struct GameDetailLeaderboardListRefetchQuery {
+    public var variables: Variables
 
-    init(variables: Variables) {
+    public init(variables: Variables) {
         self.variables = variables
     }
 
-    static var node: ConcreteRequest {
+    public static var node: ConcreteRequest {
         ConcreteRequest(
             fragment: ReaderFragment(
                 name: "GameDetailLeaderboardListRefetchQuery",
@@ -95,17 +95,21 @@ fragment GameDetailLeaderboardList_game on Game {
 }
 
 extension GameDetailLeaderboardListRefetchQuery {
-    struct Variables: VariableDataConvertible {
-        var id: String
+    public struct Variables: VariableDataConvertible {
+        public var id: String
 
-        var variableData: VariableData {
+        public init(id: String) {
+            self.id = id
+        }
+
+        public var variableData: VariableData {
             [
                 "id": id
             ]
         }
     }
 
-    init(id: String) {
+    public init(id: String) {
         self.init(variables: .init(id: id))
     }
 }
@@ -113,22 +117,19 @@ extension GameDetailLeaderboardListRefetchQuery {
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
-@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-extension RelaySwiftUI.QueryNext.WrappedValue where O == GameDetailLeaderboardListRefetchQuery {
-    func get(id: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<GameDetailLeaderboardListRefetchQuery>.Result {
+@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)extension RelaySwiftUI.QueryNext.WrappedValue where O == GameDetailLeaderboardListRefetchQuery {
+    public func get(id: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<GameDetailLeaderboardListRefetchQuery>.Result {
         self.get(.init(id: id), fetchKey: fetchKey)
     }
 }
 #endif
-
 extension GameDetailLeaderboardListRefetchQuery {
-    struct Data: Decodable {
-        var node: Node_node?
+    public struct Data: Decodable {
+        public var node: Node_node?
 
-        struct Node_node: Decodable, GameDetailLeaderboardList_game_Key {
-            var fragment_GameDetailLeaderboardList_game: FragmentPointer
+        public struct Node_node: Decodable, GameDetailLeaderboardList_game_Key {
+            public var fragment_GameDetailLeaderboardList_game: FragmentPointer
         }
     }
 }
-
 extension GameDetailLeaderboardListRefetchQuery: Relay.Operation {}

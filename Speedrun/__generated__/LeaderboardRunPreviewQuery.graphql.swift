@@ -2,14 +2,14 @@
 
 import Relay
 
-struct LeaderboardRunPreviewQuery {
-    var variables: Variables
+public struct LeaderboardRunPreviewQuery {
+    public var variables: Variables
 
-    init(variables: Variables) {
+    public init(variables: Variables) {
         self.variables = variables
     }
 
-    static var node: ConcreteRequest {
+    public static var node: ConcreteRequest {
         ConcreteRequest(
             fragment: ReaderFragment(
                 name: "LeaderboardRunPreviewQuery",
@@ -185,31 +185,29 @@ fragment LeaderboardRun_run on PlacedRun {
 }
 
 extension LeaderboardRunPreviewQuery {
-    typealias Variables = EmptyVariables
+    public typealias Variables = EmptyVariables
 }
 
-
 extension LeaderboardRunPreviewQuery {
-    struct Data: Decodable {
-        var viewer: Viewer_viewer?
+    public struct Data: Decodable {
+        public var viewer: Viewer_viewer?
 
-        struct Viewer_viewer: Decodable {
-            var leaderboard: Leaderboard_leaderboard?
+        public struct Viewer_viewer: Decodable {
+            public var leaderboard: Leaderboard_leaderboard?
 
-            struct Leaderboard_leaderboard: Decodable {
-                var runs: [PlacedRun_runs]
+            public struct Leaderboard_leaderboard: Decodable {
+                public var runs: [PlacedRun_runs]
 
-                struct PlacedRun_runs: Decodable, LeaderboardRun_run_Key {
-                    var run: Run_run
-                    var fragment_LeaderboardRun_run: FragmentPointer
+                public struct PlacedRun_runs: Decodable, LeaderboardRun_run_Key {
+                    public var run: Run_run
+                    public var fragment_LeaderboardRun_run: FragmentPointer
 
-                    struct Run_run: Decodable, Identifiable {
-                        var id: String
+                    public struct Run_run: Decodable, Identifiable {
+                        public var id: String
                     }
                 }
             }
         }
     }
 }
-
 extension LeaderboardRunPreviewQuery: Relay.Operation {}

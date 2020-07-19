@@ -2,14 +2,14 @@
 
 import Relay
 
-struct GameSearchResultRowPreviewQuery {
-    var variables: Variables
+public struct GameSearchResultRowPreviewQuery {
+    public var variables: Variables
 
-    init(variables: Variables) {
+    public init(variables: Variables) {
         self.variables = variables
     }
 
-    static var node: ConcreteRequest {
+    public static var node: ConcreteRequest {
         ConcreteRequest(
             fragment: ReaderFragment(
                 name: "GameSearchResultRowPreviewQuery",
@@ -92,17 +92,21 @@ fragment GameSearchResultRow_game on Game {
 }
 
 extension GameSearchResultRowPreviewQuery {
-    struct Variables: VariableDataConvertible {
-        var id: String
+    public struct Variables: VariableDataConvertible {
+        public var id: String
 
-        var variableData: VariableData {
+        public init(id: String) {
+            self.id = id
+        }
+
+        public var variableData: VariableData {
             [
                 "id": id
             ]
         }
     }
 
-    init(id: String) {
+    public init(id: String) {
         self.init(variables: .init(id: id))
     }
 }
@@ -110,22 +114,19 @@ extension GameSearchResultRowPreviewQuery {
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
-@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-extension RelaySwiftUI.QueryNext.WrappedValue where O == GameSearchResultRowPreviewQuery {
-    func get(id: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<GameSearchResultRowPreviewQuery>.Result {
+@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)extension RelaySwiftUI.QueryNext.WrappedValue where O == GameSearchResultRowPreviewQuery {
+    public func get(id: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<GameSearchResultRowPreviewQuery>.Result {
         self.get(.init(id: id), fetchKey: fetchKey)
     }
 }
 #endif
-
 extension GameSearchResultRowPreviewQuery {
-    struct Data: Decodable {
-        var game: Game_game?
+    public struct Data: Decodable {
+        public var game: Game_game?
 
-        struct Game_game: Decodable, GameSearchResultRow_game_Key {
-            var fragment_GameSearchResultRow_game: FragmentPointer
+        public struct Game_game: Decodable, GameSearchResultRow_game_Key {
+            public var fragment_GameSearchResultRow_game: FragmentPointer
         }
     }
 }
-
 extension GameSearchResultRowPreviewQuery: Relay.Operation {}

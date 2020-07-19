@@ -2,14 +2,14 @@
 
 import Relay
 
-struct GameDetailScreenQuery {
-    var variables: Variables
+public struct GameDetailScreenQuery {
+    public var variables: Variables
 
-    init(variables: Variables) {
+    public init(variables: Variables) {
         self.variables = variables
     }
 
-    static var node: ConcreteRequest {
+    public static var node: ConcreteRequest {
         ConcreteRequest(
             fragment: ReaderFragment(
                 name: "GameDetailScreenQuery",
@@ -120,17 +120,21 @@ fragment GameDetailLeaderboardList_game on Game {
 }
 
 extension GameDetailScreenQuery {
-    struct Variables: VariableDataConvertible {
-        var id: String
+    public struct Variables: VariableDataConvertible {
+        public var id: String
 
-        var variableData: VariableData {
+        public init(id: String) {
+            self.id = id
+        }
+
+        public var variableData: VariableData {
             [
                 "id": id
             ]
         }
     }
 
-    init(id: String) {
+    public init(id: String) {
         self.init(variables: .init(id: id))
     }
 }
@@ -138,24 +142,21 @@ extension GameDetailScreenQuery {
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
-@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-extension RelaySwiftUI.QueryNext.WrappedValue where O == GameDetailScreenQuery {
-    func get(id: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<GameDetailScreenQuery>.Result {
+@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)extension RelaySwiftUI.QueryNext.WrappedValue where O == GameDetailScreenQuery {
+    public func get(id: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<GameDetailScreenQuery>.Result {
         self.get(.init(id: id), fetchKey: fetchKey)
     }
 }
 #endif
-
 extension GameDetailScreenQuery {
-    struct Data: Decodable {
-        var game: Game_game?
+    public struct Data: Decodable {
+        public var game: Game_game?
 
-        struct Game_game: Decodable, Identifiable, GameDetailHeader_game_Key, GameDetailLeaderboardList_game_Key {
-            var id: String
-            var fragment_GameDetailHeader_game: FragmentPointer
-            var fragment_GameDetailLeaderboardList_game: FragmentPointer
+        public struct Game_game: Decodable, Identifiable, GameDetailHeader_game_Key, GameDetailLeaderboardList_game_Key {
+            public var id: String
+            public var fragment_GameDetailHeader_game: FragmentPointer
+            public var fragment_GameDetailLeaderboardList_game: FragmentPointer
         }
     }
 }
-
 extension GameDetailScreenQuery: Relay.Operation {}

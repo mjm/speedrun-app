@@ -2,14 +2,14 @@
 
 import Relay
 
-struct GameSearchResultsPaginationQuery {
-    var variables: Variables
+public struct GameSearchResultsPaginationQuery {
+    public var variables: Variables
 
-    init(variables: Variables) {
+    public init(variables: Variables) {
         self.variables = variables
     }
 
-    static var node: ConcreteRequest {
+    public static var node: ConcreteRequest {
         ConcreteRequest(
             fragment: ReaderFragment(
                 name: "GameSearchResultsPaginationQuery",
@@ -170,12 +170,18 @@ fragment GameSearchResults_games_1jWD3d on Viewer {
 }
 
 extension GameSearchResultsPaginationQuery {
-    struct Variables: VariableDataConvertible {
-        var query: String
-        var count: Int?
-        var cursor: String?
+    public struct Variables: VariableDataConvertible {
+        public var query: String
+        public var count: Int?
+        public var cursor: String?
 
-        var variableData: VariableData {
+        public init(query: String, count: Int? = nil, cursor: String? = nil) {
+            self.query = query
+            self.count = count
+            self.cursor = cursor
+        }
+
+        public var variableData: VariableData {
             [
                 "query": query,
                 "count": count,
@@ -184,7 +190,7 @@ extension GameSearchResultsPaginationQuery {
         }
     }
 
-    init(query: String, count: Int? = nil, cursor: String? = nil) {
+    public init(query: String, count: Int? = nil, cursor: String? = nil) {
         self.init(variables: .init(query: query, count: count, cursor: cursor))
     }
 }
@@ -192,22 +198,19 @@ extension GameSearchResultsPaginationQuery {
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
-@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-extension RelaySwiftUI.QueryNext.WrappedValue where O == GameSearchResultsPaginationQuery {
-    func get(query: String, count: Int? = nil, cursor: String? = nil, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<GameSearchResultsPaginationQuery>.Result {
+@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)extension RelaySwiftUI.QueryNext.WrappedValue where O == GameSearchResultsPaginationQuery {
+    public func get(query: String, count: Int? = nil, cursor: String? = nil, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<GameSearchResultsPaginationQuery>.Result {
         self.get(.init(query: query, count: count, cursor: cursor), fetchKey: fetchKey)
     }
 }
 #endif
-
 extension GameSearchResultsPaginationQuery {
-    struct Data: Decodable {
-        var viewer: Viewer_viewer?
+    public struct Data: Decodable {
+        public var viewer: Viewer_viewer?
 
-        struct Viewer_viewer: Decodable, GameSearchResults_games_Key {
-            var fragment_GameSearchResults_games: FragmentPointer
+        public struct Viewer_viewer: Decodable, GameSearchResults_games_Key {
+            public var fragment_GameSearchResults_games: FragmentPointer
         }
     }
 }
-
 extension GameSearchResultsPaginationQuery: Relay.Operation {}

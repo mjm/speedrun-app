@@ -2,14 +2,14 @@
 
 import Relay
 
-struct LeaderboardRunsList_leaderboard {
-    var fragmentPointer: FragmentPointer
+public struct LeaderboardRunsList_leaderboard {
+    public var fragmentPointer: FragmentPointer
 
-    init(key: LeaderboardRunsList_leaderboard_Key) {
+    public init(key: LeaderboardRunsList_leaderboard_Key) {
         fragmentPointer = key.fragment_LeaderboardRunsList_leaderboard
     }
 
-    static var node: ReaderFragment {
+    public static var node: ReaderFragment {
         ReaderFragment(
             name: "LeaderboardRunsList_leaderboard",
             type: "Leaderboard",
@@ -43,32 +43,30 @@ struct LeaderboardRunsList_leaderboard {
 }
 
 extension LeaderboardRunsList_leaderboard {
-    struct Data: Decodable {
-        var runs: [PlacedRun_runs]
+    public struct Data: Decodable {
+        public var runs: [PlacedRun_runs]
 
-        struct PlacedRun_runs: Decodable, LeaderboardRun_run_Key {
-            var run: Run_run
-            var fragment_LeaderboardRun_run: FragmentPointer
+        public struct PlacedRun_runs: Decodable, LeaderboardRun_run_Key {
+            public var run: Run_run
+            public var fragment_LeaderboardRun_run: FragmentPointer
 
-            struct Run_run: Decodable, Identifiable {
-                var id: String
+            public struct Run_run: Decodable, Identifiable {
+                public var id: String
             }
         }
     }
 }
 
-protocol LeaderboardRunsList_leaderboard_Key {
+public protocol LeaderboardRunsList_leaderboard_Key {
     var fragment_LeaderboardRunsList_leaderboard: FragmentPointer { get }
 }
-
 extension LeaderboardRunsList_leaderboard: Relay.Fragment {}
 
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
-
 extension LeaderboardRunsList_leaderboard_Key {
     @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-    func asFragment() -> RelaySwiftUI.FragmentNext<LeaderboardRunsList_leaderboard> {
+    public func asFragment() -> RelaySwiftUI.FragmentNext<LeaderboardRunsList_leaderboard> {
         RelaySwiftUI.FragmentNext<LeaderboardRunsList_leaderboard>(self)
     }
 }

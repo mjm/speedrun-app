@@ -2,14 +2,14 @@
 
 import Relay
 
-struct GameSearchScreenQuery {
-    var variables: Variables
+public struct GameSearchScreenQuery {
+    public var variables: Variables
 
-    init(variables: Variables) {
+    public init(variables: Variables) {
         self.variables = variables
     }
 
-    static var node: ConcreteRequest {
+    public static var node: ConcreteRequest {
         ConcreteRequest(
             fragment: ReaderFragment(
                 name: "GameSearchScreenQuery",
@@ -164,17 +164,21 @@ fragment GameSearchResults_games_1Qr5xf on Viewer {
 }
 
 extension GameSearchScreenQuery {
-    struct Variables: VariableDataConvertible {
-        var query: String
+    public struct Variables: VariableDataConvertible {
+        public var query: String
 
-        var variableData: VariableData {
+        public init(query: String) {
+            self.query = query
+        }
+
+        public var variableData: VariableData {
             [
                 "query": query
             ]
         }
     }
 
-    init(query: String) {
+    public init(query: String) {
         self.init(variables: .init(query: query))
     }
 }
@@ -182,22 +186,19 @@ extension GameSearchScreenQuery {
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
-@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-extension RelaySwiftUI.QueryNext.WrappedValue where O == GameSearchScreenQuery {
-    func get(query: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<GameSearchScreenQuery>.Result {
+@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)extension RelaySwiftUI.QueryNext.WrappedValue where O == GameSearchScreenQuery {
+    public func get(query: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<GameSearchScreenQuery>.Result {
         self.get(.init(query: query), fetchKey: fetchKey)
     }
 }
 #endif
-
 extension GameSearchScreenQuery {
-    struct Data: Decodable {
-        var viewer: Viewer_viewer?
+    public struct Data: Decodable {
+        public var viewer: Viewer_viewer?
 
-        struct Viewer_viewer: Decodable, GameSearchResults_games_Key {
-            var fragment_GameSearchResults_games: FragmentPointer
+        public struct Viewer_viewer: Decodable, GameSearchResults_games_Key {
+            public var fragment_GameSearchResults_games: FragmentPointer
         }
     }
 }
-
 extension GameSearchScreenQuery: Relay.Operation {}

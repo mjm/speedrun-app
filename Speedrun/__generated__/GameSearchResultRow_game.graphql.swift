@@ -2,14 +2,14 @@
 
 import Relay
 
-struct GameSearchResultRow_game {
-    var fragmentPointer: FragmentPointer
+public struct GameSearchResultRow_game {
+    public var fragmentPointer: FragmentPointer
 
-    init(key: GameSearchResultRow_game_Key) {
+    public init(key: GameSearchResultRow_game_Key) {
         fragmentPointer = key.fragment_GameSearchResultRow_game
     }
 
-    static var node: ReaderFragment {
+    public static var node: ReaderFragment {
         ReaderFragment(
             name: "GameSearchResultRow_game",
             type: "Game",
@@ -38,28 +38,26 @@ struct GameSearchResultRow_game {
 }
 
 extension GameSearchResultRow_game {
-    struct Data: Decodable {
-        var name: String?
-        var cover: GameAsset_cover?
+    public struct Data: Decodable {
+        public var name: String?
+        public var cover: GameAsset_cover?
 
-        struct GameAsset_cover: Decodable {
-            var uri: String
+        public struct GameAsset_cover: Decodable {
+            public var uri: String
         }
     }
 }
 
-protocol GameSearchResultRow_game_Key {
+public protocol GameSearchResultRow_game_Key {
     var fragment_GameSearchResultRow_game: FragmentPointer { get }
 }
-
 extension GameSearchResultRow_game: Relay.Fragment {}
 
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
-
 extension GameSearchResultRow_game_Key {
     @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-    func asFragment() -> RelaySwiftUI.FragmentNext<GameSearchResultRow_game> {
+    public func asFragment() -> RelaySwiftUI.FragmentNext<GameSearchResultRow_game> {
         RelaySwiftUI.FragmentNext<GameSearchResultRow_game>(self)
     }
 }

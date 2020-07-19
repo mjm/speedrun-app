@@ -2,14 +2,14 @@
 
 import Relay
 
-struct RunDetailInfoPreviewQuery {
-    var variables: Variables
+public struct RunDetailInfoPreviewQuery {
+    public var variables: Variables
 
-    init(variables: Variables) {
+    public init(variables: Variables) {
         self.variables = variables
     }
 
-    static var node: ConcreteRequest {
+    public static var node: ConcreteRequest {
         ConcreteRequest(
             fragment: ReaderFragment(
                 name: "RunDetailInfoPreviewQuery",
@@ -243,17 +243,21 @@ fragment RunPlayerRow_player on RunPlayer {
 }
 
 extension RunDetailInfoPreviewQuery {
-    struct Variables: VariableDataConvertible {
-        var id: String
+    public struct Variables: VariableDataConvertible {
+        public var id: String
 
-        var variableData: VariableData {
+        public init(id: String) {
+            self.id = id
+        }
+
+        public var variableData: VariableData {
             [
                 "id": id
             ]
         }
     }
 
-    init(id: String) {
+    public init(id: String) {
         self.init(variables: .init(id: id))
     }
 }
@@ -261,19 +265,17 @@ extension RunDetailInfoPreviewQuery {
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
-@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-extension RelaySwiftUI.QueryNext.WrappedValue where O == RunDetailInfoPreviewQuery {
-    func get(id: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<RunDetailInfoPreviewQuery>.Result {
+@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)extension RelaySwiftUI.QueryNext.WrappedValue where O == RunDetailInfoPreviewQuery {
+    public func get(id: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<RunDetailInfoPreviewQuery>.Result {
         self.get(.init(id: id), fetchKey: fetchKey)
     }
 }
 #endif
-
 extension RunDetailInfoPreviewQuery {
-    struct Data: Decodable {
-        var node: Node_node?
+    public struct Data: Decodable {
+        public var node: Node_node?
 
-        enum Node_node: Decodable {
+        public enum Node_node: Decodable {
             case run(Run)
             case node(Node)
 
@@ -281,7 +283,7 @@ extension RunDetailInfoPreviewQuery {
                 case __typename
             }
 
-            init(from decoder: Decoder) throws {
+            public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: TypeKeys.self)
                 let typeName = try container.decode(String.self, forKey: .__typename)
                 switch typeName {
@@ -292,28 +294,27 @@ extension RunDetailInfoPreviewQuery {
                 }
             }
 
-            var asRun: Run? {
+            public var asRun: Run? {
                 if case .run(let val) = self {
                     return val
                 }
                 return nil
             }
 
-            var asNode: Node? {
+            public var asNode: Node? {
                 if case .node(let val) = self {
                     return val
                 }
                 return nil
             }
 
-            struct Run: Decodable, RunDetailInfo_run_Key {
-                var fragment_RunDetailInfo_run: FragmentPointer
+            public struct Run: Decodable, RunDetailInfo_run_Key {
+                public var fragment_RunDetailInfo_run: FragmentPointer
             }
 
-            struct Node: Decodable {
+            public struct Node: Decodable {
             }
         }
     }
 }
-
 extension RunDetailInfoPreviewQuery: Relay.Operation {}

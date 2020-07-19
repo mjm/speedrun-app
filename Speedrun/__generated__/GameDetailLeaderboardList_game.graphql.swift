@@ -2,14 +2,14 @@
 
 import Relay
 
-struct GameDetailLeaderboardList_game {
-    var fragmentPointer: FragmentPointer
+public struct GameDetailLeaderboardList_game {
+    public var fragmentPointer: FragmentPointer
 
-    init(key: GameDetailLeaderboardList_game_Key) {
+    public init(key: GameDetailLeaderboardList_game_Key) {
         fragmentPointer = key.fragment_GameDetailLeaderboardList_game
     }
 
-    static var node: ReaderFragment {
+    public static var node: ReaderFragment {
         ReaderFragment(
             name: "GameDetailLeaderboardList_game",
             type: "Game",
@@ -36,26 +36,24 @@ struct GameDetailLeaderboardList_game {
 }
 
 extension GameDetailLeaderboardList_game {
-    struct Data: Decodable, Identifiable {
-        var id: String
-        var categories: [Category_categories]
+    public struct Data: Decodable, Identifiable {
+        public var id: String
+        public var categories: [Category_categories]
 
-        struct Category_categories: Decodable, Identifiable {
-            var id: String
-            var name: String
+        public struct Category_categories: Decodable, Identifiable {
+            public var id: String
+            public var name: String
         }
     }
 }
 
-protocol GameDetailLeaderboardList_game_Key {
+public protocol GameDetailLeaderboardList_game_Key {
     var fragment_GameDetailLeaderboardList_game: FragmentPointer { get }
 }
-
 extension GameDetailLeaderboardList_game: Relay.Fragment {}
-
 extension GameDetailLeaderboardList_game: Relay.RefetchFragment {
-    typealias Operation = GameDetailLeaderboardListRefetchQuery
-    static var metadata: Metadata {
+    public typealias Operation = GameDetailLeaderboardListRefetchQuery
+    public static var metadata: Metadata {
         RefetchMetadata(
             path: ["node"],
             identifierField: "id",
@@ -66,14 +64,13 @@ extension GameDetailLeaderboardList_game: Relay.RefetchFragment {
 
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
-
 extension GameDetailLeaderboardList_game_Key {
     @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-    func asFragment() -> RelaySwiftUI.FragmentNext<GameDetailLeaderboardList_game> {
+    public func asFragment() -> RelaySwiftUI.FragmentNext<GameDetailLeaderboardList_game> {
         RelaySwiftUI.FragmentNext<GameDetailLeaderboardList_game>(self)
     }
     @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-    func asFragment() -> RelaySwiftUI.RefetchableFragment<GameDetailLeaderboardList_game> {
+    public func asFragment() -> RelaySwiftUI.RefetchableFragment<GameDetailLeaderboardList_game> {
         RelaySwiftUI.RefetchableFragment<GameDetailLeaderboardList_game>(self)
     }
 }

@@ -2,14 +2,14 @@
 
 import Relay
 
-struct LeaderboardRun_run {
-    var fragmentPointer: FragmentPointer
+public struct LeaderboardRun_run {
+    public var fragmentPointer: FragmentPointer
 
-    init(key: LeaderboardRun_run_Key) {
+    public init(key: LeaderboardRun_run_Key) {
         fragmentPointer = key.fragment_LeaderboardRun_run
     }
 
-    static var node: ReaderFragment {
+    public static var node: ReaderFragment {
         ReaderFragment(
             name: "LeaderboardRun_run",
             type: "PlacedRun",
@@ -68,17 +68,17 @@ struct LeaderboardRun_run {
 }
 
 extension LeaderboardRun_run {
-    struct Data: Decodable {
-        var place: Int
-        var run: Run_run
+    public struct Data: Decodable {
+        public var place: Int
+        public var run: Run_run
 
-        struct Run_run: Decodable, Identifiable {
-            var id: String
-            var comment: String
-            var time: Double?
-            var players: [RunPlayer_players]
+        public struct Run_run: Decodable, Identifiable {
+            public var id: String
+            public var comment: String
+            public var time: Double?
+            public var players: [RunPlayer_players]
 
-            enum RunPlayer_players: Decodable {
+            public enum RunPlayer_players: Decodable {
                 case userRunPlayer(UserRunPlayer)
                 case guestRunPlayer(GuestRunPlayer)
                 case runPlayer(RunPlayer)
@@ -87,7 +87,7 @@ extension LeaderboardRun_run {
                     case __typename
                 }
 
-                init(from decoder: Decoder) throws {
+                public init(from decoder: Decoder) throws {
                     let container = try decoder.container(keyedBy: TypeKeys.self)
                     let typeName = try container.decode(String.self, forKey: .__typename)
                     switch typeName {
@@ -100,58 +100,56 @@ extension LeaderboardRun_run {
                     }
                 }
 
-                var asUserRunPlayer: UserRunPlayer? {
+                public var asUserRunPlayer: UserRunPlayer? {
                     if case .userRunPlayer(let val) = self {
                         return val
                     }
                     return nil
                 }
 
-                var asGuestRunPlayer: GuestRunPlayer? {
+                public var asGuestRunPlayer: GuestRunPlayer? {
                     if case .guestRunPlayer(let val) = self {
                         return val
                     }
                     return nil
                 }
 
-                var asRunPlayer: RunPlayer? {
+                public var asRunPlayer: RunPlayer? {
                     if case .runPlayer(let val) = self {
                         return val
                     }
                     return nil
                 }
 
-                struct UserRunPlayer: Decodable {
-                    var user: User_user?
+                public struct UserRunPlayer: Decodable {
+                    public var user: User_user?
 
-                    struct User_user: Decodable {
-                        var name: String?
+                    public struct User_user: Decodable {
+                        public var name: String?
                     }
                 }
 
-                struct GuestRunPlayer: Decodable {
-                    var name: String
+                public struct GuestRunPlayer: Decodable {
+                    public var name: String
                 }
 
-                struct RunPlayer: Decodable {
+                public struct RunPlayer: Decodable {
                 }
             }
         }
     }
 }
 
-protocol LeaderboardRun_run_Key {
+public protocol LeaderboardRun_run_Key {
     var fragment_LeaderboardRun_run: FragmentPointer { get }
 }
-
 extension LeaderboardRun_run: Relay.Fragment {}
 
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
-
 extension LeaderboardRun_run_Key {
     @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-    func asFragment() -> RelaySwiftUI.FragmentNext<LeaderboardRun_run> {
+    public func asFragment() -> RelaySwiftUI.FragmentNext<LeaderboardRun_run> {
         RelaySwiftUI.FragmentNext<LeaderboardRun_run>(self)
     }
 }

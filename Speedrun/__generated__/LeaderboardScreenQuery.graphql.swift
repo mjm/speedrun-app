@@ -2,14 +2,14 @@
 
 import Relay
 
-struct LeaderboardScreenQuery {
-    var variables: Variables
+public struct LeaderboardScreenQuery {
+    public var variables: Variables
 
-    init(variables: Variables) {
+    public init(variables: Variables) {
         self.variables = variables
     }
 
-    static var node: ConcreteRequest {
+    public static var node: ConcreteRequest {
         ConcreteRequest(
             fragment: ReaderFragment(
                 name: "LeaderboardScreenQuery",
@@ -210,12 +210,18 @@ fragment LeaderboardRunsList_leaderboard_knr29 on Leaderboard {
 }
 
 extension LeaderboardScreenQuery {
-    struct Variables: VariableDataConvertible {
-        var gameID: String
-        var categoryID: String
-        var levelID: String?
+    public struct Variables: VariableDataConvertible {
+        public var gameID: String
+        public var categoryID: String
+        public var levelID: String?
 
-        var variableData: VariableData {
+        public init(gameID: String, categoryID: String, levelID: String? = nil) {
+            self.gameID = gameID
+            self.categoryID = categoryID
+            self.levelID = levelID
+        }
+
+        public var variableData: VariableData {
             [
                 "gameID": gameID,
                 "categoryID": categoryID,
@@ -224,7 +230,7 @@ extension LeaderboardScreenQuery {
         }
     }
 
-    init(gameID: String, categoryID: String, levelID: String? = nil) {
+    public init(gameID: String, categoryID: String, levelID: String? = nil) {
         self.init(variables: .init(gameID: gameID, categoryID: categoryID, levelID: levelID))
     }
 }
@@ -232,31 +238,28 @@ extension LeaderboardScreenQuery {
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
-@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-extension RelaySwiftUI.QueryNext.WrappedValue where O == LeaderboardScreenQuery {
-    func get(gameID: String, categoryID: String, levelID: String? = nil, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<LeaderboardScreenQuery>.Result {
+@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)extension RelaySwiftUI.QueryNext.WrappedValue where O == LeaderboardScreenQuery {
+    public func get(gameID: String, categoryID: String, levelID: String? = nil, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<LeaderboardScreenQuery>.Result {
         self.get(.init(gameID: gameID, categoryID: categoryID, levelID: levelID), fetchKey: fetchKey)
     }
 }
 #endif
-
 extension LeaderboardScreenQuery {
-    struct Data: Decodable {
-        var viewer: Viewer_viewer?
+    public struct Data: Decodable {
+        public var viewer: Viewer_viewer?
 
-        struct Viewer_viewer: Decodable {
-            var leaderboard: Leaderboard_leaderboard?
+        public struct Viewer_viewer: Decodable {
+            public var leaderboard: Leaderboard_leaderboard?
 
-            struct Leaderboard_leaderboard: Decodable, LeaderboardRunsList_leaderboard_Key {
-                var category: Category_category
-                var fragment_LeaderboardRunsList_leaderboard: FragmentPointer
+            public struct Leaderboard_leaderboard: Decodable, LeaderboardRunsList_leaderboard_Key {
+                public var category: Category_category
+                public var fragment_LeaderboardRunsList_leaderboard: FragmentPointer
 
-                struct Category_category: Decodable {
-                    var name: String
+                public struct Category_category: Decodable {
+                    public var name: String
                 }
             }
         }
     }
 }
-
 extension LeaderboardScreenQuery: Relay.Operation {}
