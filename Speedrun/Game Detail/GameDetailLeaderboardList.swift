@@ -1,6 +1,6 @@
 import SwiftUI
-import class Relay.MockEnvironment
 import RelaySwiftUI
+import SpeedrunGenerated
 
 private let gameFragment = graphql("""
 fragment GameDetailLeaderboardList_game on Game

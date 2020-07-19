@@ -1,5 +1,6 @@
 import SwiftUI
 import RelaySwiftUI
+import SpeedrunGenerated
 
 private let playerFragment = graphql("""
 fragment RunPlayerRow_player on RunPlayer {

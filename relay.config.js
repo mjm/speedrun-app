@@ -1,8 +1,8 @@
 module.exports = {
-    src: ".",
+    src: "./Speedrun",
     schema: "schema.graphql",
     language: "swift",
-    artifactDirectory: "./__generated__",
+    artifactDirectory: "./SpeedrunCommon/Sources/SpeedrunGenerated",
     customScalars: {
         Time: "String",
         Cursor: "String",

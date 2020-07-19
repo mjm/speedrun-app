@@ -1,5 +1,6 @@
 import SwiftUI
 import RelaySwiftUI
+import SpeedrunGenerated
 
 private let runFragment = graphql("""
 fragment RunDetailInfo_run on Run {

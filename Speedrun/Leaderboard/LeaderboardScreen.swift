@@ -1,5 +1,6 @@
 import SwiftUI
 import RelaySwiftUI
+import SpeedrunGenerated
 
 private let query = graphql("""
 query LeaderboardScreenQuery(

@@ -1,5 +1,6 @@
 import SwiftUI
 import RelaySwiftUI
+import SpeedrunGenerated
 
 private let runFragment = graphql("""
 fragment LeaderboardRun_run on PlacedRun {

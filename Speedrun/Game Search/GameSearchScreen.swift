@@ -2,6 +2,7 @@ import Combine
 import SwiftUI
 import Relay
 import RelaySwiftUI
+import SpeedrunGenerated
 
 private let query = graphql("""
 query GameSearchScreenQuery($query: String!) {
