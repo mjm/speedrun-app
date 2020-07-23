@@ -221,10 +221,12 @@ extension RunPlayerRow_player {
 public protocol RunPlayerRow_player_Key {
     var fragment_RunPlayerRow_player: FragmentPointer { get }
 }
+
 extension RunPlayerRow_player: Relay.Fragment {}
 
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
+
 extension RunPlayerRow_player_Key {
     @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
     public func asFragment() -> RelaySwiftUI.FragmentNext<RunPlayerRow_player> {

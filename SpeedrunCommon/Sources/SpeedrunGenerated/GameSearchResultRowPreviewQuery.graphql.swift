@@ -114,12 +114,25 @@ extension GameSearchResultRowPreviewQuery {
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
 
-@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)extension RelaySwiftUI.QueryNext.WrappedValue where O == GameSearchResultRowPreviewQuery {
+@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+extension RelaySwiftUI.QueryNext.WrappedValue where O == GameSearchResultRowPreviewQuery {
     public func get(id: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<GameSearchResultRowPreviewQuery>.Result {
         self.get(.init(id: id), fetchKey: fetchKey)
     }
 }
 #endif
+
+#if swift(>=5.3) && canImport(RelaySwiftUI)
+import RelaySwiftUI
+
+@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
+extension RelaySwiftUI.RefetchableFragment.Wrapper where F.Operation == GameSearchResultRowPreviewQuery {
+    public func refetch(id: String) {
+        self.refetch(.init(id: id))
+    }
+}
+#endif
+
 extension GameSearchResultRowPreviewQuery {
     public struct Data: Decodable {
         public var game: Game_game?
@@ -129,4 +142,5 @@ extension GameSearchResultRowPreviewQuery {
         }
     }
 }
+
 extension GameSearchResultRowPreviewQuery: Relay.Operation {}

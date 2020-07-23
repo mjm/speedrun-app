@@ -50,7 +50,9 @@ extension GameDetailLeaderboardList_game {
 public protocol GameDetailLeaderboardList_game_Key {
     var fragment_GameDetailLeaderboardList_game: FragmentPointer { get }
 }
+
 extension GameDetailLeaderboardList_game: Relay.Fragment {}
+
 extension GameDetailLeaderboardList_game: Relay.RefetchFragment {
     public typealias Operation = GameDetailLeaderboardListRefetchQuery
     public static var metadata: Metadata {
@@ -64,11 +66,13 @@ extension GameDetailLeaderboardList_game: Relay.RefetchFragment {
 
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
+
 extension GameDetailLeaderboardList_game_Key {
     @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
     public func asFragment() -> RelaySwiftUI.FragmentNext<GameDetailLeaderboardList_game> {
         RelaySwiftUI.FragmentNext<GameDetailLeaderboardList_game>(self)
     }
+
     @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
     public func asFragment() -> RelaySwiftUI.RefetchableFragment<GameDetailLeaderboardList_game> {
         RelaySwiftUI.RefetchableFragment<GameDetailLeaderboardList_game>(self)

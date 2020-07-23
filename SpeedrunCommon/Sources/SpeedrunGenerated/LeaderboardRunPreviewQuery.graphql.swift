@@ -188,6 +188,8 @@ extension LeaderboardRunPreviewQuery {
     public typealias Variables = EmptyVariables
 }
 
+
+
 extension LeaderboardRunPreviewQuery {
     public struct Data: Decodable {
         public var viewer: Viewer_viewer?
@@ -210,4 +212,5 @@ extension LeaderboardRunPreviewQuery {
         }
     }
 }
+
 extension LeaderboardRunPreviewQuery: Relay.Operation {}

@@ -51,10 +51,12 @@ extension GameDetailHeader_game {
 public protocol GameDetailHeader_game_Key {
     var fragment_GameDetailHeader_game: FragmentPointer { get }
 }
+
 extension GameDetailHeader_game: Relay.Fragment {}
 
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
+
 extension GameDetailHeader_game_Key {
     @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
     public func asFragment() -> RelaySwiftUI.FragmentNext<GameDetailHeader_game> {

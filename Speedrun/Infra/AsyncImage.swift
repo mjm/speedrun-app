@@ -73,7 +73,7 @@ class ImageLoader: ObservableObject {
                 }
             )
             .receive(on: DispatchQueue.main)
-            .assign(to: $image)
+            .assign(to: &$image)
     }
 }
 

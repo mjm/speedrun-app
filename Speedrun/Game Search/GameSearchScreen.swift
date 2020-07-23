@@ -73,7 +73,7 @@ private class SearchDelayer: ObservableObject {
 
         $inputText
             .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
-            .assign(to: $query)
+            .assign(to: &$query)
     }
 }
 

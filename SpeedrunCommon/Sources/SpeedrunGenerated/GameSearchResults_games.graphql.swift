@@ -93,7 +93,9 @@ extension GameSearchResults_games {
 public protocol GameSearchResults_games_Key {
     var fragment_GameSearchResults_games: FragmentPointer { get }
 }
+
 extension GameSearchResults_games: Relay.Fragment {}
+
 extension GameSearchResults_games: Relay.PaginationFragment {
     public typealias Operation = GameSearchResultsPaginationQuery
     public static var metadata: Metadata {
@@ -110,15 +112,18 @@ extension GameSearchResults_games: Relay.PaginationFragment {
 
 #if swift(>=5.3) && canImport(RelaySwiftUI)
 import RelaySwiftUI
+
 extension GameSearchResults_games_Key {
     @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
     public func asFragment() -> RelaySwiftUI.FragmentNext<GameSearchResults_games> {
         RelaySwiftUI.FragmentNext<GameSearchResults_games>(self)
     }
+
     @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
     public func asFragment() -> RelaySwiftUI.RefetchableFragment<GameSearchResults_games> {
         RelaySwiftUI.RefetchableFragment<GameSearchResults_games>(self)
     }
+
     @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
     public func asFragment() -> RelaySwiftUI.PaginationFragmentNext<GameSearchResults_games> {
         RelaySwiftUI.PaginationFragmentNext<GameSearchResults_games>(self)
