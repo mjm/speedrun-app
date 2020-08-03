@@ -15,7 +15,7 @@ struct GameDetailHeader: View {
     @Fragment<GameDetailHeader_game> var game
 
     var body: some View {
-        VStack(alignment: .center) {
+        HStack(alignment: .center) {
             Group {
                 if let cover = game?.cover {
                     AsyncImage(url: URL(string: cover.uri)!,
@@ -24,18 +24,18 @@ struct GameDetailHeader: View {
                 } else {
                     ImagePlaceholder()
                 }
-            }.frame(height: 200)
+            }.frame(width: 60)
 
             Text(game?.name ?? "")
                 .fontWeight(.semibold)
                 .foregroundColor(Color("GameHeaderText", bundle: nil))
                 .lineLimit(3)
-                .multilineTextAlignment(.center)
-                .font(.title)
+                .multilineTextAlignment(.leading)
+                .font(Font.title3)
                 .textCase(.none)
         }
-            .frame(maxWidth: .infinity)
-            .padding(.top, -40)
+        .frame(maxWidth: .infinity)
+        .padding(.top, -40)
     }
 }
 

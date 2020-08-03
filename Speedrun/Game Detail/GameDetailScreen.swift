@@ -15,9 +15,10 @@ query GameDetailScreenQuery($id: ID!) {
 struct GameDetailScreen: View {
     let id: String
 
-    @Query<GameDetailScreenQuery> var query
+    @Query<GameDetailScreenQuery>(fetchPolicy: .storeOrNetwork) var query
 
     var body: some View {
+
         switch query.get(id: id) {
         case .loading:
             Text("Loading…")
