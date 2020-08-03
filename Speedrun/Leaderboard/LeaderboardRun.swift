@@ -29,25 +29,33 @@ struct LeaderboardRun: View {
     @ViewBuilder var body: some View {
         if let run = run {
             HStack(alignment: .firstTextBaseline) {
-                Text(ordinalFormatter.string(from: run.place as NSNumber)!)
+                Text("999th")
                     .font(.callout)
+                    .foregroundColor(.clear)
+                    .overlay(
+                        Text(ordinalFormatter.string(from: run.place as NSNumber)!)
+                            .font(.callout)
+                            .frame(maxWidth: .infinity, alignment: .trailing))
                 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(run.run.players.first?.asUserRunPlayer?.user?.name ?? "(unknown name)")
-                        .font(.headline)
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(run.run.players.first?.asUserRunPlayer?.user?.name ?? "(unknown name)")
+                            .font(.headline)
+
+                        Spacer()
+
+                        if run.run.time != nil {
+                            Text(runTimeFormatter.string(from: run.run.time!)!)
+                                .font(.callout)
+                        }
+                    }
+                    
                     if !run.run.comment.isEmpty {
                         Text(run.run.comment)
                             .lineLimit(2)
                             .font(Font.caption.italic())
                             .foregroundColor(.secondary)
                     }
-                }
-                
-                Spacer()
-                
-                if run.run.time != nil {
-                    Text(runTimeFormatter.string(from: run.run.time!)!)
-                        .font(.callout)
                 }
             }.padding(.vertical, 4)
         }
