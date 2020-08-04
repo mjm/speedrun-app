@@ -23,6 +23,8 @@
 		C952D315248C6F3A00858761 /* LeaderboardScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D314248C6F3A00858761 /* LeaderboardScreen.swift */; };
 		C96AF2F124D8DB99002250C2 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AF2F024D8DB99002250C2 /* Spinner.swift */; };
 		C96AF2F324D8E43F002250C2 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AF2F224D8E43F002250C2 /* Loading.swift */; };
+		C96AF2F524D9204E002250C2 /* LeaderboardHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AF2F424D9204E002250C2 /* LeaderboardHeader.swift */; };
+		C96AF2F724D921C5002250C2 /* LeaderboardHeaderPreview.json in Resources */ = {isa = PBXBuildFile; fileRef = C96AF2F624D921C5002250C2 /* LeaderboardHeaderPreview.json */; };
 		C981E28B2495E7D000AC1463 /* RunDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981E28A2495E7D000AC1463 /* RunDetailScreen.swift */; };
 		C981E28D2495E8B600AC1463 /* RunDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981E28C2495E8B500AC1463 /* RunDetailInfo.swift */; };
 		C981E2932495F32F00AC1463 /* RunPlayerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981E2922495F32F00AC1463 /* RunPlayerRow.swift */; };
@@ -77,6 +79,8 @@
 		C952D314248C6F3A00858761 /* LeaderboardScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardScreen.swift; sourceTree = "<group>"; };
 		C96AF2F024D8DB99002250C2 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		C96AF2F224D8E43F002250C2 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
+		C96AF2F424D9204E002250C2 /* LeaderboardHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardHeader.swift; sourceTree = "<group>"; };
+		C96AF2F624D921C5002250C2 /* LeaderboardHeaderPreview.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LeaderboardHeaderPreview.json; sourceTree = "<group>"; };
 		C981E28A2495E7D000AC1463 /* RunDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDetailScreen.swift; sourceTree = "<group>"; };
 		C981E28C2495E8B500AC1463 /* RunDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDetailInfo.swift; sourceTree = "<group>"; };
 		C981E2922495F32F00AC1463 /* RunPlayerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunPlayerRow.swift; sourceTree = "<group>"; };
@@ -164,6 +168,7 @@
 				C99D698F24A9112C0014A74F /* GameSearchResultRowPreview_Empty.json */,
 				C99D698D24A910F60014A74F /* GameSearchResultRowPreview_LAS.json */,
 				C99D699124A913260014A74F /* GameDetailScreenPreview.json */,
+				C96AF2F624D921C5002250C2 /* LeaderboardHeaderPreview.json */,
 				C99D699324A914EA0014A74F /* LeaderboardScreenPreview.json */,
 				C99D699524A915EB0014A74F /* LeaderboardRunPreview.json */,
 				C99D699724A917140014A74F /* RunDetailInfoPreview_Glan.json */,
@@ -220,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				C952D314248C6F3A00858761 /* LeaderboardScreen.swift */,
+				C96AF2F424D9204E002250C2 /* LeaderboardHeader.swift */,
 				C9F373D024947D32005D93EB /* LeaderboardRunsList.swift */,
 				C9F373D624947EF6005D93EB /* LeaderboardRun.swift */,
 			);
@@ -333,6 +339,7 @@
 				C952D2CE248C1D5600858761 /* LaunchScreen.storyboard in Resources */,
 				C99D699624A915EB0014A74F /* LeaderboardRunPreview.json in Resources */,
 				C952D2CB248C1D5600858761 /* Preview Assets.xcassets in Resources */,
+				C96AF2F724D921C5002250C2 /* LeaderboardHeaderPreview.json in Resources */,
 				C99D699824A917140014A74F /* RunDetailInfoPreview_Glan.json in Resources */,
 				C99D699424A914EA0014A74F /* LeaderboardScreenPreview.json in Resources */,
 				C99D698E24A910F60014A74F /* GameSearchResultRowPreview_LAS.json in Resources */,
@@ -372,6 +379,7 @@
 				C952D30A248C65EA00858761 /* GameDetailHeader.swift in Sources */,
 				C952D315248C6F3A00858761 /* LeaderboardScreen.swift in Sources */,
 				C952D2FD248C30BE00858761 /* GameSearchResultRow.swift in Sources */,
+				C96AF2F524D9204E002250C2 /* LeaderboardHeader.swift in Sources */,
 				C952D2EF248C219200858761 /* GameSearchScreen.swift in Sources */,
 				C952D310248C6C7B00858761 /* GameDetailLeaderboardList.swift in Sources */,
 				C952D306248C349100858761 /* GameDetailScreen.swift in Sources */,

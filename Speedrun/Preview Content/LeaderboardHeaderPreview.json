@@ -1,0 +1,17 @@
+{
+  "data": {
+    "game": {
+      "id": "Z2FtZToieWQ0bzMydzEi",
+      "name": "The Legend of Zelda: Link's Awakening (2019)",
+      "cover": {
+        "uri": "https://www.speedrun.com/themes/las/cover-128.png"
+      }
+    },
+    "category": {
+      "__typename": "Category",
+      "id": "Y2F0ZWdvcnk6IjdrajNwbTQyIg==",
+      "name": "Any% (Glitchless)"
+    }
+  }
+}
+

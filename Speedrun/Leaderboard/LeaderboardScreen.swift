@@ -14,8 +14,11 @@ query LeaderboardScreenQuery(
       category: $categoryID
       level: $levelID
     ) {
+      game {
+        ...LeaderboardHeader_game
+      }
       category {
-        name
+        ...LeaderboardHeader_category
       }
       ...LeaderboardRunsList_leaderboard @arguments(count: 50)
     }
@@ -28,7 +31,7 @@ struct LeaderboardScreen: View {
     let categoryID: String
     let levelID: String? = nil
 
-    @Query<LeaderboardScreenQuery> var query
+    @Query<LeaderboardScreenQuery>(fetchPolicy: .storeAndNetwork) var query
 
     @ViewBuilder var body: some View {
         switch query.get(gameID: gameID, categoryID: categoryID, levelID: levelID) {
@@ -39,11 +42,14 @@ struct LeaderboardScreen: View {
         case .success(let data):
             List {
                 if let leaderboard = data?.viewer?.leaderboard {
+                    LeaderboardHeader(
+                        game: leaderboard.game.asFragment(),
+                        category: leaderboard.category.asFragment())
+                    
                     LeaderboardRunsList(leaderboard: leaderboard.asFragment())
                 }
             }
             .listStyle(PlainListStyle())
-            .navigationBarTitle(data?.viewer?.leaderboard?.category.name ?? "")
         }
     }
 }

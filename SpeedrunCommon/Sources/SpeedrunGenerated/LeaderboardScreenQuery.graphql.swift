@@ -31,12 +31,22 @@ public struct LeaderboardScreenQuery {
                                 plural: false,
                                 selections: [
                                     .field(ReaderLinkedField(
+                                        name: "game",
+                                        concreteType: "Game",
+                                        plural: false,
+                                        selections: [
+                                            .fragmentSpread(ReaderFragmentSpread(
+                                                name: "LeaderboardHeader_game"
+                                            ))
+                                        ]
+                                    )),
+                                    .field(ReaderLinkedField(
                                         name: "category",
                                         concreteType: "Category",
                                         plural: false,
                                         selections: [
-                                            .field(ReaderScalarField(
-                                                name: "name"
+                                            .fragmentSpread(ReaderFragmentSpread(
+                                                name: "LeaderboardHeader_category"
                                             ))
                                         ]
                                     )),
@@ -70,6 +80,34 @@ public struct LeaderboardScreenQuery {
                                 concreteType: "Leaderboard",
                                 plural: false,
                                 selections: [
+                                    .field(NormalizationLinkedField(
+                                        name: "game",
+                                        concreteType: "Game",
+                                        plural: false,
+                                        selections: [
+                                            .field(NormalizationScalarField(
+                                                name: "name"
+                                            )),
+                                            .field(NormalizationLinkedField(
+                                                name: "asset",
+                                                alias: "cover",
+                                                args: [
+                                                    LiteralArgument(name: "kind", value: "COVER_MEDIUM")
+                                                ],
+                                                storageKey: "asset(kind:\"COVER_MEDIUM\")",
+                                                concreteType: "GameAsset",
+                                                plural: false,
+                                                selections: [
+                                                    .field(NormalizationScalarField(
+                                                        name: "uri"
+                                                    ))
+                                                ]
+                                            )),
+                                            .field(NormalizationScalarField(
+                                                name: "id"
+                                            ))
+                                        ]
+                                    )),
                                     .field(NormalizationLinkedField(
                                         name: "category",
                                         concreteType: "Category",
@@ -165,12 +203,27 @@ query LeaderboardScreenQuery(
 ) {
   viewer {
     leaderboard(game: $gameID, category: $categoryID, level: $levelID) {
+      game {
+        ...LeaderboardHeader_game
+        id
+      }
       category {
-        name
+        ...LeaderboardHeader_category
         id
       }
       ...LeaderboardRunsList_leaderboard_knr29
     }
+  }
+}
+
+fragment LeaderboardHeader_category on Category {
+  name
+}
+
+fragment LeaderboardHeader_game on Game {
+  name
+  cover: asset(kind: COVER_MEDIUM) {
+    uri
   }
 }
 
@@ -265,11 +318,16 @@ extension LeaderboardScreenQuery {
             public var leaderboard: Leaderboard_leaderboard?
 
             public struct Leaderboard_leaderboard: Decodable, LeaderboardRunsList_leaderboard_Key {
+                public var game: Game_game
                 public var category: Category_category
                 public var fragment_LeaderboardRunsList_leaderboard: FragmentPointer
 
-                public struct Category_category: Decodable {
-                    public var name: String
+                public struct Game_game: Decodable, LeaderboardHeader_game_Key {
+                    public var fragment_LeaderboardHeader_game: FragmentPointer
+                }
+
+                public struct Category_category: Decodable, LeaderboardHeader_category_Key {
+                    public var fragment_LeaderboardHeader_category: FragmentPointer
                 }
             }
         }
