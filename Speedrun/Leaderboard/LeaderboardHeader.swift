@@ -48,7 +48,7 @@ struct LeaderboardHeader: View {
                     .foregroundColor(.secondary)
             }
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.top, -40)
         .padding(.bottom, 10)
     }

@@ -15,7 +15,7 @@ struct GameDetailHeader: View {
     @Fragment<GameDetailHeader_game> var game
 
     var body: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .center, spacing: 12) {
             Group {
                 if let cover = game?.cover {
                     AsyncImage(url: URL(string: cover.uri)!,
@@ -34,7 +34,7 @@ struct GameDetailHeader: View {
                 .font(Font.title3)
                 .textCase(.none)
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.top, -40)
     }
 }
