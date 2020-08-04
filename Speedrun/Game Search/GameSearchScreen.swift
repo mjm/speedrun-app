@@ -15,16 +15,17 @@ query GameSearchScreenQuery($query: String!) {
 struct GameSearchScreen: View {
     @RelayEnvironment var environment: Relay.Environment
     @Query<GameSearchScreenQuery> var query
-    @StateObject private var searchDelayer: SearchDelayer
+    @StateObject private var searchDelayer = SearchDelayer()
     @State private var isInspectorPresented = false
+    @SceneStorage("gameSearchInput") var searchInput = ""
 
     init(initialQuery: String = "") {
-        _searchDelayer = StateObject(wrappedValue: SearchDelayer(text: initialQuery))
+        _searchInput = SceneStorage(wrappedValue: initialQuery, "gameSearchInput")
     }
 
     var body: some View {
         VStack {
-            TextField("Search games…", text: $searchDelayer.inputText)
+            TextField("Search games…", text: $searchInput)
                 .padding(.horizontal)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
@@ -42,6 +43,14 @@ struct GameSearchScreen: View {
                     }
                 }
             }.frame(maxHeight: .infinity)
+        }
+        .onAppear {
+            NSLog("search input is \(searchInput)")
+            searchDelayer.inputText = searchInput
+            searchDelayer.query = searchInput
+        }
+        .onChange(of: searchInput) { newInput in
+            searchDelayer.inputText = newInput
         }
         .navigationBarTitle("Games")
         .toolbar {
@@ -64,13 +73,10 @@ struct GameSearchScreen: View {
 }
 
 private class SearchDelayer: ObservableObject {
-    @Published var inputText: String
-    @Published var query: String
+    @Published var inputText: String = ""
+    @Published var query: String = ""
 
-    init(text: String) {
-        inputText = text
-        query = text
-
+    init() {
         $inputText
             .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
             .assign(to: &$query)
