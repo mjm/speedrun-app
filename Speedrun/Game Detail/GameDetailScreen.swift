@@ -47,5 +47,11 @@ struct GameDetailScreen_Previews: PreviewProvider {
             GameDetailScreen(id: "Z2FtZToieWQ0bzMydzEi")
         }
         .previewPayload(op, resource: "GameDetailScreenPreview")
+
+        NavigationView {
+            GameDetailScreen(id: "Z2FtZToieWQ0bzMydzEi")
+        }
+        .preferredColorScheme(.dark)
+        .previewPayload(op, resource: "GameDetailScreenPreview")
     }
 }

@@ -42,6 +42,7 @@ struct LeaderboardScreen: View {
                     LeaderboardRunsList(leaderboard: leaderboard.asFragment())
                 }
             }
+            .listStyle(PlainListStyle())
             .navigationBarTitle(data?.viewer?.leaderboard?.category.name ?? "")
         }
     }
