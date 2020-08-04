@@ -21,7 +21,7 @@ struct GameDetailScreen: View {
 
         switch query.get(id: id) {
         case .loading:
-            Text("Loading…")
+            Loading()
         case .failure(let error):
             Text("Error: \(error.localizedDescription)")
         case .success(let data):

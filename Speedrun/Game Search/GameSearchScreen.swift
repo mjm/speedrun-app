@@ -32,7 +32,7 @@ struct GameSearchScreen: View {
                 if !searchDelayer.query.isEmpty {
                     switch query.get(query: searchDelayer.query) {
                     case .loading:
-                        Text("Loading…")
+                        Loading()
                     case .failure(let error):
                         Text("Error: \(error.localizedDescription)")
                     case .success(let data):

@@ -33,7 +33,7 @@ struct LeaderboardScreen: View {
     @ViewBuilder var body: some View {
         switch query.get(gameID: gameID, categoryID: categoryID, levelID: levelID) {
         case .loading:
-            Text("Loading…")
+            Loading()
         case .failure(let error):
             Text("Error: \(error.localizedDescription)")
         case .success(let data):
