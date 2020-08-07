@@ -25,9 +25,11 @@ struct GameSearchScreen: View {
 
     var body: some View {
         VStack {
-            TextField("Search games…", text: $searchInput)
-                .padding(.horizontal)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+            TextField("Search games…", text: $searchInput, onCommit: {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            })
+            .padding(.horizontal)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
 
             VStack {
                 if !searchDelayer.query.isEmpty {
@@ -87,7 +89,9 @@ struct GameSearchScreen_Previews: PreviewProvider {
     static let op = GameSearchScreenQuery(query: "link's awak")
 
     static var previews: some View {
-        GameSearchScreen(initialQuery: "link's awak")
-            .previewPayload(op, resource: "GameSearchScreenPreview")
+        NavigationView {
+            GameSearchScreen(initialQuery: "link's awak")
+        }
+        .previewPayload(op, resource: "GameSearchScreenPreview")
     }
 }
