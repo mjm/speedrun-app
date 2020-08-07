@@ -47,7 +47,6 @@ struct GameSearchScreen: View {
             }.frame(maxHeight: .infinity)
         }
         .onAppear {
-            NSLog("search input is \(searchInput)")
             searchDelayer.inputText = searchInput
             searchDelayer.query = searchInput
         }
