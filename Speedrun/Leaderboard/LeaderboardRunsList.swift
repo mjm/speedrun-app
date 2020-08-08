@@ -11,6 +11,7 @@ fragment LeaderboardRunsList_leaderboard on Leaderboard
     run {
       id
     }
+    place
     ...LeaderboardRun_run
   }
 }
@@ -21,7 +22,7 @@ struct LeaderboardRunsList: View {
 
     @ViewBuilder var body: some View {
         if let leaderboard = leaderboard {
-            ForEach(leaderboard.runs, id: \.run.id) { placedRun in
+            ForEach(leaderboard.runs.filter { $0.place != 0 }, id: \.run.id) { placedRun in
                 NavigationLink(destination: RunDetailScreen(id: placedRun.run.id)) {
                     LeaderboardRun(run: placedRun.asFragment())
                 }

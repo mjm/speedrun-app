@@ -32,6 +32,9 @@ public struct LeaderboardRunsList_leaderboard {
                                 ))
                             ]
                         )),
+                        .field(ReaderScalarField(
+                            name: "place"
+                        )),
                         .fragmentSpread(ReaderFragmentSpread(
                             name: "LeaderboardRun_run"
                         ))
@@ -48,6 +51,7 @@ extension LeaderboardRunsList_leaderboard {
 
         public struct PlacedRun_runs: Decodable, LeaderboardRun_run_Key {
             public var run: Run_run
+            public var place: Int
             public var fragment_LeaderboardRun_run: FragmentPointer
 
             public struct Run_run: Decodable, Identifiable {

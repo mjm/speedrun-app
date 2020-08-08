@@ -169,6 +169,7 @@ fragment LeaderboardRunsList_leaderboard_1KmBw7 on Leaderboard {
     run {
       id
     }
+    place
     ...LeaderboardRun_run
   }
 }

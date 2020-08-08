@@ -253,6 +253,7 @@ fragment LeaderboardRunsList_leaderboard_knr29 on Leaderboard {
     run {
       id
     }
+    place
     ...LeaderboardRun_run
   }
 }
