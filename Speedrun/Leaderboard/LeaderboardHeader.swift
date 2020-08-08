@@ -49,8 +49,7 @@ struct LeaderboardHeader: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.top, -40)
-        .padding(.bottom, 10)
+        .padding(.vertical, 10)
     }
 }
 
@@ -80,6 +79,7 @@ struct LeaderboardHeader_Previews: PreviewProvider {
                     Text("Goodbye")
                 }
                 .listStyle(PlainListStyle())
+                .navigationBarTitle("", displayMode: .inline)
             }
         }
         .previewPayload(op, resource: "LeaderboardHeaderPreview")

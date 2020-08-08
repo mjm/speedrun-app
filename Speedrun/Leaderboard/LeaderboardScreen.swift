@@ -50,6 +50,7 @@ struct LeaderboardScreen: View {
                 }
             }
             .listStyle(PlainListStyle())
+            .navigationBarTitle("", displayMode: .inline)
         }
     }
 }
