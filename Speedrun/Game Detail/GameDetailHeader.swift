@@ -14,17 +14,21 @@ fragment GameDetailHeader_game on Game {
 struct GameDetailHeader: View {
     @Fragment<GameDetailHeader_game> var game
 
+    private var coverURL: URL? {
+        (game?.cover?.uri).flatMap { URL(string: $0) }
+    }
+
     var body: some View {
         HStack(alignment: .center, spacing: 12) {
-            Group {
-                if let cover = game?.cover {
-                    AsyncImage(url: URL(string: cover.uri)!,
-                               placeholder: ImagePlaceholder())
-                        .aspectRatio(contentMode: .fit)
-                } else {
-                    ImagePlaceholder()
-                }
-            }.frame(width: 60)
+            AsyncImage(url: coverURL) { image in
+                image
+                    .resizable()
+                    .renderingMode(.original)
+                    .aspectRatio(contentMode: .fit)
+            } placeholder: {
+                ImagePlaceholder()
+            }
+            .frame(width: 60)
 
             Text(game?.name ?? "")
                 .fontWeight(.semibold)

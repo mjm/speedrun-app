@@ -15,12 +15,13 @@
 		C952D2EF248C219200858761 /* GameSearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D2EE248C219200858761 /* GameSearchScreen.swift */; };
 		C952D2F6248C27B200858761 /* GameSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D2F5248C27B200858761 /* GameSearchResults.swift */; };
 		C952D2FD248C30BE00858761 /* GameSearchResultRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D2FC248C30BE00858761 /* GameSearchResultRow.swift */; };
-		C952D302248C319500858761 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D300248C319500858761 /* AsyncImage.swift */; };
 		C952D303248C319500858761 /* ImagePlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D301248C319500858761 /* ImagePlaceholder.swift */; };
 		C952D306248C349100858761 /* GameDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D305248C349100858761 /* GameDetailScreen.swift */; };
 		C952D30A248C65EA00858761 /* GameDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D309248C65EA00858761 /* GameDetailHeader.swift */; };
 		C952D310248C6C7B00858761 /* GameDetailLeaderboardList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D30F248C6C7B00858761 /* GameDetailLeaderboardList.swift */; };
 		C952D315248C6F3A00858761 /* LeaderboardScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952D314248C6F3A00858761 /* LeaderboardScreen.swift */; };
+		C954370F267835FB00CC99A0 /* RelaySwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C954370E267835FB00CC99A0 /* RelaySwiftUI */; };
+		C95437112678361600CC99A0 /* Relay in Frameworks */ = {isa = PBXBuildFile; productRef = C95437102678361600CC99A0 /* Relay */; };
 		C96AF2F124D8DB99002250C2 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AF2F024D8DB99002250C2 /* Spinner.swift */; };
 		C96AF2F324D8E43F002250C2 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AF2F224D8E43F002250C2 /* Loading.swift */; };
 		C96AF2F524D9204E002250C2 /* LeaderboardHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AF2F424D9204E002250C2 /* LeaderboardHeader.swift */; };
@@ -39,7 +40,6 @@
 		C99D699A24A917BE0014A74F /* RunDetailInfoPreview_TGH.json in Resources */ = {isa = PBXBuildFile; fileRef = C99D699924A917BE0014A74F /* RunDetailInfoPreview_TGH.json */; };
 		C99D699C24A91BE90014A74F /* RunPlayerRowPreview.json in Resources */ = {isa = PBXBuildFile; fileRef = C99D699B24A91BE90014A74F /* RunPlayerRowPreview.json */; };
 		C9C9C01824A2F0B0005BF960 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9C01724A2F0B0005BF960 /* App.swift */; };
-		C9C9C01A24A2FE0F005BF960 /* RelaySwiftUINext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9C01924A2FE0F005BF960 /* RelaySwiftUINext.swift */; };
 		C9D63CFA24C4B9960053FD34 /* SpeedrunGenerated in Frameworks */ = {isa = PBXBuildFile; productRef = C9D63CF924C4B9960053FD34 /* SpeedrunGenerated */; };
 		C9F373D124947D32005D93EB /* LeaderboardRunsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F373D024947D32005D93EB /* LeaderboardRunsList.swift */; };
 		C9F373D724947EF6005D93EB /* LeaderboardRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F373D624947EF6005D93EB /* LeaderboardRun.swift */; };
@@ -71,7 +71,6 @@
 		C952D2F5248C27B200858761 /* GameSearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSearchResults.swift; sourceTree = "<group>"; };
 		C952D2FB248C2B4500858761 /* Relay.swift */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Relay.swift; path = ../Relay.swift; sourceTree = "<group>"; };
 		C952D2FC248C30BE00858761 /* GameSearchResultRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSearchResultRow.swift; sourceTree = "<group>"; };
-		C952D300248C319500858761 /* AsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		C952D301248C319500858761 /* ImagePlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePlaceholder.swift; sourceTree = "<group>"; };
 		C952D305248C349100858761 /* GameDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailScreen.swift; sourceTree = "<group>"; };
 		C952D309248C65EA00858761 /* GameDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailHeader.swift; sourceTree = "<group>"; };
@@ -95,7 +94,6 @@
 		C99D699924A917BE0014A74F /* RunDetailInfoPreview_TGH.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RunDetailInfoPreview_TGH.json; sourceTree = "<group>"; };
 		C99D699B24A91BE90014A74F /* RunPlayerRowPreview.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RunPlayerRowPreview.json; sourceTree = "<group>"; };
 		C9C9C01724A2F0B0005BF960 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		C9C9C01924A2FE0F005BF960 /* RelaySwiftUINext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelaySwiftUINext.swift; sourceTree = "<group>"; };
 		C9D63CF724C4B7EF0053FD34 /* SpeedrunCommon */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SpeedrunCommon; sourceTree = "<group>"; };
 		C9F373D024947D32005D93EB /* LeaderboardRunsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardRunsList.swift; sourceTree = "<group>"; };
 		C9F373D624947EF6005D93EB /* LeaderboardRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardRun.swift; sourceTree = "<group>"; };
@@ -106,6 +104,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C95437112678361600CC99A0 /* Relay in Frameworks */,
+				C954370F267835FB00CC99A0 /* RelaySwiftUI in Frameworks */,
 				C9D63CFA24C4B9960053FD34 /* SpeedrunGenerated in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -190,11 +190,9 @@
 		C952D2E8248C1E3D00858761 /* Infra */ = {
 			isa = PBXGroup;
 			children = (
-				C952D300248C319500858761 /* AsyncImage.swift */,
 				C952D2E9248C1E5500858761 /* Environment.swift */,
 				C952D301248C319500858761 /* ImagePlaceholder.swift */,
 				C9C9C01724A2F0B0005BF960 /* App.swift */,
-				C9C9C01924A2FE0F005BF960 /* RelaySwiftUINext.swift */,
 				C96AF2F024D8DB99002250C2 /* Spinner.swift */,
 				C96AF2F224D8E43F002250C2 /* Loading.swift */,
 			);
@@ -267,6 +265,8 @@
 			name = Speedrun;
 			packageProductDependencies = (
 				C9D63CF924C4B9960053FD34 /* SpeedrunGenerated */,
+				C954370E267835FB00CC99A0 /* RelaySwiftUI */,
+				C95437102678361600CC99A0 /* Relay */,
 			);
 			productName = Speedrun;
 			productReference = C952D2BE248C1D5600858761 /* Speedrun.app */;
@@ -373,7 +373,6 @@
 				C9C9C01824A2F0B0005BF960 /* App.swift in Sources */,
 				C981E28D2495E8B600AC1463 /* RunDetailInfo.swift in Sources */,
 				C952D2EA248C1E5500858761 /* Environment.swift in Sources */,
-				C952D302248C319500858761 /* AsyncImage.swift in Sources */,
 				C952D303248C319500858761 /* ImagePlaceholder.swift in Sources */,
 				C9F373D724947EF6005D93EB /* LeaderboardRun.swift in Sources */,
 				C952D30A248C65EA00858761 /* GameDetailHeader.swift in Sources */,
@@ -384,7 +383,6 @@
 				C952D310248C6C7B00858761 /* GameDetailLeaderboardList.swift in Sources */,
 				C952D306248C349100858761 /* GameDetailScreen.swift in Sources */,
 				C952D2F6248C27B200858761 /* GameSearchResults.swift in Sources */,
-				C9C9C01A24A2FE0F005BF960 /* RelaySwiftUINext.swift in Sources */,
 				C9F373D124947D32005D93EB /* LeaderboardRunsList.swift in Sources */,
 				C981E28B2495E7D000AC1463 /* RunDetailScreen.swift in Sources */,
 			);
@@ -471,7 +469,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -526,7 +524,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -546,7 +544,7 @@
 				DEVELOPMENT_TEAM = PE8BN56Z28;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Speedrun/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -568,7 +566,7 @@
 				DEVELOPMENT_TEAM = PE8BN56Z28;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Speedrun/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -666,6 +664,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C954370E267835FB00CC99A0 /* RelaySwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RelaySwiftUI;
+		};
+		C95437102678361600CC99A0 /* Relay */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Relay;
+		};
 		C9D63CF924C4B9960053FD34 /* SpeedrunGenerated */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SpeedrunGenerated;

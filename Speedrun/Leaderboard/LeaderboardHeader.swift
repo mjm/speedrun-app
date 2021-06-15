@@ -21,17 +21,21 @@ struct LeaderboardHeader: View {
     @Fragment<LeaderboardHeader_game> var game
     @Fragment<LeaderboardHeader_category> var category
 
+    private var coverURL: URL? {
+        (game?.cover?.uri).flatMap { URL(string: $0) }
+    }
+
     var body: some View {
         HStack(alignment: .center, spacing: 12) {
-            Group {
-                if let cover = game?.cover {
-                    AsyncImage(url: URL(string: cover.uri)!,
-                               placeholder: ImagePlaceholder())
-                        .aspectRatio(contentMode: .fit)
-                } else {
-                    ImagePlaceholder()
-                }
-            }.frame(width: 60)
+            AsyncImage(url: coverURL) { image in
+                image
+                    .resizable()
+                    .renderingMode(.original)
+                    .aspectRatio(contentMode: .fit)
+            } placeholder: {
+                ImagePlaceholder()
+            }
+            .frame(width: 60)
 
             VStack(alignment: .leading, spacing: 8) {
                 Text(game?.name ?? "")

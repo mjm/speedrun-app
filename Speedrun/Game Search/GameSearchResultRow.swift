@@ -14,20 +14,21 @@ fragment GameSearchResultRow_game on Game {
 struct GameSearchResultRow: View {
     @Fragment<GameSearchResultRow_game> var game
 
-    @ViewBuilder var body: some View {
+    private var coverURL: URL? {
+        (game?.cover?.uri).flatMap { URL(string: $0) }
+    }
+
+    var body: some View {
         if let game = game {
             HStack {
-                Group {
-                    if let cover = game.cover {
-                        AsyncImage(
-                            url: URL(string: cover.uri)!,
-                            placeholder: ImagePlaceholder()
-                                .frame(width: 80, height: 80))
-                            .aspectRatio(contentMode: .fit)
-                    } else {
-                        ImagePlaceholder()
-                            .frame(width: 80, height: 80)
-                    }
+                AsyncImage(url: coverURL) { image in
+                    image
+                        .resizable()
+                        .renderingMode(.original)
+                        .aspectRatio(contentMode: .fit)
+                } placeholder: {
+                    ImagePlaceholder()
+                        .frame(width: 80, height: 80)
                 }
                 .frame(width: 80)
                 
