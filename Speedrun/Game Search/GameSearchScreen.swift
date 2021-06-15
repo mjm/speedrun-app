@@ -25,27 +25,21 @@ struct GameSearchScreen: View {
 
     var body: some View {
         VStack {
-            TextField("Search games…", text: $searchInput, onCommit: {
-                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-            })
-            .padding(.horizontal)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-
-            VStack {
-                if !searchDelayer.query.isEmpty {
-                    switch query.get(query: searchDelayer.query) {
-                    case .loading:
-                        Loading()
-                    case .failure(let error):
-                        Text("Error: \(error.localizedDescription)")
-                    case .success(let data):
-                        if let viewer = data?.viewer {
-                            GameSearchResults(games: viewer.asFragment())
-                        }
+            if !searchDelayer.query.isEmpty {
+                switch query.get(query: searchDelayer.query) {
+                case .loading:
+                    Loading()
+                case .failure(let error):
+                    Text("Error: \(error.localizedDescription)")
+                case .success(let data):
+                    if let viewer = data?.viewer {
+                        GameSearchResults(games: viewer.asFragment())
                     }
                 }
-            }.frame(maxHeight: .infinity)
+            }
         }
+        .frame(maxHeight: .infinity)
+        .searchable(text: $searchInput)
         .onAppear {
             searchDelayer.inputText = searchInput
             searchDelayer.query = searchInput
