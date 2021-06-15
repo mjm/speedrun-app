@@ -36,7 +36,7 @@ struct GameSearchResults: View {
                     GameSearchResultRow(game: game.asFragment())
                 }
             }
-            .listStyle(PlainListStyle())
+            .listStyle(.plain)
         }
     }
 }

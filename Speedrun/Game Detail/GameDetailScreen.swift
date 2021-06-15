@@ -33,7 +33,7 @@ struct GameDetailScreen: View {
 
                     GameDetailLeaderboardList(game: game.asFragment())
                 }
-                .listStyle(GroupedListStyle())
+                .listStyle(.grouped)
             }
         }
     }

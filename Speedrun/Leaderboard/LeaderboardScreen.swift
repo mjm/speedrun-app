@@ -49,7 +49,7 @@ struct LeaderboardScreen: View {
                     LeaderboardRunsList(leaderboard: leaderboard.asFragment())
                 }
             }
-            .listStyle(PlainListStyle())
+            .listStyle(.plain)
             .navigationBarTitle("", displayMode: .inline)
         }
     }
