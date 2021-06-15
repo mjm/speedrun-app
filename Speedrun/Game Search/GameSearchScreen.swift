@@ -51,19 +51,23 @@ struct GameSearchScreen: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 #if DEBUG
-                Button(
-                    action: { isInspectorPresented = true},
-                    label: { Image(systemName: "briefcase") }
-                ).sheet(isPresented: $isInspectorPresented) {
-                    NavigationView {
-                        RelaySwiftUI.Inspector()
-                    }.relayEnvironment(environment)
+                Button {
+                    isInspectorPresented = true
+                } label: {
+                    Image(systemName: "briefcase")
                 }
                 #else
                 EmptyView()
                 #endif
             }
         }
+        #if DEBUG
+        .sheet(isPresented: $isInspectorPresented) {
+            NavigationView {
+                RelaySwiftUI.Inspector()
+            }.relayEnvironment(environment)
+        }
+        #endif
     }
 }
 
