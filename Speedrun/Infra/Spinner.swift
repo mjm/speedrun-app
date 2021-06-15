@@ -20,7 +20,7 @@ struct Spinner: View {
             .rotationEffect(.degrees(isAnimating ? 360 : 0))
             .animation(Animation.linear
                         .repeatForever(autoreverses: false)
-                        .speed(0.5))
+                        .speed(0.5), value: isAnimating)
             .frame(maxWidth: 60, maxHeight: 60)
             .onAppear { isAnimating = true }
             .onDisappear { isAnimating = false }
