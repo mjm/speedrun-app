@@ -171,48 +171,46 @@ fragment GameSearchResults_games_1jWD3d on Viewer {
 
 extension GameSearchResultsPaginationQuery {
     public struct Variables: VariableDataConvertible {
-        public var query: String
         public var count: Int?
         public var cursor: String?
+        public var query: String
 
-        public init(query: String, count: Int? = nil, cursor: String? = nil) {
-            self.query = query
+        public init(count: Int? = nil, cursor: String? = nil, query: String) {
             self.count = count
             self.cursor = cursor
+            self.query = query
         }
 
         public var variableData: VariableData {
             [
-                "query": query,
                 "count": count,
-                "cursor": cursor
+                "cursor": cursor,
+                "query": query
             ]
         }
     }
 
-    public init(query: String, count: Int? = nil, cursor: String? = nil) {
-        self.init(variables: .init(query: query, count: count, cursor: cursor))
+    public init(count: Int? = nil, cursor: String? = nil, query: String) {
+        self.init(variables: .init(count: count, cursor: cursor, query: query))
     }
 }
 
-#if swift(>=5.3) && canImport(RelaySwiftUI)
+#if canImport(RelaySwiftUI)
 import RelaySwiftUI
 
-@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-extension RelaySwiftUI.QueryNext.WrappedValue where O == GameSearchResultsPaginationQuery {
-    public func get(query: String, count: Int? = nil, cursor: String? = nil, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<GameSearchResultsPaginationQuery>.Result {
-        self.get(.init(query: query, count: count, cursor: cursor), fetchKey: fetchKey)
+extension RelaySwiftUI.Query.WrappedValue where O == GameSearchResultsPaginationQuery {
+    public func get(count: Int? = nil, cursor: String? = nil, query: String, fetchKey: Any? = nil) -> RelaySwiftUI.Query<GameSearchResultsPaginationQuery>.Result {
+        self.get(.init(count: count, cursor: cursor, query: query), fetchKey: fetchKey)
     }
 }
 #endif
 
-#if swift(>=5.3) && canImport(RelaySwiftUI)
+#if canImport(RelaySwiftUI)
 import RelaySwiftUI
 
-@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
 extension RelaySwiftUI.RefetchableFragment.Wrapper where F.Operation == GameSearchResultsPaginationQuery {
-    public func refetch(query: String, count: Int? = nil, cursor: String? = nil) {
-        self.refetch(.init(query: query, count: count, cursor: cursor))
+    public func refetch(count: Int? = nil, cursor: String? = nil, query: String) {
+        self.refetch(.init(count: count, cursor: cursor, query: query))
     }
 }
 #endif

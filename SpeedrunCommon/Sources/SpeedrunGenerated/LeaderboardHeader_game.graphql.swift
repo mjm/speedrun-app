@@ -54,13 +54,12 @@ public protocol LeaderboardHeader_game_Key {
 
 extension LeaderboardHeader_game: Relay.Fragment {}
 
-#if swift(>=5.3) && canImport(RelaySwiftUI)
+#if canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 extension LeaderboardHeader_game_Key {
-    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-    public func asFragment() -> RelaySwiftUI.FragmentNext<LeaderboardHeader_game> {
-        RelaySwiftUI.FragmentNext<LeaderboardHeader_game>(self)
+    public func asFragment() -> RelaySwiftUI.Fragment<LeaderboardHeader_game> {
+        RelaySwiftUI.Fragment<LeaderboardHeader_game>(self)
     }
 }
 #endif

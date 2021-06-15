@@ -110,23 +110,20 @@ extension GameSearchResults_games: Relay.PaginationFragment {
     }
 }
 
-#if swift(>=5.3) && canImport(RelaySwiftUI)
+#if canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 extension GameSearchResults_games_Key {
-    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-    public func asFragment() -> RelaySwiftUI.FragmentNext<GameSearchResults_games> {
-        RelaySwiftUI.FragmentNext<GameSearchResults_games>(self)
+    public func asFragment() -> RelaySwiftUI.Fragment<GameSearchResults_games> {
+        RelaySwiftUI.Fragment<GameSearchResults_games>(self)
     }
 
-    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
     public func asFragment() -> RelaySwiftUI.RefetchableFragment<GameSearchResults_games> {
         RelaySwiftUI.RefetchableFragment<GameSearchResults_games>(self)
     }
 
-    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-    public func asFragment() -> RelaySwiftUI.PaginationFragmentNext<GameSearchResults_games> {
-        RelaySwiftUI.PaginationFragmentNext<GameSearchResults_games>(self)
+    public func asFragment() -> RelaySwiftUI.PaginationFragment<GameSearchResults_games> {
+        RelaySwiftUI.PaginationFragment<GameSearchResults_games>(self)
     }
 }
 #endif

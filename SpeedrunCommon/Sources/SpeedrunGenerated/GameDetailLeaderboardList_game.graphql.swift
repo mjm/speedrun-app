@@ -64,16 +64,14 @@ extension GameDetailLeaderboardList_game: Relay.RefetchFragment {
     }
 }
 
-#if swift(>=5.3) && canImport(RelaySwiftUI)
+#if canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 extension GameDetailLeaderboardList_game_Key {
-    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-    public func asFragment() -> RelaySwiftUI.FragmentNext<GameDetailLeaderboardList_game> {
-        RelaySwiftUI.FragmentNext<GameDetailLeaderboardList_game>(self)
+    public func asFragment() -> RelaySwiftUI.Fragment<GameDetailLeaderboardList_game> {
+        RelaySwiftUI.Fragment<GameDetailLeaderboardList_game>(self)
     }
 
-    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
     public func asFragment() -> RelaySwiftUI.RefetchableFragment<GameDetailLeaderboardList_game> {
         RelaySwiftUI.RefetchableFragment<GameDetailLeaderboardList_game>(self)
     }

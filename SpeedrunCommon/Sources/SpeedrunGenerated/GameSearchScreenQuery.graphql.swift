@@ -183,21 +183,19 @@ extension GameSearchScreenQuery {
     }
 }
 
-#if swift(>=5.3) && canImport(RelaySwiftUI)
+#if canImport(RelaySwiftUI)
 import RelaySwiftUI
 
-@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-extension RelaySwiftUI.QueryNext.WrappedValue where O == GameSearchScreenQuery {
-    public func get(query: String, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<GameSearchScreenQuery>.Result {
+extension RelaySwiftUI.Query.WrappedValue where O == GameSearchScreenQuery {
+    public func get(query: String, fetchKey: Any? = nil) -> RelaySwiftUI.Query<GameSearchScreenQuery>.Result {
         self.get(.init(query: query), fetchKey: fetchKey)
     }
 }
 #endif
 
-#if swift(>=5.3) && canImport(RelaySwiftUI)
+#if canImport(RelaySwiftUI)
 import RelaySwiftUI
 
-@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
 extension RelaySwiftUI.RefetchableFragment.Wrapper where F.Operation == GameSearchScreenQuery {
     public func refetch(query: String) {
         self.refetch(.init(query: query))

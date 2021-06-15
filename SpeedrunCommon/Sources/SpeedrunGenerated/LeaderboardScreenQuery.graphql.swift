@@ -289,21 +289,19 @@ extension LeaderboardScreenQuery {
     }
 }
 
-#if swift(>=5.3) && canImport(RelaySwiftUI)
+#if canImport(RelaySwiftUI)
 import RelaySwiftUI
 
-@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-extension RelaySwiftUI.QueryNext.WrappedValue where O == LeaderboardScreenQuery {
-    public func get(gameID: String, categoryID: String, levelID: String? = nil, fetchKey: Any? = nil) -> RelaySwiftUI.QueryNext<LeaderboardScreenQuery>.Result {
+extension RelaySwiftUI.Query.WrappedValue where O == LeaderboardScreenQuery {
+    public func get(gameID: String, categoryID: String, levelID: String? = nil, fetchKey: Any? = nil) -> RelaySwiftUI.Query<LeaderboardScreenQuery>.Result {
         self.get(.init(gameID: gameID, categoryID: categoryID, levelID: levelID), fetchKey: fetchKey)
     }
 }
 #endif
 
-#if swift(>=5.3) && canImport(RelaySwiftUI)
+#if canImport(RelaySwiftUI)
 import RelaySwiftUI
 
-@available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
 extension RelaySwiftUI.RefetchableFragment.Wrapper where F.Operation == LeaderboardScreenQuery {
     public func refetch(gameID: String, categoryID: String, levelID: String? = nil) {
         self.refetch(.init(gameID: gameID, categoryID: categoryID, levelID: levelID))

@@ -125,13 +125,6 @@ extension RunPlayerRow_player {
             return nil
         }
 
-        public var asRunPlayer: RunPlayer? {
-            if case .runPlayer(let val) = self {
-                return val
-            }
-            return nil
-        }
-
         public struct UserRunPlayer: Decodable {
             public var user: User_user?
 
@@ -170,13 +163,6 @@ extension RunPlayerRow_player {
 
                     public var asGradientUserNameStyle: GradientUserNameStyle? {
                         if case .gradientUserNameStyle(let val) = self {
-                            return val
-                        }
-                        return nil
-                    }
-
-                    public var asUserNameStyle: UserNameStyle? {
-                        if case .userNameStyle(let val) = self {
                             return val
                         }
                         return nil
@@ -224,13 +210,12 @@ public protocol RunPlayerRow_player_Key {
 
 extension RunPlayerRow_player: Relay.Fragment {}
 
-#if swift(>=5.3) && canImport(RelaySwiftUI)
+#if canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 extension RunPlayerRow_player_Key {
-    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-    public func asFragment() -> RelaySwiftUI.FragmentNext<RunPlayerRow_player> {
-        RelaySwiftUI.FragmentNext<RunPlayerRow_player>(self)
+    public func asFragment() -> RelaySwiftUI.Fragment<RunPlayerRow_player> {
+        RelaySwiftUI.Fragment<RunPlayerRow_player>(self)
     }
 }
 #endif

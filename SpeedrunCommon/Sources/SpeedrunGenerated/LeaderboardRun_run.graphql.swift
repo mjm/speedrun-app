@@ -114,13 +114,6 @@ extension LeaderboardRun_run {
                     return nil
                 }
 
-                public var asRunPlayer: RunPlayer? {
-                    if case .runPlayer(let val) = self {
-                        return val
-                    }
-                    return nil
-                }
-
                 public struct UserRunPlayer: Decodable {
                     public var user: User_user?
 
@@ -146,13 +139,12 @@ public protocol LeaderboardRun_run_Key {
 
 extension LeaderboardRun_run: Relay.Fragment {}
 
-#if swift(>=5.3) && canImport(RelaySwiftUI)
+#if canImport(RelaySwiftUI)
 import RelaySwiftUI
 
 extension LeaderboardRun_run_Key {
-    @available(iOS 14.0, macOS 10.16, tvOS 14.0, watchOS 7.0, *)
-    public func asFragment() -> RelaySwiftUI.FragmentNext<LeaderboardRun_run> {
-        RelaySwiftUI.FragmentNext<LeaderboardRun_run>(self)
+    public func asFragment() -> RelaySwiftUI.Fragment<LeaderboardRun_run> {
+        RelaySwiftUI.Fragment<LeaderboardRun_run>(self)
     }
 }
 #endif
